@@ -7,3 +7,7 @@ gradle-app.setting
 # IntelliJ IDEA
 .idea/
 *.iml
+
+# gradle guff / nb
+
+.nb-gradle
