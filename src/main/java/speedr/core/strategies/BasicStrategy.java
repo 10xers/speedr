@@ -1,5 +1,6 @@
 package speedr.core.strategies;
 
+import speedr.core.entities.FrequencyMap;
 import speedr.core.entities.Word;
 
 /**
@@ -7,9 +8,19 @@ import speedr.core.entities.Word;
  */
 public class BasicStrategy implements Strategy {
 
+    private FrequencyMap frequencies;
+    private int baseDurationMilliseconds;
+
+    public BasicStrategy(FrequencyMap fm, int baseDurationMilliseconds) {
+        this.frequencies = fm;
+        this.baseDurationMilliseconds = baseDurationMilliseconds;
+    }
+
     @Override
     public Word wordFor(String s) {
-        return new Word(s, 0);
+
+        float coefficient = frequencies.getCoefficientOf(s);
+        return new Word(s, (int)(this.baseDurationMilliseconds * coefficient));
     }
 
 }

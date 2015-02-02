@@ -1,5 +1,6 @@
 package speedr.core;
 
+import speedr.core.entities.FrequencyMap;
 import speedr.core.entities.HasContent;
 import speedr.core.entities.Sentence;
 import speedr.core.entities.Word;
@@ -22,8 +23,21 @@ public class SpeedReaderStream {
     private int currentWord = 0;
 
     public SpeedReaderStream(HasContent c) {
+
         originalContent = c.getContent();
-        SpeedReadTokenizer srt = new SpeedReadTokenizer(new BasicStrategy());
+
+        // todo: refactor this to move out the magic string and integer
+
+        SpeedReadTokenizer srt = null;
+
+        try {
+            srt = new SpeedReadTokenizer(
+                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
+            );
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
         sentences = srt.parse(originalContent);
     }
 

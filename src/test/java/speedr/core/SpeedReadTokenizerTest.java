@@ -1,6 +1,7 @@
 package speedr.core;
 
 import org.junit.Test;
+import speedr.core.entities.FrequencyMap;
 import speedr.core.entities.Sentence;
 import speedr.core.strategies.BasicStrategy;
 
@@ -18,7 +19,15 @@ public class SpeedReadTokenizerTest {
         String[] firstSentenceExpected = new String[]{"The", "rain", "in", "spain", "is", "never", "the", "same."},
                  secondSentenceExpected = new String[]{"And", "the", "beer", "is", "austere." };
 
-        SpeedReadTokenizer srt = new SpeedReadTokenizer(new BasicStrategy());
+        SpeedReadTokenizer srt = null;
+
+        try {
+            srt = new SpeedReadTokenizer(
+                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
+            );
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
 
         List<Sentence> got = srt.parse(content);
 
