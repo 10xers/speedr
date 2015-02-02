@@ -11,3 +11,8 @@ gradle-app.setting
 # gradle guff / nb
 
 .nb-gradle
+
+# intellij plugin generated files
+
+*.ipr
+*.iws
