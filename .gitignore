@@ -13,6 +13,10 @@ gradle-app.setting
 .nb-gradle
 .nb-gradle-properties
 
+gradle/
+gradlew
+gradlew.bat
+
 # intellij plugin generated files
 
 *.ipr
