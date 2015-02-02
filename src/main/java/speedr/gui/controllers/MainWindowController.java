@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 /**
  * Speedr / Ed
@@ -18,7 +18,7 @@ public class MainWindowController {
     private Label lbl;
 
     @FXML
-    private void goBtnAction(ActionEvent evt)
+    public void goBtnAction(ActionEvent evt)
     {
         lbl.setText(lbl.getText()+" fart");
     }

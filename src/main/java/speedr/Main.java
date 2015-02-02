@@ -19,12 +19,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
-
         Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+
+       primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
+
         primaryStage.setTitle("speedr");
-
-        primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
-
         primaryStage.show();
 
     }
