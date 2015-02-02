@@ -20,10 +20,9 @@ public class SpeedReadParserTest {
         String[] firstSentenceExpected = new String[]{"The", "rain", "in", "spain", "is", "never", "the", "same."},
                  secondSentenceExpected = new String[]{"And", "the", "beer", "is", "austere" };
 
-        
+        List<Sentence> got = SpeedReadParser.parse(content);
 
-
-
+        assertEquals(2, got.size());
 
 
     }
