@@ -5,8 +5,8 @@ import speedr.core.entities.Word;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Semaphore;
 
 /**
  * Speedr / Ed
@@ -18,10 +18,13 @@ public class SpeedReadEventPump {
     private int wordsPerMs = 0;
     private final SpeedReaderStream stream;
 
-    private final Object pauseLock = new Object();
+    private final Object controlLock = new Object();
     private boolean isPaused = false;
+    private boolean isEnd = false;
 
-    private Timer timer;
+    private Semaphore canRun = new Semaphore(1);
+
+    private Thread counterThread = null;
 
     public SpeedReadEventPump(SpeedReaderStream stream, int wpm) {
         if (wpm < 0) {
@@ -33,19 +36,6 @@ public class SpeedReadEventPump {
         wordPumpEventListenerList = new ArrayList<>();
 
         this.stream = stream;
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-                       @Override
-                       public void run() {
-                           if (!isPaused()) {
-                               Platform.runLater(() -> fireWordPumpEvent(stream.getNextWord()));
-                           }
-                       }
-                   },
-                   0,
-                   wordsPerMs);
-
     }
 
     private void fireWordPumpEvent(final Word w) {
@@ -68,29 +58,78 @@ public class SpeedReadEventPump {
 
     public boolean isPaused()
     {
-        synchronized (pauseLock)
+        synchronized (controlLock)
         {
             return isPaused;
         }
     }
 
-    public void setPaused(boolean paused)
-    {
-        synchronized (pauseLock)
+    public void setPaused(boolean paused) throws InterruptedException {
+        synchronized (controlLock)
         {
-            this.isPaused = paused;
+            if (this.isPaused() ^ paused)
+            {
+                if (this.isPaused()==false && paused==true)
+                {
+                    canRun.acquire();
+                } else {
+                    canRun.release();
+                }
+
+                this.isPaused = paused;
+            }
         }
     }
 
     public void stop()
     {
-        setPaused(true);
-
-        synchronized (pauseLock)
+        synchronized (controlLock)
         {
-            timer.cancel();
+            this.isEnd = true;
         }
     }
 
+    public boolean isStopped()
+    {
+        synchronized (controlLock)
+        {
+            return this.isEnd;
+        }
+    }
+
+
+    // start the callback event reading (asynchronously)
+    public void start(WordPumpEventListener listener)
+    {
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Word next;
+                while( (next=stream.getNextWord())!=null )
+                {
+                    if (isStopped())
+                        break;
+
+                    try {
+                        canRun.acquire();
+                        Thread.sleep(wordsPerMs * next.getDuration());
+
+                        if (isStopped())
+                            break;
+
+                        Platform.runLater(() -> fireWordPumpEvent(next));
+
+                    } catch (InterruptedException e) {
+                        throw new IllegalStateException("wait interrupted..", e);
+                    } finally {
+                        canRun.release();
+                    }
+                }
+            }
+        });
+
+        t.start();
+    }
 
 }
