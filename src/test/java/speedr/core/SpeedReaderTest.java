@@ -14,7 +14,7 @@ public class SpeedReaderTest {
     @Test
     public void testSystem() {
 
-        SpeedReaderStream s = new SpeedReaderStream(new MockContent());
+        SpeedReaderStream s = new SpeedReaderStream(() -> "this is a sentence. Another sentence.");
 
         List<String> out = new ArrayList<>(5);
 
@@ -31,14 +31,6 @@ public class SpeedReaderTest {
         s.goBackWord();
         assertTrue(s.getNextWord().asText().equals("sentence."));
 
-    }
-
-    private class MockContent implements HasContent {
-
-        @Override
-        public String getContent() {
-            return "this is a sentence. Another sentence.";
-        }
     }
 
 }

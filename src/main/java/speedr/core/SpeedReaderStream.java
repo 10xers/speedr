@@ -28,7 +28,7 @@ public class SpeedReaderStream {
 
         // todo: refactor this to move out the magic string and integer
 
-        SpeedReadTokenizer srt = null;
+        SpeedReadTokenizer srt;
 
         try {
             srt = new SpeedReadTokenizer(
@@ -93,5 +93,8 @@ public class SpeedReaderStream {
         return words;
     }
 
+    public int getBaseTimeToReadMillis(){
+        return getWords().stream().mapToInt(Word::getDuration).sum();
+    }
 
 }

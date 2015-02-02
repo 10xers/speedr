@@ -19,12 +19,7 @@ public class SpeedReaderStreamTest {
     @Before
     public void configureTest()
     {
-        srStream = new SpeedReaderStream(new HasContent() {
-            @Override
-            public String getContent() {
-                return "The rain in spain. Is something or other.";
-            }
-        });
+        srStream = new SpeedReaderStream(() -> "The rain in spain. Is something or other.");
     }
 
 
@@ -83,5 +78,10 @@ public class SpeedReaderStreamTest {
 
         assertEquals(expectedStream.length, words.size());
 
+    }
+
+    @Test
+    public void testTimeToRead() {
+        assertTrue(srStream.getBaseTimeToReadMillis() > 100);
     }
 }
