@@ -19,7 +19,7 @@ public class SpeedReader {
 
     public SpeedReader(HasContent c) {
         originalContent = c.getContent();
-        sentences = new LinkedList<>();
+        sentences = SpeedReadParser.parse(originalContent);
     }
 
     public String getOriginalContent() {
