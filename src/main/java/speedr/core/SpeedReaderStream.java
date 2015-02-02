@@ -3,6 +3,7 @@ package speedr.core;
 import speedr.core.entities.HasContent;
 import speedr.core.entities.Sentence;
 import speedr.core.entities.Word;
+import speedr.core.strategies.BasicStrategy;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class SpeedReaderStream {
 
     public SpeedReaderStream(HasContent c) {
         originalContent = c.getContent();
-        SpeedReadTokenizer srt = new SpeedReadTokenizer();
+        SpeedReadTokenizer srt = new SpeedReadTokenizer(new BasicStrategy());
         sentences = srt.parse(originalContent);
     }
 

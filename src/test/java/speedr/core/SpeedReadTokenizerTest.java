@@ -2,6 +2,7 @@ package speedr.core;
 
 import org.junit.Test;
 import speedr.core.entities.Sentence;
+import speedr.core.strategies.BasicStrategy;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class SpeedReadTokenizerTest {
         String[] firstSentenceExpected = new String[]{"The", "rain", "in", "spain", "is", "never", "the", "same."},
                  secondSentenceExpected = new String[]{"And", "the", "beer", "is", "austere." };
 
-        SpeedReadTokenizer srt = new SpeedReadTokenizer();
+        SpeedReadTokenizer srt = new SpeedReadTokenizer(new BasicStrategy());
 
         List<Sentence> got = srt.parse(content);
 
