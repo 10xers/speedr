@@ -23,7 +23,7 @@ public class SpeedReadEventPump {
 
     private Timer timer;
 
-    public SpeedReadEventPump(SpeedReaderStream stream, int wpm, WordPumpEventListener p) {
+    public SpeedReadEventPump(SpeedReaderStream stream, int wpm) {
         if (wpm < 0) {
             throw new IllegalArgumentException("cannot use (words per minute) wpm < 0");
         }
@@ -31,7 +31,6 @@ public class SpeedReadEventPump {
         wordsPerMs = wpm / 60 / 100;
 
         wordPumpEventListenerList = new ArrayList<>();
-        wordPumpEventListenerList.add(p);
 
         this.stream = stream;
 
