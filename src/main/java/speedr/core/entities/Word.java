@@ -16,7 +16,7 @@ public class Word {
     }
 
 
-    public String getWord() {
+    public String asText() {
         return word;
     }
 

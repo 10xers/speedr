@@ -2,6 +2,7 @@ package speedr.core.entities;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 /**
  * Speedr / Ed
@@ -30,5 +31,9 @@ public class Sentence {
         return words.size();
     }
 
+    public List<Word> getWords()
+    {
+        return this.words;
+    }
 
 }
