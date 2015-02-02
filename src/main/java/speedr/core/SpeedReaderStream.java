@@ -1,6 +1,6 @@
 package speedr.core;
 
-import speedr.core.entities.FrequencyMap;
+import speedr.core.strategies.FrequencyMap;
 import speedr.core.entities.HasContent;
 import speedr.core.entities.Sentence;
 import speedr.core.entities.Word;

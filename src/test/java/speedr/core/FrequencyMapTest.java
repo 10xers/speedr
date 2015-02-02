@@ -1,7 +1,7 @@
 package speedr.core;
 
 import org.junit.* ;
-import speedr.core.entities.FrequencyMap;
+import speedr.core.strategies.FrequencyMap;
 
 import static org.junit.Assert.* ;
 

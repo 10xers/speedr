@@ -1,6 +1,5 @@
 package speedr.core.strategies;
 
-import speedr.core.entities.FrequencyMap;
 import speedr.core.entities.Word;
 
 /**

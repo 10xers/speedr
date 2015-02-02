@@ -1,4 +1,6 @@
-package speedr.core.entities;
+package speedr.core.sources.email;
+
+import speedr.core.entities.HasContent;
 
 /**
  * speedr / Ed
