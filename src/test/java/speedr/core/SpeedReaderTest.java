@@ -25,6 +25,7 @@ public class SpeedReaderTest {
         }
 
         assertTrue(out.get(0).equals("this"));
+        assertTrue(out.get(3).equals("sentence."));
         assertTrue(s.getWords().get(0).asText().equals(out.get(0)));
 
         s.goBackWord();
