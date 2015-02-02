@@ -18,6 +18,11 @@ public class SpeedReadEventPump {
     private int wordsPerMs = 0;
     private final SpeedReaderStream stream;
 
+    private final Object pauseLock = new Object();
+    private boolean isPaused = false;
+
+    private Timer timer;
+
     public SpeedReadEventPump(SpeedReaderStream stream, int wpm, WordPumpEventListener p) {
         if (wpm < 0) {
             throw new IllegalArgumentException("cannot use (words per minute) wpm < 0");
@@ -30,11 +35,13 @@ public class SpeedReadEventPump {
 
         this.stream = stream;
 
-        Timer t = new Timer();
-        t.schedule(new TimerTask() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
                        @Override
                        public void run() {
-                           Platform.runLater(() -> fireWordPumpEvent(stream.getNextWord()));
+                           if (!isPaused()) {
+                               Platform.runLater(() -> fireWordPumpEvent(stream.getNextWord()));
+                           }
                        }
                    },
                    0,
@@ -57,6 +64,32 @@ public class SpeedReadEventPump {
     public void removeWordPumpEventListener(WordPumpEventListener p) {
         if (wordPumpEventListenerList.contains(p)) {
             wordPumpEventListenerList.remove(p);
+        }
+    }
+
+    public boolean isPaused()
+    {
+        synchronized (pauseLock)
+        {
+            return isPaused;
+        }
+    }
+
+    public void setPaused(boolean paused)
+    {
+        synchronized (pauseLock)
+        {
+            this.isPaused = paused;
+        }
+    }
+
+    public void stop()
+    {
+        setPaused(true);
+
+        synchronized (pauseLock)
+        {
+            timer.cancel();
         }
     }
 
