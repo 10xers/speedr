@@ -16,6 +16,8 @@ public class FrequencyMapTest {
         assertTrue(fq.getMap().containsKey("hello"));
         assertTrue(fq.getMap().get("hello") == 38);
 
+        assertTrue(fq.getCoefficientOf("it") < fq.getCoefficientOf("hello"));
+
     }
 
 }
