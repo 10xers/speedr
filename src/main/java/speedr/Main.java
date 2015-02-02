@@ -3,7 +3,12 @@
  */
 package speedr;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.lang.Override;
 
@@ -18,9 +23,9 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setTitle("speedr");
 
-        stage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
+        primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
 
-        stage.show();
+        primaryStage.show();
 
     }
 
