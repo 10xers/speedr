@@ -23,11 +23,10 @@ public class Main extends Application {
 
         primaryStage.setScene(scene);
 
-       primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
+        primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
 
         primaryStage.setTitle("speedr");
         primaryStage.show();
-
     }
 
     public static void main(String[] args)
