@@ -22,7 +22,8 @@ public class SpeedReaderStream {
 
     public SpeedReaderStream(HasContent c) {
         originalContent = c.getContent();
-        sentences = SpeedReadTokenizer.parse(originalContent);
+        SpeedReadTokenizer srt = new SpeedReadTokenizer();
+        sentences = srt.parse(originalContent);
     }
 
     public String getOriginalContent() {
