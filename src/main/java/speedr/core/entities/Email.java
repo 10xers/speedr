@@ -6,11 +6,11 @@ import java.util.LinkedList;
  * speedr / Ed
  * 02/02/2015 12:07
  */
-public class Email implements TextStream {
+public class Email implements HasContent {
+
 
     @Override
-    public LinkedList<String> toWordList() {
+    public String getContent() {
         throw new UnsupportedOperationException();
     }
-
 }

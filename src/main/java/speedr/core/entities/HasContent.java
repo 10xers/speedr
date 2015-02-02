@@ -6,8 +6,8 @@ import java.util.LinkedList;
  * Speedr / Ed
  * 02/02/2015 12:09
  */
-public interface TextStream {
+public interface HasContent {
 
-    public LinkedList<String> toWordList();
+    public String getContent();
 
 }
