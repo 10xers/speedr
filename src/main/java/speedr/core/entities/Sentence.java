@@ -17,5 +17,18 @@ public class Sentence {
         this.words.addAll(words);
     }
 
+    public Word getWord(int idx)
+    {
+        if (idx<0 || idx>words.size()-1)
+            throw new IllegalArgumentException("Index does not exist (Subscript out of range)");
+
+        return words.get(idx);
+    }
+
+    public int getCount()
+    {
+        return words.size();
+    }
+
 
 }

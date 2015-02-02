@@ -16,7 +16,7 @@ public class SpeedReadParser {
 
     public static LinkedList<Sentence> parse(String s)
     {
-        String whitespaceCleared = s.replaceAll("\\r?\\n", "").replaceAll("\\s+", "\\s");
+        String whitespaceCleared = s.replaceAll("\\r?\\n", "").replaceAll("\\s+", " ");
 
         LinkedList<Sentence> sentenceList = new LinkedList<>();
 
@@ -28,9 +28,12 @@ public class SpeedReadParser {
 
             for (String word : words)
             {
-                wordList.add(new Word(word, 0));
+                if (word.trim().isEmpty()==false)
+                    wordList.add(new Word(word, 0));
             }
 
+            Word lastWord = wordList.get(wordList.size()-1);
+            wordList.set(wordList.size() - 1, new Word(lastWord.getWord() + ".", lastWord.getDuration()));
             sentenceList.add(new Sentence(wordList));
         }
 
