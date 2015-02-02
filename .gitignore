@@ -11,6 +11,10 @@ gradle-app.setting
 # gradle guff / nb
 
 .nb-gradle
+gradle/
+gradlew
+gradlew.bat
+
 
 # intellij plugin generated files
 
