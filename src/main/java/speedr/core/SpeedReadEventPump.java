@@ -1,6 +1,8 @@
 package speedr.core;
 
 import javafx.application.Platform;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import speedr.core.entities.Word;
 
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.concurrent.Semaphore;
  * 02/02/2015 16:37
  */
 public class SpeedReadEventPump {
+
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private List<WordPumpEventListener> wordPumpEventListenerList;
     private int wordsPerMs = 0;
@@ -71,8 +75,10 @@ public class SpeedReadEventPump {
             {
                 if (this.isPaused()==false && paused==true)
                 {
+                    logger.debug("pausing ticker");
                     canRun.acquire();
                 } else {
+                    logger.debug("unpausing ticker");
                     canRun.release();
                 }
 
@@ -85,6 +91,7 @@ public class SpeedReadEventPump {
     {
         synchronized (controlLock)
         {
+            logger.debug("stopping ticker");
             this.isEnd = true;
         }
     }
@@ -102,28 +109,40 @@ public class SpeedReadEventPump {
     public void start(WordPumpEventListener listener)
     {
 
+        logger.debug("starting ticker");
+
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 Word next;
                 while( (next=stream.getNextWord())!=null )
                 {
+                    logger.debug("processing next word " + next.asText() + " / " + next.getDuration());
+
                     if (isStopped())
                         break;
 
                     try {
                         canRun.acquire();
-                        Thread.sleep(wordsPerMs * next.getDuration());
+                        logger.debug("aquired pause semaphore");
+
+                        long sleep = wordsPerMs * next.getDuration();
+                        logger.debug("sleeping for " + sleep + "ms");
+                        Thread.sleep(sleep);
 
                         if (isStopped())
                             break;
 
-                        Platform.runLater(() -> fireWordPumpEvent(next));
+                        logger.debug("firing event for word.");
+                        final Word eventWord = next;
+                        Platform.runLater(() -> fireWordPumpEvent(eventWord));
 
                     } catch (InterruptedException e) {
+                        logger.debug("word ticker interrupted in thread", e);
                         throw new IllegalStateException("wait interrupted..", e);
                     } finally {
                         canRun.release();
+                        logger.debug("released pause semaphore");
                     }
                 }
             }
