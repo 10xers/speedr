@@ -9,8 +9,7 @@ public class Word {
     private final String word;
     private final int duration;
 
-    public Word(String word, int duration)
-    {
+    public Word(String word, int duration) {
         this.word = word;
         this.duration = duration;
     }

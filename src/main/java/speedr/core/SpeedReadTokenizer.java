@@ -13,25 +13,22 @@ import java.util.List;
 public class SpeedReadTokenizer {
 
 
-    public static LinkedList<Sentence> parse(String s)
-    {
+    public static LinkedList<Sentence> parse(String s) {
         String whitespaceCleared = s.replaceAll("\\r?\\n", "").replaceAll("\\s+", " ");
 
         LinkedList<Sentence> sentenceList = new LinkedList<>();
 
         String[] sentences = whitespaceCleared.split("\\.");
-        for (String sentence : sentences)
-        {
+        for (String sentence : sentences) {
             String[] words = sentence.split("\\s");
             List<Word> wordList = new LinkedList<>();
 
-            for (String word : words)
-            {
-                if (word.trim().isEmpty()==false)
+            for (String word : words) {
+                if (word.trim().isEmpty() == false)
                     wordList.add(new Word(word, 0));
             }
 
-            Word lastWord = wordList.get(wordList.size()-1);
+            Word lastWord = wordList.get(wordList.size() - 1);
             wordList.set(wordList.size() - 1, new Word(lastWord.asText() + ".", lastWord.getDuration()));
             sentenceList.add(new Sentence(wordList));
         }
