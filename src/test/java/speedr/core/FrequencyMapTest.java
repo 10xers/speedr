@@ -10,7 +10,7 @@ public class FrequencyMapTest {
     @Test
     public void testFrequencyMap() throws Exception {
 
-        FrequencyMap fq = FrequencyMap.fromFile();
+        FrequencyMap fq = FrequencyMap.fromResource("/frequency/frequency_list.json");
 
         assertTrue(fq != null);
         assertTrue(fq.getMap().containsKey("hello"));

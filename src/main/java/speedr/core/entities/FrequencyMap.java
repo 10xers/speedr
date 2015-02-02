@@ -58,7 +58,7 @@ public class FrequencyMap {
 
     }
 
-    public static FrequencyMap fromFile() throws FileNotFoundException {
+    public static FrequencyMap fromResource(String resource) throws FileNotFoundException {
 
         // unmarshall from json
 
@@ -67,7 +67,7 @@ public class FrequencyMap {
         try {
             ObjectMapper mapper = new ObjectMapper();
             map = mapper.readValue(
-                new File(FrequencyMap.class.getResource("/frequency/frequency_list.json").toURI()),
+                new File(FrequencyMap.class.getResource(resource).toURI()),
                 new TypeReference<HashMap<String,Integer>>(){}
             );
         } catch (URISyntaxException | IOException e) {
