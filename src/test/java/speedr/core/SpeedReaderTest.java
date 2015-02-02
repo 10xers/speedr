@@ -19,19 +19,17 @@ public class SpeedReaderTest {
 
         List<String> out = new ArrayList<>(5);
 
-        while(true) {
+        Word w;
 
-            Word word = s.getNextWord();
-
-            if(word != null) {
-                out.add(word.asText());
-            } else {
-                break;
-            }
-
+        while((w = s.getNextWord()) != null) {
+            out.add(w.asText());
         }
 
         assertTrue(out.get(0).equals("this"));
+        assertTrue(s.getWords().get(0).asText().equals(out.get(0)));
+
+        s.goBackWord();
+        assertTrue(s.getNextWord().asText().equals("sentence."));
 
     }
 
@@ -39,7 +37,7 @@ public class SpeedReaderTest {
 
         @Override
         public String getContent() {
-            return "this is a sentence";
+            return "this is a sentence. Another sentence.";
         }
     }
 
