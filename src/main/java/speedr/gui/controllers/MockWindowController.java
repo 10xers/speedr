@@ -37,12 +37,7 @@ public class MockWindowController {
 
         SpeedReadEventPump pump = new SpeedReadEventPump(s, 700);
 
-        pump.addWordPumpEventListener(new WordPumpEventListener() {
-            @Override
-            public void wordPump(Word w) {
-                speedText.setText(w.asText());
-            }
-        });
+        pump.addWordPumpEventListener(w -> speedText.setText(w.asText()));
 
         // kick it off
 
