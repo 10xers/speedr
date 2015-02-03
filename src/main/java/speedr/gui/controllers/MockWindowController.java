@@ -38,18 +38,18 @@ public class MockWindowController implements WordPumpEventListener {
 
         SpeedReaderStream s = new SpeedReaderStream(()->"WAR IS PEACE\n" +
                                                         "FREEDOM IS SLAVERY\n" +
-                                                        "IGNORANCE IS STRENGTH\n");
+                                                        "IGNORANCE IS STRENGTH\n" +
+                                                        "INDENTATION DISCIPLINE IS KEY\n");
 
         // the pump lets us plug the stream into our gui
 
-         pump = new SpeedReadEventPump(s, 700);
+        pump = new SpeedReadEventPump(s, 700);
 
         pump.addWordPumpEventListener(this);
 
         // kick it off
 
         pump.start();
-
 
     }
 
