@@ -10,9 +10,11 @@ package speedr.sources.email;
  */
 
 
+import org.apache.commons.io.IOUtils;
 import speedr.sources.email.Email;
 
 import javax.mail.*;
+import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,33 @@ public class IMAPInbox {
 
             for(Message m : f.getMessages(min, max)){
                 // todo: multipart email parsing.
-                out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString()));
+
+                if(m.getContent() instanceof String){
+                    // plain text email
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString()));
+                } else {
+                    // multi-part email
+
+                    MimeMultipart multi = ((MimeMultipart)m.getContent());
+
+                    String body = "";
+
+                    for(int i = 0; i < multi.getCount(); ++i){
+
+                        BodyPart bp = multi.getBodyPart(i);
+
+                        if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
+
+                        } else {
+                            body += IOUtils.toString(bp.getInputStream());
+                        }
+
+                    }
+
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body));
+
+                }
+
             }
 
             f.close(false);

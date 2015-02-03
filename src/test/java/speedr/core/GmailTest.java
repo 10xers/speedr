@@ -22,27 +22,31 @@ public class GmailTest {
 
         assertTrue(inbox.getStore().isConnected());
 
-        for(Email e : inbox.getRecentMessages(1)){
+        for(Email e : inbox.getRecentMessages(4)){
             assertTrue(e.getFrom() != null);
             assertTrue(e.getSubject() != null);
             assertTrue(e.getContent() != null);
+
+            System.out.println(e.getSubject());
+            System.out.printf("<content>%s</content>\n", e.getContent());
+
         }
 
     }
 
-    @Test
-    public void POP3Test() throws Exception {
-
-        POP3Inbox inbox = new POP3Inbox("pop.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-
-        assertTrue(inbox.getStore().isConnected());
-
-        for(Email e : inbox.getRecentMessages(1)){
-            assertTrue(e.getFrom() != null);
-            assertTrue(e.getSubject() != null);
-            assertTrue(e.getContent() != null);
-        }
-
-    }
+//    @Test
+//    public void POP3Test() throws Exception {
+//
+//        POP3Inbox inbox = new POP3Inbox("pop.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+//
+//        assertTrue(inbox.getStore().isConnected());
+//
+//        for(Email e : inbox.getRecentMessages(1)){
+//            assertTrue(e.getFrom() != null);
+//            assertTrue(e.getSubject() != null);
+//            assertTrue(e.getContent() != null);
+//        }
+//
+//    }
 
 }
