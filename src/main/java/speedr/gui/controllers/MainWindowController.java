@@ -1,5 +1,6 @@
 package speedr.gui.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,6 +31,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private boolean startedReading = false;
 
     @FXML
+    private Label loadingLabel;
+
+    @FXML
     private Label promptLabel;
 
     @FXML
@@ -40,8 +44,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        currentEmail = inbox.getLastMessage();
+        new Thread(this::loadEmails).start();
     }
 
     @Override
@@ -84,5 +87,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public void onConfigureButtonClick() {
 
         //ToDo: Settings
+    }
+
+    private void loadEmails() {
+        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+        currentEmail = inbox.getLastMessage();
+
+        Platform.runLater(() -> {
+            loadingLabel.setVisible(false);
+            promptLabel.setVisible(true);
+        });
     }
 }
