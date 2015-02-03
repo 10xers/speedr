@@ -41,7 +41,6 @@ import java.util.ResourceBundle;
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
     private SpeedReadEventPump pump;
-    private Email currentEmail;
     private List<Email> emails;
 
     private boolean startedReading = false;
@@ -59,7 +58,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private Text finishText;
 
     @FXML
-    private ListView itemList;
+    private ListView<Email> itemList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,7 +83,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
 
-        if (!startedReading && (keyEvent.getCode() == KeyCode.P)) {
+        if (!startedReading && (keyEvent.getCode() == KeyCode.P) && itemList.getSelectionModel().getSelectedItem() != null) {
 
             startedReading = true;
 
@@ -92,7 +91,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             currentWordLabel.setVisible(true);
 
             // set up a speed reading stream from the email.
-            SpeedReaderStream s = new SpeedReaderStream(currentEmail);
+            SpeedReaderStream s = new SpeedReaderStream(
+                itemList.getSelectionModel().getSelectedItem()
+            );
 
             // the pump lets us plug the stream into our gui
             pump = new SpeedReadEventPump(s, 700);
@@ -105,11 +106,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             // they hit p while we were reading, stop the pump.
 
-            try {
-                pump.setPaused(true);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            pump.removeWordPumpEventListener(this);
 
             currentWordLabel.setText("(stopped)");
 
@@ -141,8 +138,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void loadEmails() {
 
         IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        emails = inbox.getRecentMessages(2);
-        currentEmail = emails.get(0);
+        emails = inbox.getRecentMessages(3);
 
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
@@ -151,8 +147,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> {
-                currentEmail = (Email)observable.getValue();
-                System.out.println("New email selected: " + currentEmail.getSubject());
+                System.out.println("New email selected:");
             }
         );
 

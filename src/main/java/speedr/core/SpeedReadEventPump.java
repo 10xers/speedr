@@ -136,7 +136,6 @@ public class SpeedReadEventPump {
 
                         long sleep = wordsPerMs * next.getDuration();
                         logger.debug("sleeping for " + sleep + "ms");
-                        System.out.println("sleeping for " + sleep + "ms");
                         Thread.sleep(sleep);
 
                         if (isStopped())
