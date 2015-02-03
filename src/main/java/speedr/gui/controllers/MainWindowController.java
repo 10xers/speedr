@@ -98,11 +98,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             // they hit p while we were reading, stop the pump.
 
-            try {
-                pump.setPaused(true);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            pump.removeWordPumpEventListener(this);
 
             currentWordLabel.setText("(stopped)");
 
