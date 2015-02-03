@@ -1,9 +1,12 @@
 package speedr.gui.controllers;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
@@ -41,6 +44,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     @FXML
     private Text finishText;
+
+    @FXML
+    private ListView itemList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,8 +96,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     private void loadEmails() {
+
         IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
         currentEmail = inbox.getLastMessage();
+
+        ObservableList<String> items = FXCollections.observableArrayList(
+            currentEmail.getFrom()+"\n  "+ currentEmail.getSubject()
+        );
+
+        itemList.setItems(items);
 
         Platform.runLater(() -> {
             loadingLabel.setVisible(false);

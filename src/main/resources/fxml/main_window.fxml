@@ -25,7 +25,7 @@
             <items>
                 <BorderPane prefHeight="200.0" prefWidth="200.0">
                     <center>
-                        <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                        <ListView fx:id="itemList" prefHeight="697.0" prefWidth="508.0" BorderPane.alignment="CENTER" />
                     </center>
                     <bottom>
                         <Label text="Label" BorderPane.alignment="CENTER" />
