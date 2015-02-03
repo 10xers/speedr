@@ -1,12 +1,9 @@
 package speedr.gui.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
-import speedr.core.WordPumpEventListener;
-import speedr.core.entities.Word;
 import speedr.sources.email.Email;
 import speedr.sources.email.IMAPInbox;
 
@@ -16,13 +13,12 @@ import speedr.sources.email.IMAPInbox;
  *
  */
 
-
 public class MockWindowController {
 
     @FXML private Label speedText;
 
     @FXML
-    public void startReader(ActionEvent event) {
+    public void startReader() {
 
         // get an email
 
