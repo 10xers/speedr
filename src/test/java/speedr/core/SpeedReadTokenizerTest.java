@@ -1,6 +1,7 @@
 package speedr.core;
 
 import org.junit.Test;
+import speedr.core.entities.Word;
 import speedr.core.strategies.FrequencyMap;
 import speedr.core.entities.Sentence;
 import speedr.core.strategies.BasicStrategy;
@@ -48,4 +49,41 @@ public class SpeedReadTokenizerTest {
         }
 
     }
+
+    @Test
+    public void multilineParsing()
+    {
+        String multiline = "WAR IS PEACE\n" +
+                           "FREEDOM IS SLAVERY\n" +
+                           "IGNORANCE IS STRENGTH\n";
+
+        String[] multilineExpected = new String[] { "WAR", "IS", "PEACE",
+                                                    "FREEDOM",  "IS", "SLAVERY",
+                                                    "IGNORANCE", "IS", "STRENGTH." };
+
+
+        SpeedReadTokenizer srt = null;
+
+        try {
+            srt = new SpeedReadTokenizer(
+                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
+            );
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
+        List<Sentence> sentences = srt.parse(multiline);
+
+        assertEquals(1, sentences.size());
+        List<Word> words = sentences.get(0).getWords();
+
+        assertEquals(multilineExpected.length, words.size());
+
+        for (int i=0; i<multilineExpected.length; i++)
+        {
+            assertEquals(multilineExpected[i], words.get(i).asText());
+        }
+
+    }
+
 }

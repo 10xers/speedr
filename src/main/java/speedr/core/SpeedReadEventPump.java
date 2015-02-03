@@ -121,6 +121,7 @@ public class SpeedReadEventPump {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+
                 Word next;
                 while( (next=stream.getNextWord())!=null )
                 {
@@ -155,7 +156,8 @@ public class SpeedReadEventPump {
                     }
                 }
 
-                Platform.runLater(() -> fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.DONE, null))); // notify subscribers we're done here
+                final Word lastWord = next;
+                Platform.runLater(() -> fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.DONE, lastWord))); // notify subscribers we're done here
             }
         });
 

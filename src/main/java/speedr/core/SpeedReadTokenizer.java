@@ -23,7 +23,7 @@ public class SpeedReadTokenizer {
 
     public LinkedList<Sentence> parse(String s) {
 
-        String whitespaceCleared = s.replaceAll("\\r?\\n", "").replaceAll("\\s+", " ");
+        String whitespaceCleared = s.replaceAll("\\r?\\n", " ").replaceAll("\\s+", " ");
 
         LinkedList<Sentence> sentenceList = new LinkedList<>();
 

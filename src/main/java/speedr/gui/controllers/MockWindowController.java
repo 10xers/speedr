@@ -3,6 +3,7 @@ package speedr.gui.controllers;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.listeners.WordPumpEvent;
@@ -19,6 +20,7 @@ import speedr.sources.email.IMAPInbox;
 public class MockWindowController implements WordPumpEventListener {
 
     @FXML private Label speedText;
+    @FXML private Text fintext;
 
     private SpeedReadEventPump pump;
 
@@ -56,7 +58,7 @@ public class MockWindowController implements WordPumpEventListener {
             // annoyingly can't do this because we're using the listener list to do the iteration for this callback
             // unless i take a copy
             // TBC
-            speedText.setText("FIN");
+            fintext.setVisible(true);
         } else {
             speedText.setText(wordPumpEvent.getWord().asText());
         }
