@@ -8,6 +8,7 @@ public class Configuration {
 
     private int configVersion = 1;
 
+
     private String mailType = "imaps";
     private String user = "";
     private String password = "";
@@ -71,4 +72,36 @@ public class Configuration {
     public void setRootFolder(String rootFolder) {
         this.rootFolder = rootFolder;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Configuration that = (Configuration) o;
+
+        if (configVersion != that.configVersion) return false;
+        if (port != that.port) return false;
+        if (host != null ? !host.equals(that.host) : that.host != null) return false;
+        if (mailType != null ? !mailType.equals(that.mailType) : that.mailType != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (rootFolder != null ? !rootFolder.equals(that.rootFolder) : that.rootFolder != null) return false;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = configVersion;
+        result = 31 * result + (mailType != null ? mailType.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (host != null ? host.hashCode() : 0);
+        result = 31 * result + port;
+        result = 31 * result + (rootFolder != null ? rootFolder.hashCode() : 0);
+        return result;
+    }
+
 }

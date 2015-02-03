@@ -1,28 +1,45 @@
 package speedr.core.config;
 
+import org.junit.AfterClass;
 import org.junit.Test;
+import speedr.core.entities.config.Configuration;
+
+import java.io.File;
 
 import static org.junit.Assert.*;
 
 public class ConfigurationRepositoryTest {
 
+    private static final String testfilewithpath = "speedr_test.conf";
+
     @Test
     public void testLoad() throws Exception {
+        Configuration set = new Configuration();
+        Configuration response = null;
 
+        ConfigurationRepository.save(set, new File(testfilewithpath));
+        response = ConfigurationRepository.loadFromFile(new File(testfilewithpath));
+
+        assertEquals(response, set);
     }
 
-    @Test
-    public void testLoadFromFile() throws Exception {
+    @Test(expected=CorruptedConfigException.class)
+    public void testLoadFromInvalidFile() throws Exception {
 
+        Configuration broken = new Configuration() {
+            @Override
+            public int getConfigVersion() {
+                return 123123123;
+            }
+        };
+
+        ConfigurationRepository.save(broken, new File(testfilewithpath));
+        ConfigurationRepository.loadFromFile(new File(testfilewithpath));
     }
 
-    @Test
-    public void testSave() throws Exception {
-
-    }
-
-    @Test
-    public void testSave1() throws Exception {
-
+    @AfterClass
+    public static void cleanup()
+    {
+        new File(testfilewithpath).delete();
     }
 }

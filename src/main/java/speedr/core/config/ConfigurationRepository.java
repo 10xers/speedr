@@ -40,9 +40,16 @@ public class ConfigurationRepository {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Configuration loaded = objectMapper.readValue(f, Configuration.class);
 
-        boolean supportedConfigVersion = Arrays.asList(supportedVersions).contains(loaded.getConfigVersion());
+        Configuration loaded;
+        try {
+            loaded = objectMapper.readValue(f, Configuration.class);
+        } catch (Exception e)
+        {
+            throw new CorruptedConfigException("couldn't read config file in " + f.getAbsolutePath(), e);
+        }
+
+        boolean supportedConfigVersion = Arrays.stream(supportedVersions).anyMatch( (a) -> a==loaded.getConfigVersion() );
 
         if ( !supportedConfigVersion )
             throw new CorruptedConfigException("unsupported config version " + loaded.getConfigVersion());
@@ -61,9 +68,8 @@ public class ConfigurationRepository {
         if(to.exists())
             l.warn("overwriting existing config file {}", to.getAbsoluteFile());
 
-        if(!to.canWrite())
-            throw new IllegalArgumentException("insufficient perms to write to " + to.getAbsolutePath());
-
+        if(to.exists() && !to.canWrite())
+            throw new IllegalArgumentException("insufficient perms to overwrite to " + to.getAbsolutePath());
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(to, configuration);
