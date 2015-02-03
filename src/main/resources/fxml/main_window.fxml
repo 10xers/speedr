@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<BorderPane fx:controller="speedr.gui.controllers.MainWindowController" onKeyPressed="#onKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <items>
-                <Button mnemonicParsing="false" text="Home" />
-                <Button mnemonicParsing="false" text="Refresh" />
-                <Button mnemonicParsing="false" text="Back" />
-                <Button mnemonicParsing="false" text="Forward" />
-            </items>
+             <items>
+                <Button mnemonicParsing="false" onAction="#onConfigureButtonClick" text="Configure" />
+             </items>
         </ToolBar>
     </top>
+    <center>
+        <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                        <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                    </center>
+                    <bottom>
+                        <Label text="Label" BorderPane.alignment="CENTER" />
+                    </bottom>
+                </BorderPane>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Label fx:id="promptLabel" layoutX="85.0" layoutY="352.0" text="Press P to start reading your emails" />
+                        <Label fx:id="currentWordLabel" alignment="CENTER" layoutX="157.0" layoutY="314.0" prefHeight="100.0" prefWidth="198.0" visible="false">
+                            <font>
+                                <Font size="51.0" />
+                            </font>
+                        </Label>
+                        <Text fx:id="finishText" layoutX="311.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIN" textAlignment="CENTER" visible="false" wrappingWidth="394.13671875">
+                            <font>
+                                <Font size="50.0" />
+                            </font>
+                            <effect>
+                                <Blend />
+                            </effect>
+                            <fill>
+                                <RadialGradient centerX="0.5" centerY="0.5" focusDistance="1.0" radius="0.31395348837209297">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </RadialGradient>
+                            </fill>
+                        </Text>
+                    </children>
+                </Pane>
+            </items>
+        </SplitPane>
+    </center>
 </BorderPane>
