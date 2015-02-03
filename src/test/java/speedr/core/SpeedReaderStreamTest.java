@@ -2,7 +2,6 @@ package speedr.core;
 
 import org.junit.Before;
 import org.junit.Test;
-import speedr.core.entities.HasContent;
 import speedr.core.entities.Word;
 
 import java.util.Arrays;

@@ -7,8 +7,8 @@ import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.WordPumpEventListener;
 import speedr.core.entities.Word;
-import speedr.core.sources.email.Email;
-import speedr.core.sources.email.IMAPInbox;
+import speedr.sources.email.Email;
+import speedr.sources.email.IMAPInbox;
 
 /**
  *

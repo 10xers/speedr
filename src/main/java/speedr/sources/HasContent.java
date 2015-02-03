@@ -1,4 +1,4 @@
-package speedr.core.entities;
+package speedr.sources;
 
 /**
  *

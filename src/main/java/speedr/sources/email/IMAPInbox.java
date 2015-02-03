@@ -1,4 +1,4 @@
-package speedr.core.sources.email;
+package speedr.sources.email;
 
 /**
  *
@@ -10,7 +10,7 @@ package speedr.core.sources.email;
  */
 
 
-import org.apache.commons.io.IOUtils;
+import speedr.sources.email.Email;
 
 import javax.mail.*;
 import java.io.IOException;

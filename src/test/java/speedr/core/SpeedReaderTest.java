@@ -1,7 +1,6 @@
 package speedr.core;
 
 import org.junit.* ;
-import speedr.core.entities.HasContent;
 import speedr.core.entities.Word;
 
 import java.util.ArrayList;
