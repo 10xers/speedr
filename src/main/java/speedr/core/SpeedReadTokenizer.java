@@ -39,9 +39,11 @@ public class SpeedReadTokenizer {
                     wordList.add(this.strategy.wordFor(word));
             }
 
-            Word lastWord = wordList.get(wordList.size() - 1);
-            wordList.set(wordList.size() - 1, new Word(lastWord.asText() + ".", lastWord.getDuration()));
-            sentenceList.add(new Sentence(wordList));
+            if (!wordList.isEmpty()) {
+                Word lastWord = wordList.get(wordList.size() - 1);
+                wordList.set(wordList.size() - 1, new Word(lastWord.asText() + ".", lastWord.getDuration()));
+                sentenceList.add(new Sentence(wordList));
+            }
         }
 
         return sentenceList;

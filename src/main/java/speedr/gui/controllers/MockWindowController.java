@@ -29,16 +29,20 @@ public class MockWindowController implements WordPumpEventListener {
 
         // get an email
 
-        //IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        //Email e = inbox.getLastMessage();
+        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+        Email e = inbox.getLastMessage();
 
         // set up a speed reading stream from the email.
 
         fintext.setVisible(false);
 
-        SpeedReaderStream s = new SpeedReaderStream(()->"WAR IS PEACE\n" +
+        /*
+        new SpeedReaderStream(()->"WAR IS PEACE\n" +
                                                         "FREEDOM IS SLAVERY\n" +
                                                         "IGNORANCE IS STRENGTH\n");
+         */
+
+        SpeedReaderStream s = new SpeedReaderStream(e);
 
         // the pump lets us plug the stream into our gui
 
