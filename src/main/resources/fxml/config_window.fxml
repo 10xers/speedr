@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.gui.controllers.ConfigWindowController">
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane>
+                    <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" />
+                                <ColumnConstraints hgrow="ALWAYS" />
+                            </columnConstraints>
+
+                            <children>
+
+                                <Label text="Mail protocol" />
+                                <ChoiceBox value="IMAP" GridPane.columnIndex="1">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="IMAP" />
+                                            <String fx:value="POP3" />
+                                        </FXCollections>
+                                    </items>
+                                </ChoiceBox>
+
+                                <Label text="Mail host" GridPane.rowIndex="1" />
+                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <Label text="Mail port" GridPane.rowIndex="2" />
+                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                <Label text="Email address" GridPane.rowIndex="3" />
+                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                <Label text="Password" GridPane.rowIndex="4" />
+                                <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                <Label text="Inbox folder name" GridPane.rowIndex="5" />
+                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                            </children>
+                            <columnConstraints>
+                                <ColumnConstraints />
+                                <ColumnConstraints />
+                                <ColumnConstraints />
+                                <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                        </GridPane>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <BorderPane BorderPane.alignment="CENTER">
+            <right>
+                <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button mnemonicParsing="false" text="Apply" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                    </children>
+                </HBox>
+            </right>
+        </BorderPane>
+    </bottom>
+
+</BorderPane>
