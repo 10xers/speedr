@@ -3,11 +3,12 @@ package speedr.sources.pdf;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
+import speedr.sources.HasContent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class PDFReader {
+public class PDFReader implements HasContent {
 
     private String text;
 
@@ -28,8 +29,8 @@ public class PDFReader {
 
     }
 
-    public String getText() {
-        return text;
+    @Override
+    public String getContent() {
+        return this.text;
     }
-
 }
