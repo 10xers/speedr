@@ -1,6 +1,7 @@
 package speedr.gui.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -12,15 +13,19 @@ import speedr.core.listeners.WordPumpEventListener;
 import speedr.sources.email.Email;
 import speedr.sources.email.IMAPInbox;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**r
  *
  * Controller for the Speed Reader main panel GUI.
  *
  */
 
-public class MainWindowController implements WordPumpEventListener {
+public class MainWindowController implements WordPumpEventListener, Initializable {
 
     private SpeedReadEventPump pump;
+    private Email currentEmail;
 
     private boolean startedReading = false;
 
@@ -33,36 +38,10 @@ public class MainWindowController implements WordPumpEventListener {
     @FXML
     private Text finishText;
 
-    @FXML
-    public void onKeyPressed(KeyEvent keyEvent) {
-
-        if (!startedReading && (keyEvent.getCode() == KeyCode.P)) {
-
-            startedReading = true;
-
-            promptLabel.setVisible(false);
-            currentWordLabel.setVisible(true);
-
-            // get an email
-            IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-            Email e = inbox.getLastMessage();
-
-            // set up a speed reading stream from the email.
-            SpeedReaderStream s = new SpeedReaderStream(e);
-
-            // the pump lets us plug the stream into our gui
-            pump = new SpeedReadEventPump(s, 700);
-            pump.addWordPumpEventListener(this);
-
-            // kick it off
-            pump.start();
-        }
-    }
-
-    @FXML
-    public void onConfigureButtonClick() {
-
-        //ToDo: Settings
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+        currentEmail = inbox.getLastMessage();
     }
 
     @Override
@@ -77,5 +56,33 @@ public class MainWindowController implements WordPumpEventListener {
         } else {
             currentWordLabel.setText(wordPumpEvent.getWord().asText());
         }
+    }
+
+    @FXML
+    public void onKeyPressed(KeyEvent keyEvent) {
+
+        if (!startedReading && (keyEvent.getCode() == KeyCode.P)) {
+
+            startedReading = true;
+
+            promptLabel.setVisible(false);
+            currentWordLabel.setVisible(true);
+
+            // set up a speed reading stream from the email.
+            SpeedReaderStream s = new SpeedReaderStream(currentEmail);
+
+            // the pump lets us plug the stream into our gui
+            pump = new SpeedReadEventPump(s, 700);
+            pump.addWordPumpEventListener(this);
+
+            // kick it off
+            pump.start();
+        }
+    }
+
+    @FXML
+    public void onConfigureButtonClick() {
+
+        //ToDo: Settings
     }
 }
