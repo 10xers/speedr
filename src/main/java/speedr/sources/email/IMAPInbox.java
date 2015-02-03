@@ -56,7 +56,7 @@ public class IMAPInbox {
             f.open(Folder.READ_ONLY);
 
             int max = f.getMessageCount();
-            int min = max-number < 1 ? 1 : max-number;
+            int min = max-number < 1 ? 1 : max-(number-1);
 
             for(Message m : f.getMessages(min, max)){
                 // todo: multipart email parsing.

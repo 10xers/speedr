@@ -1,7 +1,10 @@
 package speedr.gui.controllers;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +21,7 @@ import speedr.sources.email.Email;
 import speedr.sources.email.IMAPInbox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**r
@@ -30,6 +34,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private SpeedReadEventPump pump;
     private Email currentEmail;
+    private List<Email> emails;
 
     private boolean startedReading = false;
 
@@ -98,13 +103,20 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void loadEmails() {
 
         IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        currentEmail = inbox.getLastMessage();
+        emails = inbox.getRecentMessages(2);
+        currentEmail = emails.get(0);
 
-        ObservableList<String> items = FXCollections.observableArrayList(
-            currentEmail.getFrom()+"\n  "+ currentEmail.getSubject()
-        );
+        ObservableList<Email> items = FXCollections.observableArrayList();
+        items.addAll(emails);
 
         itemList.setItems(items);
+
+        itemList.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> {
+                currentEmail = (Email)observable.getValue();
+                System.out.println("New email selected: " + currentEmail.getSubject());
+            }
+        );
 
         Platform.runLater(() -> {
             loadingLabel.setVisible(false);

@@ -33,4 +33,9 @@ public class Email implements HasContent {
     public String getSubject() {
         return subject;
     }
+
+    @Override
+    public String toString(){
+        return this.from + "\n  " + this.subject;
+    }
 }
