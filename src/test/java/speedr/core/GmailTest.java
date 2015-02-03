@@ -21,8 +21,10 @@ public class GmailTest {
 
         assertTrue(inbox.getStore().isConnected());
 
-        for(Email e : inbox.getRecentMessages(3)){
+        for(Email e : inbox.getRecentMessages(1)){
             System.out.printf("Mail from: %s with subject '%s'\n", e.getFrom(), e.getSubject());
+            System.out.println("Body was: ");
+            System.out.println(e.getContent());
         }
 
     }

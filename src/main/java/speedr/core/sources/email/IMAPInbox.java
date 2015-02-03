@@ -10,7 +10,10 @@ package speedr.core.sources.email;
  */
 
 
+import org.apache.commons.io.IOUtils;
+
 import javax.mail.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -39,6 +42,10 @@ public class IMAPInbox {
         return this.store;
     }
 
+    public Email getLastMessage(){
+        return this.getRecentMessages(0).get(0);
+    }
+
     public List<Email> getRecentMessages(int number) {
 
         List<Email> out = new ArrayList<>();
@@ -52,13 +59,13 @@ public class IMAPInbox {
             int min = max-number < 1 ? 1 : max-number;
 
             for(Message m : f.getMessages(min, max)){
-                out.add(new Email(m.getFrom()[0].toString() , m.getSubject(), "mock"));
+                // todo: multipart email parsing.
+                out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString()));
             }
 
             f.close(false);
 
-
-        } catch (MessagingException e) {
+        } catch (MessagingException | IOException e) {
             throw new RuntimeException(e);
         }
 

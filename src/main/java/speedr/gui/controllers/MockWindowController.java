@@ -7,6 +7,8 @@ import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.WordPumpEventListener;
 import speedr.core.entities.Word;
+import speedr.core.sources.email.Email;
+import speedr.core.sources.email.IMAPInbox;
 
 public class MockWindowController {
 
@@ -15,9 +17,16 @@ public class MockWindowController {
     @FXML
     public void startReader(ActionEvent event) {
 
-        SpeedReaderStream s = new SpeedReaderStream(
-                () -> "Do you ever feel like a plastic bag. Drifting through the wind, wanting to start again?"
-        );
+        // get an email
+
+        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+        Email e = inbox.getLastMessage();
+
+        // set up a speed reading stream from the email.
+
+        SpeedReaderStream s = new SpeedReaderStream(e);
+
+        // the pump lets us plug the stream into our gui
 
         SpeedReadEventPump pump = new SpeedReadEventPump(s, 700);
 
@@ -29,8 +38,9 @@ public class MockWindowController {
             }
         });
 
-        pump.start();
+        // kick it off
 
+        pump.start();
 
     }
 
