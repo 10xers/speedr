@@ -16,13 +16,10 @@ public class PDFReader implements HasContent {
 
         try {
 
-            PDFParser parser = new PDFParser(new FileInputStream(source));
+            PDFParser parser = new PDFParser(this.getClass().getResourceAsStream(source));
             PDFTextStripper stripper = new PDFTextStripper();
-
             parser.parse();
-
             this.text = stripper.getText(new PDDocument(parser.getDocument()));
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
