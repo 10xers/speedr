@@ -1,4 +1,4 @@
-package speedr.core;
+package speedr.core.listeners;
 
 import speedr.core.entities.Word;
 
@@ -11,6 +11,6 @@ import speedr.core.entities.Word;
 
 public interface WordPumpEventListener {
 
-    public void wordPump(final Word w);
+    public void wordPump(final WordPumpEvent wordPumpEvent);
 
 }

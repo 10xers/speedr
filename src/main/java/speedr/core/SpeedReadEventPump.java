@@ -4,10 +4,11 @@ import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import speedr.core.entities.Word;
+import speedr.core.listeners.WordPumpEvent;
+import speedr.core.listeners.WordPumpEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -47,11 +48,12 @@ public class SpeedReadEventPump {
         this.stream = stream;
     }
 
-    private void fireWordPumpEvent(final Word w) {
+    private void fireWordPumpEvent(final WordPumpEvent wpe) {
         if (!Platform.isFxApplicationThread())
             throw new IllegalStateException("called from wrong thread!");
 
-        wordPumpEventListenerList.stream().forEach(p -> p.wordPump(w));
+
+        wordPumpEventListenerList.stream().forEach(p -> p.wordPump(wpe));
     }
 
 
@@ -129,7 +131,7 @@ public class SpeedReadEventPump {
 
                     try {
                         canRun.acquire();
-                        logger.debug("aquired pause semaphore");
+                        logger.debug("acquired pause semaphore");
 
                         long sleep = wordsPerMs * next.getDuration();
                         logger.debug("sleeping for " + sleep + "ms");
@@ -140,8 +142,9 @@ public class SpeedReadEventPump {
                             break;
 
                         logger.debug("firing event for word.");
-                        final Word eventWord = next;
-                        Platform.runLater(() -> fireWordPumpEvent(eventWord));
+                        final WordPumpEvent event = new WordPumpEvent(WordPumpEvent.State.IS_MORE, next);
+
+                        Platform.runLater(() -> fireWordPumpEvent(event));
 
                     } catch (InterruptedException e) {
                         logger.debug("word ticker interrupted in thread", e);
@@ -151,6 +154,8 @@ public class SpeedReadEventPump {
                         logger.debug("released pause semaphore");
                     }
                 }
+
+                Platform.runLater(() -> fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.DONE, null))); // notify subscribers we're done here
             }
         });
 

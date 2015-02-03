@@ -13,7 +13,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="speedText" alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="208.0" prefHeight="100.0" prefWidth="198.0" text="Ready?" textAlignment="CENTER">
+            <Label fx:id="speedText" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="209.0" prefHeight="74.0" prefWidth="512.0" text="Ready?" textAlignment="CENTER">
                <font>
                   <Font size="51.0" />
                </font>
