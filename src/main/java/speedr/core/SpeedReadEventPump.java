@@ -35,7 +35,7 @@ public class SpeedReadEventPump {
             throw new IllegalArgumentException("cannot use (words per minute) wpm < 0");
         }
 
-        wordsPerMs = wpm / 60 / 100;
+        wordsPerMs = wpm / 190;
 
         wordPumpEventListenerList = new ArrayList<>();
 
@@ -106,7 +106,7 @@ public class SpeedReadEventPump {
 
 
     // start the callback event reading (asynchronously)
-    public void start(WordPumpEventListener listener)
+    public void start()
     {
 
         logger.debug("starting ticker");
@@ -128,6 +128,7 @@ public class SpeedReadEventPump {
 
                         long sleep = wordsPerMs * next.getDuration();
                         logger.debug("sleeping for " + sleep + "ms");
+                        System.out.println("sleeping for " + sleep + "ms");
                         Thread.sleep(sleep);
 
                         if (isStopped())

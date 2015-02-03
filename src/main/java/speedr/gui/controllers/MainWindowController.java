@@ -23,6 +23,4 @@ public class MainWindowController {
         lbl.setText(lbl.getText()+" fart");
     }
 
-
-
 }

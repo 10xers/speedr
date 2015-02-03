@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.gui.controllers.MockWindowController">
+    <top>
+        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+    </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="speedText" alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="208.0" prefHeight="100.0" prefWidth="198.0" text="Ready?" textAlignment="CENTER">
+               <font>
+                  <Font size="51.0" />
+               </font>
+            </Label>
+                <Button layoutX="493.0" layoutY="308.0" mnemonicParsing="false" onAction="#startReader" text="Go" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
