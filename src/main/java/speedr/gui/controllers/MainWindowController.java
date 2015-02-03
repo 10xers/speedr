@@ -119,7 +119,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void loadEmails() {
 
         IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        emails = inbox.getRecentMessages(2);
+        emails = inbox.getRecentMessages(3);
         currentEmail = emails.get(0);
 
         ObservableList<Email> items = FXCollections.observableArrayList();
