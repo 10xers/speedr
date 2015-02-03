@@ -34,6 +34,8 @@ public class MockWindowController implements WordPumpEventListener {
 
         // set up a speed reading stream from the email.
 
+        fintext.setVisible(false);
+
         SpeedReaderStream s = new SpeedReaderStream(()->"WAR IS PEACE\n" +
                                                         "FREEDOM IS SLAVERY\n" +
                                                         "IGNORANCE IS STRENGTH\n");
@@ -47,6 +49,7 @@ public class MockWindowController implements WordPumpEventListener {
         // kick it off
 
         pump.start();
+
 
     }
 
