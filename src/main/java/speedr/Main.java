@@ -1,6 +1,4 @@
-/*
- * speedr 02/02/2015 11:18
- */
+
 package speedr;
 
 import javafx.application.Application;
@@ -11,6 +9,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.lang.Override;
+
+/**
+ *
+ * Speedr - A Speed Reading App for Email.
+ *
+ * Speedr acts as a light-weight email client, with functionality to speed read your way through emails at
+ * alarming speed.
+ *
+ */
 
 public class Main extends Application {
 

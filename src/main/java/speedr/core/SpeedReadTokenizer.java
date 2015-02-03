@@ -8,9 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Speedr / Ed
- * 02/02/2015 14:28
+ *
+ * The tokenizer is a utility class that splits a source into Word objects. It takes a strategy.
+ *
  */
+
 public class SpeedReadTokenizer {
 
     private Strategy strategy;

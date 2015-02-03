@@ -4,9 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Speedr / Ed
- * 02/02/2015 14:12
+ *
+ * A Sentence represents a series of Word objects.
+ *
+ * This was implemented to allow us to easily go back or forward by whole
+ * sentences, as well as individual words. In the future there should also
+ * be a slight pause after a sentence has finished.
+ *
  */
+
 public class Sentence {
 
     private LinkedList<Word> words;

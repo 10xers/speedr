@@ -10,6 +10,13 @@ import speedr.core.entities.Word;
 import speedr.core.sources.email.Email;
 import speedr.core.sources.email.IMAPInbox;
 
+/**
+ *
+ * Controller for the Speed Reader testing panel.
+ *
+ */
+
+
 public class MockWindowController {
 
     @FXML private Label speedText;
@@ -33,7 +40,6 @@ public class MockWindowController {
         pump.addWordPumpEventListener(new WordPumpEventListener() {
             @Override
             public void wordPump(Word w) {
-                System.out.println("Pumping: " + w.asText());
                 speedText.setText(w.asText());
             }
         });

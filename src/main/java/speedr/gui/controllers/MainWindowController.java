@@ -7,9 +7,11 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 
 /**
- * Speedr / Ed
- * 02/02/2015 12:13
+ *
+ * Controller for the Speed Reader main panel GUI.
+ *
  */
+
 public class MainWindowController {
 
     @FXML

@@ -11,9 +11,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Speedr / Ed
- * 02/02/2015 14:10
+ *
+ * This is the core class of the Speed Reader family. It represents a stream of Word objects, and has
+ * functionality to get a next word, go back a word, etc.
+ *
+ * A SpeedReaderStream takes an implementation of HasContent as a data source. It will tokenize that
+ * data source using the SpeedReadTokenizer + a strategy into a list of Word objects.
+ *
  */
+
 public class SpeedReaderStream {
 
     private final String originalContent;

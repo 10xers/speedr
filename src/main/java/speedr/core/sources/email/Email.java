@@ -3,9 +3,12 @@ package speedr.core.sources.email;
 import speedr.core.entities.HasContent;
 
 /**
- * speedr / Ed
- * 02/02/2015 12:07
+ *
+ * This is a proxy object used to hold the contents of Emails retrieved from an
+ * inbox. They are built by the Inbox classes.
+ *
  */
+
 public class Email implements HasContent {
 
     private String from;

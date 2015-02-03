@@ -1,9 +1,13 @@
 package speedr.core.entities;
 
 /**
- * Speedr / Ed
- * 02/02/2015 12:09
+ *
+ * This interface represents a source of data. A data source implements a "getContent" method.
+ *
+ * The SpeedReaderStream takes a HasContent implementation.
+ *
  */
+
 public interface HasContent {
 
     public String getContent();

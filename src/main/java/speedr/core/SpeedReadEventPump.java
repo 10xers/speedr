@@ -11,9 +11,14 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
 /**
- * Speedr / Ed
- * 02/02/2015 16:37
+ *
+ * The Event Pump is a threading/timing utility. It runs through the contents of a SpeedReaderStream and notifies
+ * listeners with an event when each word is due to be shown to the user.
+ *
+ * This class can be plugged into UIs.
+ *
  */
+
 public class SpeedReadEventPump {
 
     final Logger logger = LoggerFactory.getLogger(this.getClass());
