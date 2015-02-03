@@ -15,7 +15,7 @@
             <content>
                 <AnchorPane>
                     <children>
-                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                             <columnConstraints>
                                 <ColumnConstraints prefWidth="150" />
@@ -59,6 +59,8 @@
                         <ColumnConstraints />
                         <ColumnConstraints />
                         <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints />
@@ -81,11 +83,14 @@
     <bottom>
         <BorderPane BorderPane.alignment="CENTER">
             <right>
-                <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" text="Apply" />
+                        <Button mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" />
                         <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
                     </children>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
                 </HBox>
             </right>
         </BorderPane>

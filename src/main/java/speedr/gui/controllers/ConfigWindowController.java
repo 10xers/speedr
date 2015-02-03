@@ -20,4 +20,9 @@ public class ConfigWindowController {
         Stage us = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         us.close();
     }
+
+    @FXML
+    public void applyButtonClicked(ActionEvent actionEvent) {
+
+    }
 }
