@@ -67,6 +67,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             // unless i take a copy
             // TBC
             finishText.setVisible(true);
+            startedReading = false;
         } else {
             currentWordLabel.setText(wordPumpEvent.getWord().asText());
         }
@@ -91,6 +92,21 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             // kick it off
             pump.start();
+
+        } else if(startedReading && keyEvent.getCode() == KeyCode.P) {
+
+            // they hit p while we were reading, stop the pump.
+
+            try {
+                pump.setPaused(true);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            currentWordLabel.setText("(stopped)");
+
+            startedReading = false;
+
         }
     }
 
