@@ -1,5 +1,6 @@
 package speedr.core;
 
+import speedr.core.strategies.ConstantStrategy;
 import speedr.core.strategies.FrequencyMap;
 import speedr.sources.HasContent;
 import speedr.core.entities.Sentence;
@@ -37,9 +38,7 @@ public class SpeedReaderStream {
         SpeedReadTokenizer srt;
 
         try {
-            srt = new SpeedReadTokenizer(
-                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
-            );
+            srt = new SpeedReadTokenizer(new ConstantStrategy());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
