@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
@@ -46,11 +47,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private boolean startedReading = false;
 
     @FXML
+    public Button btnBack;
+    @FXML
+    public Button btnBreakout;
+    @FXML
+    public Button btnSkip;
+    @FXML
     private Label promptLabel;
-
     @FXML
     private Label currentWordLabel;
-
     @FXML
     private ListView<Email> itemList;
 
@@ -138,9 +143,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         itemList.setItems(items);
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> {
-                System.out.println("New email selected:");
-            }
+                (observable, oldValue, newValue) -> {
+                    System.out.println("New email selected:");
+                }
         );
 
         Platform.runLater(() -> {
@@ -153,5 +158,48 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void setPrompt(String text){
         promptLabel.setVisible(true);
         promptLabel.setText(text);
+    }
+
+    public void handleStreamChangeRequest(ActionEvent actionEvent) {
+
+        if (actionEvent.getSource()==btnBreakout)
+        {
+            if ( !this.pump.isPaused() )
+            {
+                try {
+                    this.pump.setPaused(true);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException("failed to pause wordpump ", e);
+                }
+            }
+        }
+
+        if (actionEvent.getSource()==btnSkip)
+        {
+            if (this.pump.isPaused())
+            {
+                try {
+                    this.pump.setPaused(false);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException("failed to unpause pump", e);
+                }
+            }
+        }
+
+        if (actionEvent.getSource()==btnBack)
+        {
+            if (pump.isPaused()==false)
+            {
+                try {
+                    pump.setPaused(true);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException("failed to unpause pump", e);
+                }
+            }
+
+          
+
+        }
+
     }
 }
