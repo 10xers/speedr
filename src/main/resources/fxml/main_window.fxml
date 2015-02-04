@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
@@ -11,9 +12,9 @@
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.gui.controllers.MainWindowController">
     <top>
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -21,7 +22,9 @@
                 <Button onAction="#onConfigureButtonClick">
                     <graphic>
                         <ImageView>
-                            <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
+                           <image>
+                               <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
+                           </image>
                         </ImageView>
                     </graphic>
                 </Button>
@@ -35,9 +38,12 @@
                     <center>
                         <ListView fx:id="itemList" prefWidth="200.0" BorderPane.alignment="CENTER" />
                     </center>
-                    <bottom>
-                        <Label text="Label" BorderPane.alignment="CENTER" />
-                    </bottom>
+               <top>
+                        <Label text="Emails" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+               </top>
                 </BorderPane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
