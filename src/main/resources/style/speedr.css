@@ -3,4 +3,5 @@
     -fx-border-color: #666666;
     -fx-border-width: 2px;
     -fx-border-style: solid;
+    -fx-padding: 10 20 10 20;
 }
