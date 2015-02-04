@@ -16,9 +16,8 @@ public class SpeedReaderStreamTest {
     private String[] expectedStream = new String[] { "The", "rain", "in", "spain.", "Is", "something", "or", "other."};
 
     @Before
-    public void configureTest()
-    {
-        srStream = new SpeedReaderStream(() -> "The rain in spain. Is something or other.");
+    public void configureTest() {
+        srStream = new SpeedReaderStream(() -> "The rain in spain. Is something or other.", 500);
     }
 
 

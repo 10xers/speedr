@@ -12,14 +12,20 @@ public class ConstantStrategy implements Strategy {
 
     private static String[] punctuation = {".", ",", "?", "!", "\"", "'", ";", ":"};
 
+    private int standardDuration = 50;
+
+    public ConstantStrategy(int wpm){
+        this.standardDuration = 60000 / wpm;
+    }
+
     @Override
     public Word wordFor(String s) {
 
-        int duration = 50;
+        int duration = standardDuration;
 
         for(String p : punctuation){
             if(s.endsWith(p)){
-                duration = 90;
+                duration *= 1.5;
             }
         }
 

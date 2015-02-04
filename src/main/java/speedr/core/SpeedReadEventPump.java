@@ -25,7 +25,6 @@ public class SpeedReadEventPump {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private List<WordPumpEventListener> wordPumpEventListenerList;
-    private int wordsPerMs = 0;
     private final SpeedReaderStream stream;
 
     private final Object controlLock = new Object();
@@ -36,15 +35,8 @@ public class SpeedReadEventPump {
 
     private Thread counterThread = null;
 
-    public SpeedReadEventPump(SpeedReaderStream stream, int wpm) {
-        if (wpm < 0) {
-            throw new IllegalArgumentException("cannot use (words per minute) wpm < 0");
-        }
-
-        wordsPerMs = wpm / 190;
-
+    public SpeedReadEventPump(SpeedReaderStream stream) {
         wordPumpEventListenerList = new ArrayList<>();
-
         this.stream = stream;
     }
 
@@ -133,10 +125,7 @@ public class SpeedReadEventPump {
                     try {
                         canRun.acquire();
                         logger.debug("acquired pause semaphore");
-
-                        long sleep = wordsPerMs * next.getDuration();
-                        logger.debug("sleeping for " + sleep + "ms");
-                        Thread.sleep(sleep);
+                        Thread.sleep(next.getDuration());
 
                         if (isStopped())
                             break;

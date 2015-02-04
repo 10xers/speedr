@@ -29,16 +29,14 @@ public class SpeedReaderStream {
     private int currentSentence = 0;
     private int currentWord = 0;
 
-    public SpeedReaderStream(HasContent c) {
+    public SpeedReaderStream(HasContent c, int wpm) {
 
         originalContent = c.getContent();
-
-        // todo: refactor this to move out the magic string and integer
 
         SpeedReadTokenizer srt;
 
         try {
-            srt = new SpeedReadTokenizer(new ConstantStrategy());
+            srt = new SpeedReadTokenizer(new ConstantStrategy(wpm));
         } catch(Exception e){
             throw new RuntimeException(e);
         }

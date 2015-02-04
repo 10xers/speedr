@@ -13,7 +13,7 @@ public class SpeedReaderTest {
     @Test
     public void testSystem() {
 
-        SpeedReaderStream s = new SpeedReaderStream(() -> "this is a sentence. Another sentence.");
+        SpeedReaderStream s = new SpeedReaderStream(() -> "this is a sentence. Another sentence.", 500);
 
         List<String> out = new ArrayList<>(5);
 
