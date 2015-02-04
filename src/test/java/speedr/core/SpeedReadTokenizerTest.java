@@ -59,7 +59,7 @@ public class SpeedReadTokenizerTest {
 
         String[] multilineExpected = new String[] { "WAR", "IS", "PEACE",
                                                     "FREEDOM",  "IS", "SLAVERY",
-                                                    "IGNORANCE", "IS", "STRENGTH." };
+                                                    "IGNORANCE", "IS", "STRENGTH" };
 
 
         SpeedReadTokenizer srt = null;
