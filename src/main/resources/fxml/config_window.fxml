@@ -66,8 +66,8 @@
             <right>
                 <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" fx:id="applyBtn"/>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel"/>
+                        <Button fx:id="applyBtn" defaultButton="true" mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" />
+                        <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
                     </children>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
