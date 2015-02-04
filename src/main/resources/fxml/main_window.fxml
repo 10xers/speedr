@@ -18,16 +18,16 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.gui.controllers.MainWindowController">
     <top>
-        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
              <items>
                 <Button onAction="#onConfigureButtonClick">
-                    <graphic>
+               <graphic>
                         <ImageView>
                            <image>
                                <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
                            </image>
                         </ImageView>
-                    </graphic>
+               </graphic>
                 </Button>
              </items>
         </ToolBar>
@@ -48,16 +48,28 @@
                 </BorderPane>
             <VBox id="right-panel" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Region minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="100.0" prefWidth="364.0" text="Hello">
-                            <font>
-                                <Font size="51.0" />
-                            </font>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                        </Label>
-                        <Label fx:id="promptLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="17.0" text="Press P to start reading your emails" textAlignment="CENTER" visible="false" />
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <BorderPane prefHeight="117.0" prefWidth="453.0">
+                     <center>
+                              <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="146.0" prefWidth="341.0" visible="false" BorderPane.alignment="CENTER">
+                                  <font>
+                                      <Font size="51.0" />
+                                  </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                              </Label>
+                     </center>
+                     <left>
+                        <Region prefHeight="117.0" prefWidth="79.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Region prefHeight="117.0" prefWidth="88.0" BorderPane.alignment="CENTER" />
+                     </right>
+                     <bottom>
+                              <Label fx:id="promptLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="25.0" text="Press P to start reading your emails" textAlignment="CENTER" visible="false" BorderPane.alignment="CENTER" />
+                     </bottom>
+                  </BorderPane>
                </children>
             </VBox>
             </items>
