@@ -98,7 +98,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             pump.removeWordPumpEventListener(this);
 
-            currentWordLabel.setText("(stopped)");
+            currentWordLabel.setText("");
+            setPrompt("Select an email and press P to speed read. Press P again to stop.");
 
             startedReading = false;
 
