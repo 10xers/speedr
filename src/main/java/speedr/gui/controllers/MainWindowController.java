@@ -33,7 +33,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-/**r
+/**
  *
  * Controller for the Speed Reader main panel GUI.
  *
@@ -208,19 +208,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void hitBack()
     {
         if (!pump.isAtStart()) {
-
-            if (pump.isPaused()) {
-                try {
-                    pump.goBackSentenceAndRefire();
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
-                }
-            } else {
-                try {
-                    pump.goBackWordAndReFire();
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
-                }
+            try {
+                pump.goBackWordAndReFire();
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
             }
         }
     }
