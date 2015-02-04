@@ -26,7 +26,7 @@
         </ToolBar>
     </top>
     <center>
-        <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
+        <SplitPane dividerPositions="0.35" BorderPane.alignment="CENTER">
             <items>
                 <BorderPane id="left-panel">
                     <center>
