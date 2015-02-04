@@ -24,7 +24,7 @@
         </ToolBar>
     </top>
     <center>
-        <SplitPane BorderPane.alignment="CENTER">
+        <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
             <items>
                 <BorderPane id="left-panel">
                     <center>
@@ -38,26 +38,45 @@
                         </Label>
                     </top>
                 </BorderPane>
-                <BorderPane>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
                     <center>
-                        <VBox id="right-panel" prefHeight="200.0" BorderPane.alignment="CENTER">
+                        <GridPane alignment="CENTER" prefHeight="100.0" BorderPane.alignment="CENTER">
+
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="NEVER"/>
+                                <RowConstraints vgrow="NEVER"/>
+                            </rowConstraints>
                             <children>
-                                <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" visible="false">
-                                    <font>
-                                        <Font size="51.0"/>
-                                    </font>
+                                <AnchorPane>
+                                    <children>
+      
+                                        <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" visible="false"
+                                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                               GridPane.fillWidth="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+                                            <font>
+                                                <Font size="51.0"/>
+                                            </font>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                        </Label>
+                                    </children>
                                     <padding>
-                                        <Insets left="20.0" right="20.0"/>
+                                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
                                     </padding>
-                                </Label>
+                                </AnchorPane>
+
+
                                 <Label fx:id="promptLabel" alignment="CENTER"
                                        text="Press P to start reading your emails" textAlignment="CENTER"
-                                       visible="false"/>
+                                       visible="false" GridPane.fillWidth="true" GridPane.halignment="CENTER"
+                                       GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
+
                             </children>
-                            <BorderPane.margin>
-                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
-                            </BorderPane.margin>
-                        </VBox>
+                        </GridPane>
                     </center>
                 </BorderPane>
             </items>
