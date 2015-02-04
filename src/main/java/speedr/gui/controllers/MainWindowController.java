@@ -109,6 +109,25 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             startedReading = false;
 
         }
+
+        if (startedReading)
+        {
+            switch(keyEvent.getCode())
+            {
+                case LEFT:
+                    hitBack();
+                    break;
+                case RIGHT:
+                    hitSkip();
+                    break;
+                case UP:
+                    hitBreakout();
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     @FXML
@@ -161,41 +180,57 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         promptLabel.setText(text);
     }
 
+
+    private void hitBreakout()
+    {
+        if ( !this.pump.isPaused() )
+        {
+            try {
+                this.pump.setPaused(true);
+            } catch (InterruptedException e) {
+                throw new IllegalStateException("failed to pause wordpump ", e);
+            }
+        }
+    }
+
+    private void hitSkip()
+    {
+        if (this.pump.isPaused())
+        {
+            try {
+                this.pump.setPaused(false);
+            } catch (InterruptedException e) {
+                throw new IllegalStateException("failed to unpause pump", e);
+            }
+        }
+    }
+
+    private void hitBack()
+    {
+        if (!pump.isAtStart()) {
+            try {
+                pump.goBackWordAndReFire();
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+    }
+
     public void handleStreamChangeRequest(ActionEvent actionEvent) {
 
         if (actionEvent.getSource()==btnBreakout)
         {
-            if ( !this.pump.isPaused() )
-            {
-                try {
-                    this.pump.setPaused(true);
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException("failed to pause wordpump ", e);
-                }
-            }
+            hitBreakout();
         }
 
         if (actionEvent.getSource()==btnSkip)
         {
-            if (this.pump.isPaused())
-            {
-                try {
-                    this.pump.setPaused(false);
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException("failed to unpause pump", e);
-                }
-            }
+            hitSkip();
         }
 
         if (actionEvent.getSource()==btnBack)
         {
-            if (!pump.isAtStart()) {
-                try {
-                    pump.goBackWordAndReFire();
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
-                }
-            }
+            hitBack();
         }
 
     }
