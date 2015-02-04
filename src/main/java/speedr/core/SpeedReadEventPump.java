@@ -125,8 +125,6 @@ public class SpeedReadEventPump {
                     try {
                         canRun.acquire();
                         logger.debug("acquired pause semaphore");
-                        System.out.printf("%s (%d)\n", next.asText(), next.getDuration());
-
 
                         if (isStopped())
                             break;
