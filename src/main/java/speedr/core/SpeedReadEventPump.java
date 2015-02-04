@@ -12,12 +12,10 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 
 /**
- *
  * The Event Pump is a threading/timing utility. It runs through the contents of a SpeedReaderStream and notifies
  * listeners with an event when each word is due to be shown to the user.
- *
+ * <p>
  * This class can be plugged into UIs.
- *
  */
 
 public class SpeedReadEventPump {
@@ -36,6 +34,9 @@ public class SpeedReadEventPump {
     private Thread counterThread = null;
 
     public SpeedReadEventPump(SpeedReaderStream stream) {
+        if (stream == null)
+            throw new IllegalArgumentException("stream cannot be null");
+
         wordPumpEventListenerList = new ArrayList<>();
         this.stream = stream;
     }
@@ -59,21 +60,16 @@ public class SpeedReadEventPump {
         }
     }
 
-    public boolean isPaused()
-    {
-        synchronized (controlLock)
-        {
+    public boolean isPaused() {
+        synchronized (controlLock) {
             return isPaused;
         }
     }
 
     public void setPaused(boolean paused) throws InterruptedException {
-        synchronized (controlLock)
-        {
-            if (this.isPaused() ^ paused)
-            {
-                if (this.isPaused()==false && paused==true)
-                {
+        synchronized (controlLock) {
+            if (this.isPaused() ^ paused) {
+                if (this.isPaused() == false && paused == true) {
                     logger.debug("pausing ticker");
                     canRun.acquire();
                 } else {
@@ -86,27 +82,22 @@ public class SpeedReadEventPump {
         }
     }
 
-    public void stop()
-    {
-        synchronized (controlLock)
-        {
+    public void stop() {
+        synchronized (controlLock) {
             logger.debug("stopping ticker");
             this.isEnd = true;
         }
     }
 
-    public boolean isStopped()
-    {
-        synchronized (controlLock)
-        {
+    public boolean isStopped() {
+        synchronized (controlLock) {
             return this.isEnd;
         }
     }
 
 
     // start the callback event reading (asynchronously)
-    public void start()
-    {
+    public void start() {
 
         logger.debug("starting ticker");
 
@@ -114,16 +105,19 @@ public class SpeedReadEventPump {
             @Override
             public void run() {
 
-                Word next;
-                while( (next=stream.getNextWord())!=null )
-                {
-                    logger.debug("processing next word " + next.asText() + " / " + next.getDuration());
+                Word next = null;
 
-                    if (isStopped())
-                        break;
-
-                    try {
+                try {
+                    do {
                         canRun.acquire();
+
+                        if (isStopped())
+                            break;
+
+                        next = stream.getNextWord();
+                        logger.debug("processing next word " + next.asText() + " / " + next.getDuration());
+
+
                         logger.debug("acquired pause semaphore");
 
                         if (isStopped())
@@ -133,23 +127,49 @@ public class SpeedReadEventPump {
                         final WordPumpEvent event = new WordPumpEvent(WordPumpEvent.State.IS_MORE, next);
 
                         Platform.runLater(() -> fireWordPumpEvent(event));
+
+                        canRun.release();
+
                         Thread.sleep(next.getDuration());
 
-                    } catch (InterruptedException e) {
-                        logger.debug("word ticker interrupted in thread", e);
-                        throw new IllegalStateException("wait interrupted..", e);
-                    } finally {
-                        canRun.release();
-                        logger.debug("released pause semaphore");
-                    }
+                    } while (next != null);
+                } catch (InterruptedException e) {
+
+                    logger.debug("word ticker interrupted in thread", e);
+                    throw new IllegalStateException("wait interrupted..", e);
+
+                } finally {
+                    canRun.release();
+                    logger.debug("released pause semaphore");
                 }
 
-                final Word lastWord = next;
-                Platform.runLater(() -> fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.DONE, lastWord))); // notify subscribers we're done here
+                final Word lastWord = next == null ? null : next;
+                Platform.runLater(() -> fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.DONE, lastWord)));
             }
+
+
         });
 
         t.start();
+    }
+
+    public boolean isAtStart()
+    {
+        return stream.isAtStart();
+    }
+
+    public void goBackWordAndReFire() throws InterruptedException {
+
+        if (!Platform.isFxApplicationThread())
+            throw new IllegalStateException("wrong caller");
+
+        if (this.isPaused() == false)
+            this.setPaused(true);
+
+
+        this.stream.goBackWord();
+        fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.IS_MORE, this.stream.getNextWord()));
+        this.stream.goBackWord();
     }
 
 }

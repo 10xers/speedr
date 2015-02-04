@@ -189,17 +189,13 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         if (actionEvent.getSource()==btnBack)
         {
-            if (pump.isPaused()==false)
-            {
+            if (!pump.isAtStart()) {
                 try {
-                    pump.setPaused(true);
+                    pump.goBackWordAndReFire();
                 } catch (InterruptedException e) {
-                    throw new IllegalStateException("failed to unpause pump", e);
+                    throw new IllegalStateException(e);
                 }
             }
-
-          
-
         }
 
     }

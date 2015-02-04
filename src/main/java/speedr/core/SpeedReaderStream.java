@@ -100,4 +100,15 @@ public class SpeedReaderStream {
         return getWords().stream().mapToInt(Word::getDuration).sum();
     }
 
+    public void rewind()
+    {
+        currentWord=0;
+        currentSentence=0;
+    }
+
+    public boolean isAtStart()
+    {
+        return currentSentence==0 && currentWord == 0;
+    }
+
 }
