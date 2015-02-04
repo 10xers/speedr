@@ -3,7 +3,7 @@
     -fx-border-color: #AAAAAA;
     -fx-border-width: 2px;
     -fx-border-style: solid;
-
+    -fx-border-radius: 4px;
 }
 
 .list-cell {
