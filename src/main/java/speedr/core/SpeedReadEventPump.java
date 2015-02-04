@@ -125,7 +125,8 @@ public class SpeedReadEventPump {
                     try {
                         canRun.acquire();
                         logger.debug("acquired pause semaphore");
-                        Thread.sleep(next.getDuration());
+                        System.out.printf("%s (%d)\n", next.asText(), next.getDuration());
+
 
                         if (isStopped())
                             break;
@@ -134,6 +135,7 @@ public class SpeedReadEventPump {
                         final WordPumpEvent event = new WordPumpEvent(WordPumpEvent.State.IS_MORE, next);
 
                         Platform.runLater(() -> fireWordPumpEvent(event));
+                        Thread.sleep(next.getDuration());
 
                     } catch (InterruptedException e) {
                         logger.debug("word ticker interrupted in thread", e);

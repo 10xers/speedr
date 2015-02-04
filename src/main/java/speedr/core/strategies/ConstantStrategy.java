@@ -25,7 +25,8 @@ public class ConstantStrategy implements Strategy {
 
         for(String p : punctuation){
             if(s.endsWith(p)){
-                duration *= 1.5;
+                duration *= 1.65;
+                break;
             }
         }
 

@@ -4,6 +4,8 @@ import speedr.core.entities.Sentence;
 import speedr.core.entities.Word;
 import speedr.core.strategies.Strategy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,9 +18,34 @@ import java.util.List;
 public class SpeedReadTokenizer {
 
     private Strategy strategy;
-
+    private static String[] punctuation = {".", ",", "?", "!", "\"", "'", ";", ":"};
     public SpeedReadTokenizer(Strategy s){
         this.strategy = s;
+    }
+
+    private List<String> stringToSentences(String s) {
+
+        List<String> sentences = new ArrayList<>(10);
+
+        String sentence = "";
+
+        for(String word : s.split("\\s")) {
+
+            sentence += word + " ";
+
+            if(Arrays.stream(punctuation).anyMatch(mark -> word.endsWith(mark))){
+                sentences.add(sentence);
+                sentence = "";
+            }
+
+        }
+
+        if(! sentence.trim().isEmpty()){
+            sentences.add(sentence);
+        }
+
+        return sentences;
+
     }
 
     public LinkedList<Sentence> parse(String s) {
@@ -27,9 +54,7 @@ public class SpeedReadTokenizer {
 
         LinkedList<Sentence> sentenceList = new LinkedList<>();
 
-        String[] sentences = whitespaceCleared.split("\\.");
-
-        for (String sentence : sentences) {
+        for (String sentence : stringToSentences(whitespaceCleared)) {
 
             String[] words = sentence.split("\\s");
             List<Word> wordList = new LinkedList<>();
@@ -41,7 +66,7 @@ public class SpeedReadTokenizer {
 
             if (!wordList.isEmpty()) {
                 Word lastWord = wordList.get(wordList.size() - 1);
-                wordList.set(wordList.size() - 1, new Word(lastWord.asText() + ".", lastWord.getDuration()));
+                wordList.set(wordList.size() - 1, new Word(lastWord.asText(), lastWord.getDuration()));
                 sentenceList.add(new Sentence(wordList));
             }
         }
