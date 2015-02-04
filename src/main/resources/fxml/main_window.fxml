@@ -48,13 +48,16 @@
                 </BorderPane>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Region prefHeight="200.0" prefWidth="200.0" />
-                        <Label fx:id="currentWordLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="364.0" visible="false">
+                  <Region minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="100.0" prefWidth="364.0" visible="false">
                             <font>
                                 <Font size="51.0" />
                             </font>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
                         </Label>
-                        <Label fx:id="promptLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="17.0" text="Press P to start reading your emails" textAlignment="CENTER" visible="false" />
+                        <Label fx:id="promptLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="17.0" text="Press P to start reading your emails" textAlignment="CENTER" visible="false" />
                </children>
                <opaqueInsets>
                   <Insets />

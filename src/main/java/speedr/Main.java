@@ -28,6 +28,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
         Scene scene = new Scene(root);
 
+        scene.getStylesheets().add("/style/speedr.css");
+
         primaryStage.setScene(scene);
 
         primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly

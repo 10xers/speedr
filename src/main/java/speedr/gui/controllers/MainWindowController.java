@@ -78,7 +78,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             startedReading = true;
 
             promptLabel.setVisible(false);
-            currentWordLabel.setVisible(true);
 
             // set up a speed reading stream from the email.
             SpeedReaderStream s = new SpeedReaderStream(
@@ -146,6 +145,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         Platform.runLater(() -> {
             setPrompt("Select an email and press P to speed read. Press P again to stop.");
+            currentWordLabel.setVisible(true);
         });
     }
 
