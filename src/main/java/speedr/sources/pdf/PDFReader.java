@@ -8,6 +8,13 @@ import speedr.sources.HasContent;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * 
+ *  Implements a content source for speed reading PDF documents.
+ * 
+ * 
+ */
+
 public class PDFReader implements HasContent {
 
     private String text;
