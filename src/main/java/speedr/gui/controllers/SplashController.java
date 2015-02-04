@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * This is the controller for the GUI Splash Screen.
+ *
+ */
+
 public class SplashController implements Initializable {
 
     @Override
