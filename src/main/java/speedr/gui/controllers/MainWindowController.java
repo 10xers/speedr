@@ -146,6 +146,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         Platform.runLater(() -> {
             setPrompt("Select an email and press P to speed read. Press P again to stop.");
             currentWordLabel.setVisible(true);
+            itemList.setDisable(false);
         });
     }
 

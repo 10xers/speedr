@@ -37,7 +37,7 @@
             <items>
                 <BorderPane id="left-panel" prefHeight="200.0" prefWidth="200.0">
                     <center>
-                        <ListView fx:id="itemList" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                        <ListView fx:id="itemList" disable="true" prefWidth="200.0" BorderPane.alignment="CENTER" />
                     </center>
                <top>
                         <Label text="Emails" BorderPane.alignment="CENTER">
