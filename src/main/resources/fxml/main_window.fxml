@@ -2,8 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <BorderPane onKeyPressed="#onKeyPressed" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8"
@@ -52,7 +51,7 @@
                             <children>
                                 <AnchorPane>
                                     <children>
-      
+
                                         <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" visible="false"
                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                GridPane.fillWidth="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
@@ -78,6 +77,51 @@
                             </children>
                         </GridPane>
                     </center>
+                    <bottom>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="90.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0">
+                                    <children>
+                                        <Button fx:id="btnBack" maxHeight="30.0" maxWidth="30.0" minHeight="30.0"
+                                                minWidth="30.0" mnemonicParsing="false" prefHeight="30.0"
+                                                prefWidth="30.0">
+                                            <graphic>
+                                                <ImageView>
+                                                    <image>
+                                                        <Image url="@../icons/glyphicons/glyphicons-225-chevron-left.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnBreakout" maxHeight="30.0" maxWidth="30.0" minHeight="30.0"
+                                                minWidth="30.0" mnemonicParsing="false" prefHeight="30.0"
+                                                prefWidth="30.0">
+                                            <graphic>
+                                                <ImageView>
+                                                    <image>
+                                                        <Image url="@../icons/glyphicons/glyphicons-601-chevron-up.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+
+                                        <Button fx:id="btnSkip" maxHeight="30.0" maxWidth="30.0" minHeight="30.0"
+                                                minWidth="30.0" mnemonicParsing="false" prefHeight="30.0"
+                                                prefWidth="30.0">
+                                            <graphic>
+                                                <ImageView>
+                                                    <image>
+                                                        <Image url="@../icons/glyphicons/glyphicons-224-chevron-right.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </bottom>
                 </BorderPane>
             </items>
         </SplitPane>
