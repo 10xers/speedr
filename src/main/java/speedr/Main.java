@@ -25,8 +25,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
-        Scene scene = new Scene(root);
+        Parent main = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
+        Parent splash = FXMLLoader.load(getClass().getResource("/fxml/splash.fxml"));
+
+        Scene scene = new Scene(splash);
 
         scene.getStylesheets().add("/style/speedr.css");
 
