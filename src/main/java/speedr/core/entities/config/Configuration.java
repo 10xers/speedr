@@ -8,12 +8,11 @@ public class Configuration {
 
     private int configVersion = 1;
 
-
     private String mailType = "imaps";
-    private String user = "";
-    private String password = "";
-    private String host = "";
-    private int port = 0;
+    private String user = "speedrorg@gmail.com";
+    private String password = "speedrspeedr";
+    private String host = "imap.gmail.com";
+    private int port = 993;
 
     private String rootFolder = "INBOX";
 

@@ -25,52 +25,33 @@
                             <children>
 
                                 <Label text="Mail protocol" />
-                                <ChoiceBox value="IMAP" GridPane.columnIndex="1">
+                                <ChoiceBox fx:id="mailProtocol" GridPane.columnIndex="1">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="IMAP" />
-                                            <String fx:value="POP3" />
+                                            <String fx:value="imaps" />
+                                            <String fx:value="pop3" />
                                         </FXCollections>
                                     </items>
                                 </ChoiceBox>
 
                                 <Label text="Mail host" GridPane.rowIndex="1" />
-                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="hostname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <Label text="Mail port" GridPane.rowIndex="2" />
-                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="port" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                 <Label text="Email address" GridPane.rowIndex="3" />
-                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="emailaddr" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                                 <Label text="Password" GridPane.rowIndex="4" />
-                                <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                                 <Label text="Inbox folder name" GridPane.rowIndex="5" />
-                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <TextField fx:id="inboxName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                             </children>
-                            <columnConstraints>
-                                <ColumnConstraints />
-                                <ColumnConstraints />
-                                <ColumnConstraints />
-                                <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                            </rowConstraints>
-                        </GridPane>
+
+                       </GridPane>
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -85,8 +66,8 @@
             <right>
                 <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" />
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                        <Button mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" fx:id="applyBtn"/>
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel"/>
                     </children>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

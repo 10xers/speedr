@@ -23,7 +23,7 @@ public class ConfigurationRepository {
     private static final Logger l = LoggerFactory.getLogger(ConfigurationRepository.class);
 
     private static final String defaultFilename = "speedr.conf";
-    private static final String defaultPath = System.getProperty("user.home") + "." + File.pathSeparator + "speedr/";
+    private static final String defaultPath = System.getProperty("user.home") + "/.speedr/";
 
     public static Configuration load() throws IOException, CorruptedConfigException {
         return loadFromFile(new File(defaultPath + defaultFilename));
@@ -72,6 +72,11 @@ public class ConfigurationRepository {
             throw new IllegalArgumentException("insufficient perms to overwrite to " + to.getAbsolutePath());
 
         ObjectMapper objectMapper = new ObjectMapper();
+
+        if (!to.exists()) {
+            File dir = to.getAbsoluteFile().getParentFile();
+            dir.mkdirs();
+        }
         objectMapper.writeValue(to, configuration);
     }
 
