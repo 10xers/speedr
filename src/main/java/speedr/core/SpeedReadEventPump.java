@@ -172,4 +172,16 @@ public class SpeedReadEventPump {
         this.stream.goBackWord();
     }
 
+    public void goBackSentenceAndRefire() throws InterruptedException {
+
+        if (!Platform.isFxApplicationThread())
+            throw new IllegalStateException("nope");
+
+        if (this.isPaused())
+            this.setPaused(true);
+
+        this.stream.goBackSentence();
+        fireWordPumpEvent(new WordPumpEvent(WordPumpEvent.State.IS_MORE, this.stream.getNextWord()));
+        this.stream.goBackWord();
+    }
 }
