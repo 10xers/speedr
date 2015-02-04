@@ -19,8 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Speedr / Ed
- * 03/02/2015 22:55
+ * GUI controller for the config window.
  */
 public class ConfigWindowController implements Initializable {
 
