@@ -46,16 +46,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private boolean startedReading = false;
 
     @FXML
-    private Label loadingLabel;
-
-    @FXML
     private Label promptLabel;
 
     @FXML
     private Label currentWordLabel;
-
-    @FXML
-    private Text finishText;
 
     @FXML
     private ListView<Email> itemList;
@@ -67,17 +61,13 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     @Override
     public void wordPump(WordPumpEvent wordPumpEvent) {
-        if (wordPumpEvent.isDone())
-        {
-            // pump.removeWordPumpEventListener(this);
-            // annoyingly can't do this because we're using the listener list to do the iteration for this callback
-            // unless i take a copy
-            // TBC
-            finishText.setVisible(true);
+
+        if (wordPumpEvent.isDone()) {
             startedReading = false;
         } else {
             currentWordLabel.setText(wordPumpEvent.getWord().asText());
         }
+
     }
 
     @FXML
@@ -137,6 +127,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private void loadEmails() {
 
+        setPrompt("Loading emails...");
+
         IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
         emails = inbox.getRecentMessages(30);
 
@@ -152,8 +144,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         );
 
         Platform.runLater(() -> {
-            loadingLabel.setVisible(false);
-            promptLabel.setVisible(true);
+            setPrompt("Select an email and press P to speed read. Press P again to stop.");
         });
+    }
+
+    private void setPrompt(String text){
+        promptLabel.setVisible(true);
+        promptLabel.setText(text);
     }
 }
