@@ -58,7 +58,8 @@ public class POP3Inbox {
 
             for(Message m : f.getMessages(min, max)){
                 // todo: multipart email parsing.
-                out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString()));
+                boolean read = m.getFlags().contains(Flags.Flag.SEEN);
+                out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString(), read));
             }
 
             f.close(false);

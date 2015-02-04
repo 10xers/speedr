@@ -14,11 +14,13 @@ public class Email implements HasContent {
     private String from;
     private String body;
     private String subject;
+    private boolean read;
 
-    public Email(String from, String subject, String body){
+    public Email(String from, String subject, String body, boolean read){
         this.from = from;
         this.body = body;
         this.subject = subject;
+        this.read = read;
     }
 
     @Override

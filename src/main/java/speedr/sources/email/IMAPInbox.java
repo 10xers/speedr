@@ -61,11 +61,12 @@ public class IMAPInbox {
             int min = max-number < 1 ? 1 : max-(number-1);
 
             for(Message m : f.getMessages(min, max)){
-                // todo: multipart email parsing.
+
+                boolean read = m.getFlags().contains(Flags.Flag.SEEN);
 
                 if(m.getContent() instanceof String){
                     // plain text email
-                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString()));
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString(), read));
                 } else {
                     // multi-part email
 
@@ -85,7 +86,7 @@ public class IMAPInbox {
 
                     }
 
-                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body));
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body, read));
 
                 }
 
