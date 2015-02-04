@@ -4,6 +4,7 @@
     -fx-border-width: 2px;
     -fx-border-style: solid;
     -fx-border-radius: 4px;
+    -fx-background-color: #FFFFFF;
 }
 
 .list-cell:filled {
