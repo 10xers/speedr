@@ -3,6 +3,7 @@ package speedr.core;
 import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import speedr.core.entities.Context;
 import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
@@ -158,6 +159,17 @@ public class SpeedReadEventPump {
     public boolean isAtStart()
     {
         return stream.isAtStart();
+    }
+
+    public Context pauseAndGetContext() throws InterruptedException {
+
+        if (!Platform.isFxApplicationThread())
+            throw new IllegalStateException("wrong thread");
+
+        if (this.isPaused()==false)
+            this.setPaused(true);
+
+        return this.stream.getContextWords();
     }
 
     public void goBackWordAndReFire() throws InterruptedException {

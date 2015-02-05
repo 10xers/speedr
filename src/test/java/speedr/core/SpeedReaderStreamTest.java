@@ -14,7 +14,7 @@ public class SpeedReaderStreamTest {
 
     private SpeedReaderStream srStream;
 
-    private static final String[] expectedStream = new String[] { "The", "rain", "in", "spain.", "Is", "something", "or", "other."};
+    private static final String[] expectedStream = new String[]{"The", "rain", "in", "spain.", "Is", "something", "or", "other."};
 
     private static final String content = "The rain in spain. Is something or other.";
 
@@ -27,8 +27,7 @@ public class SpeedReaderStreamTest {
     @Test
     public void testGetNextWord() throws Exception {
 
-        for (String expectedWord : expectedStream)
-        {
+        for (String expectedWord : expectedStream) {
             assertEquals(expectedWord, srStream.getNextWord().asText());
         }
 
@@ -38,10 +37,11 @@ public class SpeedReaderStreamTest {
     @Test
     public void testGoBackWord() throws Exception {
 
-        Arrays.stream(expectedStream).forEach((s)-> { srStream.getNextWord(); }); // bump the counter up
+        Arrays.stream(expectedStream).forEach((s) -> {
+            srStream.getNextWord();
+        }); // bump the counter up
 
-        for (int i=expectedStream.length-1; i>0; i--)
-        {
+        for (int i = expectedStream.length - 1; i > 0; i--) {
             srStream.goBackWord();
             Word w = srStream.getNextWord();
             srStream.goBackWord();
@@ -54,12 +54,13 @@ public class SpeedReaderStreamTest {
 
     @Test
     public void testGoBackSentence() throws Exception {
-        Arrays.stream(expectedStream).forEach((s)-> { srStream.getNextWord(); }); // bump the counter up
+        Arrays.stream(expectedStream).forEach((s) -> {
+            srStream.getNextWord();
+        }); // bump the counter up
 
         srStream.goBackSentence();
 
-        for (int i = 4; i<expectedStream.length; i++)
-        {
+        for (int i = 4; i < expectedStream.length; i++) {
             assertEquals(expectedStream[i], srStream.getNextWord().asText());
         }
 
@@ -85,7 +86,7 @@ public class SpeedReaderStreamTest {
     public void testTimeToRead() {
         int calculated = 0;
         for (Word c : srStream.getWords())
-            calculated+=c.getDuration();
+            calculated += c.getDuration();
 
         assertEquals(calculated, srStream.getBaseTimeToReadMillis());
     }

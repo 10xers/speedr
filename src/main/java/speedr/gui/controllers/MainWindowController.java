@@ -23,6 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
+import speedr.core.entities.Context;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
 import speedr.sources.email.Email;
@@ -183,14 +184,13 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private void hitBreakout()
     {
-        if ( !this.pump.isPaused() )
-        {
-            try {
-                this.pump.setPaused(true);
-            } catch (InterruptedException e) {
-                throw new IllegalStateException("failed to pause wordpump ", e);
-            }
+        Context current;
+        try {
+            current = pump.pauseAndGetContext();
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
         }
+
     }
 
     private void hitSkip()
