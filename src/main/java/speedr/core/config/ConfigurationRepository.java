@@ -13,8 +13,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- * Speedr / Ed
- * 03/02/2015 15:39
+ * Loads configurations.
  */
 public class ConfigurationRepository {
 

@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ *
+ * Implementation of a POP3 Email inbox; gets emails from the remote source.
+ *
+ */
+
 public class POP3Inbox implements EmailInbox {
 
     private Store store;

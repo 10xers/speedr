@@ -1,8 +1,7 @@
 package speedr.core.entities.config;
 
 /**
- * Speedr / Ed
- * 03/02/2015 15:39
+ * Holder object for Configuration data.
  */
 public class Configuration {
 
