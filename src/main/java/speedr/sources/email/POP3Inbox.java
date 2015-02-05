@@ -3,6 +3,7 @@ package speedr.sources.email;
 import com.sun.mail.pop3.POP3SSLStore;
 
 import javax.mail.*;
+import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +58,30 @@ public class POP3Inbox {
             int min = max-number < 1 ? 1 : max-number;
 
             for(Message m : f.getMessages(min, max)){
-                // todo: multipart email parsing.
+
                 boolean read = m.getFlags().contains(Flags.Flag.SEEN);
-                out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString(), read));
+
+                if(m.getContent() instanceof String){
+
+                    System.out.println("The type of this email was plaintext");
+
+                    // plain text email
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString(), read));
+
+                } else if(m.getContent() instanceof MimeMultipart) {
+
+                    // multi-part email
+
+                    System.out.println("The type of this email was " + ((MimeMultipart)m.getContent()).getContentType());
+                    String body = MultipartParser.parse(m);
+                    out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body, read));
+
+                } else {
+
+                    throw new IllegalArgumentException("Unknown email part.");
+
+                }
+
             }
 
             f.close(false);
