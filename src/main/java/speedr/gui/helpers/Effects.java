@@ -8,7 +8,7 @@ import javafx.util.Duration;
  * Speedr / Ed
  * 05/02/2015 02:35
  */
-public class Helpers {
+public class Effects {
 
 
     public static void fadeIn(Node n, int ms)

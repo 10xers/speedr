@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -32,8 +31,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import static speedr.gui.helpers.Helpers.fadeIn;
-import static speedr.gui.helpers.Helpers.fadeOut;
+import static speedr.gui.helpers.Effects.fadeIn;
+import static speedr.gui.helpers.Effects.fadeOut;
 
 /**
  *
