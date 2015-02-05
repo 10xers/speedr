@@ -38,6 +38,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import static speedr.gui.helpers.Helpers.fadeIn;
+import static speedr.gui.helpers.Helpers.fadeOut;
 
 /**
  *
@@ -204,8 +205,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         contextIn.setText(joinedBefore);
         contextOut.setText(joinedAfter);
 
-        fadeIn(contextIn, 1000);
-        fadeIn(contextOut, 1000);
+        fadeIn(contextIn, 1500);
+        fadeIn(contextOut, 1500);
     }
 
     private void hitSkip()
@@ -217,6 +218,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             } catch (InterruptedException e) {
                 throw new IllegalStateException("failed to unpause pump", e);
             }
+
+            fadeOut(contextIn, 300);
+            fadeOut(contextOut, 300);
         }
     }
 
