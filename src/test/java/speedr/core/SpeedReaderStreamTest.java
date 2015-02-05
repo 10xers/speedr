@@ -2,6 +2,7 @@ package speedr.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import speedr.core.entities.Context;
 import speedr.core.entities.Word;
 
 import java.util.Arrays;
@@ -13,11 +14,13 @@ public class SpeedReaderStreamTest {
 
     private SpeedReaderStream srStream;
 
-    private String[] expectedStream = new String[] { "The", "rain", "in", "spain.", "Is", "something", "or", "other."};
+    private static final String[] expectedStream = new String[] { "The", "rain", "in", "spain.", "Is", "something", "or", "other."};
+
+    private static final String content = "The rain in spain. Is something or other.";
 
     @Before
     public void configureTest() {
-        srStream = new SpeedReaderStream(() -> "The rain in spain. Is something or other.", 500);
+        srStream = new SpeedReaderStream(() -> content, 500);
     }
 
 
@@ -80,6 +83,52 @@ public class SpeedReaderStreamTest {
 
     @Test
     public void testTimeToRead() {
-        assertTrue(srStream.getBaseTimeToReadMillis() > 100);
+        int calculated = 0;
+        for (Word c : srStream.getWords())
+            calculated+=c.getDuration();
+
+        assertEquals(calculated, srStream.getBaseTimeToReadMillis());
+    }
+
+    @Test
+    public void testGetOriginalContent() throws Exception {
+        assertEquals(content, srStream.getOriginalContent());
+    }
+
+    @Test
+    public void testRewind() throws Exception {
+        srStream.getNextWord();
+        srStream.getNextWord();
+        srStream.rewind();
+        assertEquals("The", srStream.getNextWord().asText());
+    }
+
+    @Test
+    public void testIsAtStart() throws Exception {
+
+        assertTrue(srStream.isAtStart());
+
+        srStream.getNextWord();
+        srStream.getNextWord();
+        srStream.rewind();
+
+        assertTrue(srStream.isAtStart());
+    }
+
+    @Test
+    public void testGetContextWords() throws Exception {
+        srStream.getNextWord();
+        srStream.getNextWord();
+
+        Context c = srStream.getContextWords();
+
+        // "The rain in spain
+
+        assertEquals(2, c.getBefore().size());
+        assertEquals(1, c.getAfter().size());
+
+        assertEquals("The", c.getBefore().get(0).asText());
+        assertEquals("rain", c.getBefore().get(1).asText());
+        assertEquals("spain.", c.getAfter().get(0).asText());
     }
 }

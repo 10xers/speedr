@@ -1,5 +1,6 @@
 package speedr.core;
 
+import speedr.core.entities.Context;
 import speedr.core.strategies.ConstantStrategy;
 import speedr.core.strategies.FrequencyMap;
 import speedr.sources.HasContent;
@@ -110,5 +111,20 @@ public class SpeedReaderStream {
     {
         return currentSentence==0 && currentWord == 0;
     }
+
+    public Context getContextWords()
+    {
+        List<Word> before = new ArrayList<>();
+        List<Word> after = new ArrayList<>();
+
+        for (int i=0; i<currentWord; i++)
+            before.add(sentences.get(currentSentence).getWord(i));
+
+        for (int i=currentWord+1; i<sentences.get(currentSentence).getCount(); i++)
+            after.add(sentences.get(currentSentence).getWord(i));
+
+        return new Context(before, after);
+    }
+
 
 }
