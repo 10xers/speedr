@@ -117,10 +117,10 @@ public class SpeedReaderStream {
         List<Word> before = new ArrayList<>();
         List<Word> after = new ArrayList<>();
 
-        for (int i=0; i<currentWord; i++)
+        for (int i=0; i<currentWord-1; i++)
             before.add(sentences.get(currentSentence).getWord(i));
 
-        for (int i=currentWord+1; i<sentences.get(currentSentence).getCount(); i++)
+        for (int i=currentWord; i<sentences.get(currentSentence).getCount(); i++)
             after.add(sentences.get(currentSentence).getWord(i));
 
         return new Context(before, after);

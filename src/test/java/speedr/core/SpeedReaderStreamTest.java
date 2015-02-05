@@ -125,11 +125,11 @@ public class SpeedReaderStreamTest {
 
         // "The rain in spain
 
-        assertEquals(2, c.getBefore().size());
-        assertEquals(1, c.getAfter().size());
+        assertEquals(1, c.getBefore().size());
+        assertEquals(2, c.getAfter().size());
 
         assertEquals("The", c.getBefore().get(0).asText());
-        assertEquals("rain", c.getBefore().get(1).asText());
-        assertEquals("spain.", c.getAfter().get(0).asText());
+        assertEquals("in", c.getAfter().get(0).asText());
+        assertEquals("spain.", c.getAfter().get(1).asText());
     }
 }
