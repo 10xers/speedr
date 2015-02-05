@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -40,94 +41,110 @@
                         </Label>
                     </top>
                 </BorderPane>
-                <BorderPane>
-                    <center>
-                        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="ALWAYS" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints vgrow="NEVER" />
-                                <RowConstraints valignment="CENTER" vgrow="NEVER" />
-                                <RowConstraints vgrow="NEVER" />
-                                <RowConstraints vgrow="NEVER" />
-                            </rowConstraints>
-                            <children>
-
-                                <AnchorPane GridPane.rowIndex="0">
-                                    <children>
-                                        <Label fx:id="contextIn" alignment="CENTER_LEFT" focusTraversable="false" visible="false" AnchorPane.leftAnchor="30">...</Label>
-                                    </children>
-                                </AnchorPane>
-
-                                <AnchorPane GridPane.rowIndex="1">
-                                    <children>
-                                        <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" layoutY="50.0" visible="false" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="63.0" GridPane.fillWidth="true" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
-                                            <font>
-                                                <Font size="51.0" />
-                                            </font>
-                                            <padding>
-                                                <Insets left="20.0" right="20.0" />
-                                            </padding>
+            <StackPane>
+               <children>
+                      <BorderPane fx:id="readerPane" visible="false">
+                          <center>
+                              <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+      
+                                  <columnConstraints>
+                                      <ColumnConstraints hgrow="ALWAYS" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                      <RowConstraints vgrow="NEVER" />
+                                      <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                                      <RowConstraints vgrow="NEVER" />
+                                      <RowConstraints vgrow="NEVER" />
+                                  </rowConstraints>
+                                  <children>
+      
+                                      <AnchorPane GridPane.rowIndex="0">
+                                          <children>
+                                              <Label fx:id="contextIn" alignment="CENTER_LEFT" focusTraversable="false" visible="false" AnchorPane.leftAnchor="30">...</Label>
+                                          </children>
+                                      </AnchorPane>
+      
+                                      <AnchorPane GridPane.rowIndex="1">
+                                          <children>
+                                              <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" layoutY="50.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="63.0" GridPane.fillWidth="true" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+                                                  <font>
+                                                      <Font size="51.0" />
+                                                  </font>
+                                                  <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                  </padding>
+                                              </Label>
+                                          </children>
+                                          <padding>
+                                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                                          </padding>
+                                      </AnchorPane>
+      
+                                      <AnchorPane GridPane.rowIndex="2">
+                                          <children>
+                                              <Label fx:id="contextOut" alignment="CENTER_RIGHT" focusTraversable="false" textAlignment="RIGHT" visible="false" AnchorPane.rightAnchor="30">...
                                         </Label>
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                    </padding>
-                                </AnchorPane>
-
-                                <AnchorPane GridPane.rowIndex="2">
-                                    <children>
-                                        <Label fx:id="contextOut" alignment="CENTER_RIGHT" focusTraversable="false" textAlignment="RIGHT" visible="false" AnchorPane.rightAnchor="30">...
-                                        </Label>
-                                    </children>
-                                </AnchorPane>
-
-                                <Label fx:id="promptLabel" alignment="CENTER" text="Press P to start reading your emails" textAlignment="CENTER" visible="false" GridPane.fillWidth="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-
-                            </children>
-                        </GridPane>
-                    </center>
-                    <bottom>
-                        <AnchorPane BorderPane.alignment="CENTER">
-                            <children>
-                                <HBox alignment="CENTER" prefHeight="90.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <children>
-                              <Button fx:id="btnSkipBack" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../icons/glyphicons/glyphicons-172-fast-backward.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
+                                          </children>
+                                      </AnchorPane>
+      
+                                  </children>
+                              </GridPane>
+                          </center>
+                          <bottom>
+                              <AnchorPane BorderPane.alignment="CENTER">
+                                  <children>
+                                      <HBox alignment="CENTER" prefHeight="90.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <children>
+                                    <Button fx:id="btnSkipBack" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
+                                       <graphic>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@../icons/glyphicons/glyphicons-172-fast-backward.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                              <Button fx:id="btnPause" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
+                                                  <graphic>
+                                                      <ImageView>
+                                                          <image>
+                                                              <Image url="@../icons/glyphicons/glyphicons-175-pause.png" />
+                                                          </image>
+                                                      </ImageView>
+                                                  </graphic>
+                                              </Button>
+      
+                                              <Button fx:id="btnSkip" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
+                                                  <graphic>
+                                                      <ImageView>
+                                                          <image>
+                                                              <Image url="@../icons/glyphicons/glyphicons-178-fast-forward.png" />
+                                                          </image>
+                                                      </ImageView>
+                                                  </graphic>
+                                              </Button>
+                                          </children>
+                                      </HBox>
+                                  </children>
+                              </AnchorPane>
+                          </bottom>
+                      </BorderPane>
+                  <HBox fx:id="queuePane" alignment="CENTER" StackPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Select some mail to play. Then press &quot;PLAY&quot; below." />
+                              <Button mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </Button>
-                                        <Button fx:id="btnPause" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
-                                            <graphic>
-                                                <ImageView>
-                                                    <image>
-                                                        <Image url="@../icons/glyphicons/glyphicons-175-pause.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-
-                                        <Button fx:id="btnSkip" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
-                                            <graphic>
-                                                <ImageView>
-                                                    <image>
-                                                        <Image url="@../icons/glyphicons/glyphicons-178-fast-forward.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </Button>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                    </bottom>
-                </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
             </items>
         </SplitPane>
     </center>

@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import speedr.core.SpeedReadEventPump;
@@ -41,10 +43,18 @@ import static speedr.gui.helpers.Helpers.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
+
     private SpeedReadEventPump pump;
     private List<Email> emails;
 
     private boolean startedReading = false;
+
+
+    @FXML
+    public BorderPane readerPane;
+
+    @FXML
+    public HBox queuePane;
 
     @FXML
     public Label contextIn;
@@ -57,8 +67,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Button btnPause;
     @FXML
     public Button btnSkip;
-    @FXML
-    private Label promptLabel;
     @FXML
     private Label currentWordLabel;
     @FXML
@@ -80,40 +88,39 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     }
 
-    @FXML
-    public void onKeyPressed(KeyEvent keyEvent) {
 
-        if (!startedReading && (keyEvent.getCode() == KeyCode.P) && itemList.getSelectionModel().getSelectedItem() != null) {
+    private void activateReadingMode()
+    {
+        startedReading = true;
 
-            startedReading = true;
+        fadeOut(queuePane, 500);
+        fadeIn(readerPane, 500);
 
-            promptLabel.setVisible(false);
-
-            // set up a speed reading stream from the email.
-            SpeedReaderStream s = new SpeedReaderStream(
+        // set up a speed reading stream from the email.
+        SpeedReaderStream s = new SpeedReaderStream(
                 itemList.getSelectionModel().getSelectedItem(),
                 500
-            );
+        );
 
-            // the pump lets us plug the stream into our gui
-            pump = new SpeedReadEventPump(s);
-            pump.addWordPumpEventListener(this);
+        // the pump lets us plug the stream into our gui
+        pump = new SpeedReadEventPump(s);
+        pump.addWordPumpEventListener(this);
 
-            // kick it off
-            pump.start();
+        // wait for the transition, then go
 
-        } else if(startedReading && keyEvent.getCode() == KeyCode.P) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
 
-            // they hit p while we were reading, stop the pump.
+            Platform.runLater(pump::start);
+        }).start();
 
-            pump.removeWordPumpEventListener(this);
+    }
 
-            currentWordLabel.setText("");
-            setPrompt("Select an email and press P to speed read. Press P again to stop.");
 
-            startedReading = false;
-
-        }
+    @FXML
+    public void onKeyPressed(KeyEvent keyEvent) {
 
         if (startedReading)
         {
@@ -155,10 +162,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     }
 
-    public void loadWith(List<Email> emails){
-
-        setPrompt("Loading emails...");
-
+    public void loadWith(List<Email> emails)
+    {
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
 
@@ -170,17 +175,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 }
         );
 
-        Platform.runLater(() -> {
-            setPrompt("Select an email and press P to speed read. Press P again to stop.");
-            currentWordLabel.setVisible(true);
-            itemList.setDisable(false);
-        });
-    }
 
-    private void setPrompt(String text){
-        promptLabel.setVisible(true);
-        promptLabel.setText(text);
-    }
+        itemList.setDisable(false);
+
+        }
 
     private void hitPause()
     {
@@ -261,4 +259,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     }
 
+    @FXML
+    public void startReadingBtnClicked(ActionEvent evt) {
+        activateReadingMode();
+    }
 }
