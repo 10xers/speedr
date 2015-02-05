@@ -14,9 +14,9 @@
                   <Font name="Arial Bold Italic" size="44.0" />
                </font>
             </Label>
-            <TextField fx:id="hostInput" prefHeight="25.0" prefWidth="512.0" promptText="hostname" text="imap.gmail.com" />
-            <TextField fx:id="userInput" promptText="user" text="speedrorg@gmail.com" />
-            <PasswordField fx:id="passInput" promptText="pass" text="speedrspeedr" />
+            <TextField fx:id="hostInput" prefHeight="25.0" prefWidth="512.0" promptText="hostname" />
+            <TextField fx:id="userInput" promptText="user" />
+            <PasswordField fx:id="passInput" promptText="pass" />
             <Separator prefHeight="12.0" prefWidth="220.0" visible="false" />
             <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="92.0" text="Log in" />
             <Separator prefHeight="10.0" prefWidth="200.0" visible="false" />

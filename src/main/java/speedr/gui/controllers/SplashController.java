@@ -12,6 +12,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import speedr.core.config.ConfigurationRepository;
+import speedr.core.config.CorruptedConfigException;
+import speedr.core.entities.config.Configuration;
 import speedr.sources.email.Email;
 import speedr.sources.email.IMAPInbox;
 
@@ -35,6 +38,17 @@ public class SplashController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // fill in the values from the configuration
+
+        try {
+            Configuration config = ConfigurationRepository.load();
+            hostInput.setText(config.getHost());
+            userInput.setText(config.getUser());
+            passInput.setText(config.getPassword());
+        } catch (IOException | CorruptedConfigException e) {
+            throw new IllegalStateException("configuration file corrupted", e);
+        }
 
     }
 
