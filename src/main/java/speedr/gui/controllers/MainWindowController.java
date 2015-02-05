@@ -183,12 +183,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         });
     }
 
-    public void loadEmails(String host, String name, String pass) {
-        IMAPInbox inbox = new IMAPInbox(host, name, pass);
-        emails = inbox.getRecentMessages(30);
-        loadWith(emails);
-    }
-
     private void setPrompt(String text){
         promptLabel.setVisible(true);
         promptLabel.setText(text);
