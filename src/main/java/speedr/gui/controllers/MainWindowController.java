@@ -172,7 +172,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    System.out.println("New email selected:");
+                    // do we need to do anything here?
                 }
         );
 
@@ -187,7 +187,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         promptLabel.setVisible(true);
         promptLabel.setText(text);
     }
-
 
     private void hitBreakout()
     {

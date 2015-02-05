@@ -35,13 +35,11 @@ public class SplashController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Application started.");
+
     }
 
     @FXML
     public void onLoginButtonClick(ActionEvent evt){
-
-        System.out.println("logging in");
 
         progressBar.setVisible(true);
         new Thread(() -> loadEmails((Stage) ((Node) evt.getSource()).getScene().getWindow())).start();
@@ -57,7 +55,6 @@ public class SplashController implements Initializable {
             IMAPInbox inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
             List<Email> emails = inbox.getRecentMessages(30);
 
-            System.out.println("Finished loading emails.");
             Platform.runLater(() -> loadMain(emails, currentStage));
 
         } catch(Exception e){
