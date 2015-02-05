@@ -40,7 +40,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public class MainWindowController implements WordPumpEventListener, Initializable {
+public class MainWindowController implements WordPumpEventListener {
 
     private SpeedReadEventPump pump;
     private List<Email> emails;
@@ -59,11 +59,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private Label currentWordLabel;
     @FXML
     private ListView<Email> itemList;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        new Thread(this::loadEmails).start();
-    }
 
     @Override
     public void wordPump(WordPumpEvent wordPumpEvent) {
@@ -151,12 +146,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     }
 
-    private void loadEmails() {
+    public void loadWith(List<Email> emails){
 
         setPrompt("Loading emails...");
-
-        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
-        emails = inbox.getRecentMessages(30);
 
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
@@ -174,6 +166,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             currentWordLabel.setVisible(true);
             itemList.setDisable(false);
         });
+    }
+
+    public void loadEmails(String host, String name, String pass) {
+        IMAPInbox inbox = new IMAPInbox(host, name, pass);
+        emails = inbox.getRecentMessages(30);
+        loadWith(emails);
     }
 
     private void setPrompt(String text){
