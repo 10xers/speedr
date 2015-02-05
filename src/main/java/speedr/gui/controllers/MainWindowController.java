@@ -208,14 +208,25 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private void hitBack()
     {
         if (!pump.isAtStart()) {
-            try {
-                pump.goBackWordAndReFire();
-            } catch (InterruptedException e) {
-                throw new IllegalStateException(e);
+
+            if (pump.isPaused())
+            {
+                try {
+                    pump.goBackSentenceAndRefire();
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+            } else {
+                try {
+                    pump.goBackWordAndReFire();
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
             }
         }
     }
 
+    @FXML
     public void handleStreamChangeRequest(ActionEvent actionEvent) {
 
         if (actionEvent.getSource()==btnBreakout)
