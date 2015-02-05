@@ -17,6 +17,7 @@ import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -100,6 +101,7 @@ public class IMAPInbox {
             throw new RuntimeException(e);
         }
 
+        Collections.reverse(out);
         return out;
 
     }
