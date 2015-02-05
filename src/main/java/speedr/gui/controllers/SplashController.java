@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ import speedr.core.entities.config.Configuration;
 import speedr.sources.email.Email;
 import speedr.sources.email.IMAPInbox;
 
+import javax.mail.AuthenticationFailedException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -35,6 +37,7 @@ public class SplashController implements Initializable {
     @FXML public TextField userInput;
     @FXML public PasswordField passInput;
     @FXML public ProgressBar progressBar;
+    @FXML public Label errorLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,7 +50,7 @@ public class SplashController implements Initializable {
             userInput.setText(config.getUser());
             passInput.setText(config.getPassword());
         } catch (IOException | CorruptedConfigException e) {
-            throw new IllegalStateException("configuration file corrupted", e);
+            Platform.runLater(() -> error(e));
         }
 
     }
@@ -72,7 +75,7 @@ public class SplashController implements Initializable {
             Platform.runLater(() -> loadMain(emails, currentStage));
 
         } catch(Exception e){
-            throw new RuntimeException(e);
+            Platform.runLater(() -> error(e));
         }
     }
 
@@ -95,7 +98,7 @@ public class SplashController implements Initializable {
 
         try {
 
-            Parent main = null;
+            Parent main;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_window.fxml"));
             main = loader.load();
@@ -107,8 +110,31 @@ public class SplashController implements Initializable {
             currentStage.setScene(s);
 
         } catch(Exception e){
-            throw new RuntimeException(e);
+            error(e);
         }
+
+    }
+
+    private void error(Exception e){
+
+        if(e instanceof AuthenticationFailedException){
+            error("Login credentials are incorrect.");
+        } else if(e instanceof CorruptedConfigException){
+            error("Configuration file has become corrupt.");
+        } else {
+            error("Unknown error: " + e.getLocalizedMessage());
+        }
+
+    }
+
+    // run this on the gui thread
+    private void error(String s){
+
+        this.progressBar.setProgress(0.0d);
+        this.progressBar.setVisible(false);
+
+        errorLabel.setVisible(true);
+        errorLabel.setText(String.format("Error! %s", s));
 
     }
 

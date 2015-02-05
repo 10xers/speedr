@@ -24,7 +24,7 @@ public class IMAPInbox {
 
     private Store store;
 
-    public IMAPInbox(String host, String user, String pass) {
+    public IMAPInbox(String host, String user, String pass) throws AuthenticationFailedException {
 
         Properties props = new Properties();
         props.setProperty("mail.store.protocol", "imaps");
@@ -34,7 +34,9 @@ public class IMAPInbox {
         try {
             store = mailSession.getStore("imaps");
             store.connect(host, user, pass);
-        } catch (javax.mail.MessagingException e) {
+        } catch (javax.mail.AuthenticationFailedException e) {
+            throw e;
+        } catch(javax.mail.MessagingException e) {
             throw new RuntimeException(e);
         }
 
