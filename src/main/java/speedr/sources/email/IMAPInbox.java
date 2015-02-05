@@ -68,28 +68,22 @@ public class IMAPInbox {
                 boolean read = m.getFlags().contains(Flags.Flag.SEEN);
 
                 if(m.getContent() instanceof String){
+
+                    System.out.println("The type of this email was plaintext");
+
                     // plain text email
                     out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), m.getContent().toString(), read));
-                } else {
+
+                } else if(m.getContent() instanceof MimeMultipart) {
+
                     // multi-part email
 
-                    MimeMultipart multi = ((MimeMultipart)m.getContent());
-
-                    String body = "";
-
-                    for(int i = 0; i < multi.getCount(); ++i){
-
-                        BodyPart bp = multi.getBodyPart(i);
-
-                        if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
-
-                        } else {
-                            body += IOUtils.toString(bp.getInputStream());
-                        }
-
-                    }
-
+                    String body = MultipartParser.parse(m);
                     out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body, read));
+
+                } else {
+
+                    throw new IllegalArgumentException("Unknown email part.");
 
                 }
 
@@ -105,6 +99,8 @@ public class IMAPInbox {
         return out;
 
     }
+
+
 
 
 }
