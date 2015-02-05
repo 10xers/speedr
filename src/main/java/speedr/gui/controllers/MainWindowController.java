@@ -1,11 +1,7 @@
 package speedr.gui.controllers;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,17 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.entities.Context;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
 import speedr.sources.email.Email;
-import speedr.sources.email.IMAPInbox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,9 +52,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Label contextOut;
 
     @FXML
-    public Button btnBack;
+    public Button btnSkipBack;
     @FXML
-    public Button btnBreakout;
+    public Button btnPause;
     @FXML
     public Button btnSkip;
     @FXML
@@ -133,7 +126,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                     hitSkip();
                     break;
                 case UP:
-                    hitBreakout();
+                    hitPause();
                     break;
                 default:
                     break;
@@ -189,7 +182,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         promptLabel.setText(text);
     }
 
-    private void hitBreakout()
+    private void hitPause()
     {
         Context current;
 
@@ -243,14 +236,17 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 }
             }
         }
+
+        fadeOut(contextIn, 300);
+        fadeOut(contextOut, 300);
     }
 
     @FXML
     public void handleStreamChangeRequest(ActionEvent actionEvent) {
 
-        if (actionEvent.getSource()==btnBreakout)
+        if (actionEvent.getSource()== btnPause)
         {
-            hitBreakout();
+            hitPause();
         }
 
         if (actionEvent.getSource()==btnSkip)
@@ -258,7 +254,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             hitSkip();
         }
 
-        if (actionEvent.getSource()==btnBack)
+        if (actionEvent.getSource()== btnSkipBack)
         {
             hitBack();
         }
