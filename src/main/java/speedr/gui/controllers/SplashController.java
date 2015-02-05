@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import speedr.core.config.ConfigurationRepository;
 import speedr.core.config.CorruptedConfigException;
@@ -38,6 +35,7 @@ public class SplashController implements Initializable {
     @FXML public PasswordField passInput;
     @FXML public ProgressBar progressBar;
     @FXML public Label errorLabel;
+    @FXML public Button loginButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,6 +57,9 @@ public class SplashController implements Initializable {
     public void onLoginButtonClick(ActionEvent evt){
 
         progressBar.setVisible(true);
+        loginButton.setDisable(true);
+
+        clearError();
         new Thread(() -> loadEmails((Stage) ((Node) evt.getSource()).getScene().getWindow())).start();
         new Thread(this::progressUpdater).start();
 
@@ -132,10 +133,17 @@ public class SplashController implements Initializable {
 
         this.progressBar.setProgress(0.0d);
         this.progressBar.setVisible(false);
+        this.loginButton.setDisable(false);
 
-        errorLabel.setVisible(true);
-        errorLabel.setText(String.format("Error! %s", s));
+        this.errorLabel.setVisible(true);
+        this.errorLabel.setText(String.format("Error! %s", s));
 
+    }
+
+    private void clearError(){
+
+        errorLabel.setVisible(false);
+        errorLabel.setText("");
     }
 
 }
