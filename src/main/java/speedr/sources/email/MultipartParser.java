@@ -45,9 +45,7 @@ public class MultipartParser {
 
             BodyPart bp = multi.getBodyPart(i);
 
-            if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
-                // don't worry about attachments.
-            } else {
+            if (bp.getDisposition() == null || !bp.getDisposition().equalsIgnoreCase("ATTACHMENT")) {
                 body += IOUtils.toString(bp.getInputStream());
             }
 
@@ -63,22 +61,20 @@ public class MultipartParser {
 
         MimeMultipart multi = ((MimeMultipart)m.getContent());
 
-        String body = "";
-
         for(int i = 0; i < multi.getCount(); ++i){
 
             BodyPart bp = multi.getBodyPart(i);
 
-            if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
-                // don't worry about attachments.
-            } else if(bp.getContentType().contains("TEXT/PLAIN")){
+            if (bp.getDisposition() == null || !bp.getDisposition().equalsIgnoreCase("ATTACHMENT")) {
+                if(bp.getContentType().contains("TEXT/PLAIN")){
 
-                String text = IOUtils.toString(bp.getInputStream());
+                    String text = IOUtils.toString(bp.getInputStream());
 
-                text = Pattern.compile("\\[image:[^\\]]+\\]", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
-                text = Pattern.compile("<[^<]+>", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
+                    text = Pattern.compile("\\[image:[^\\]]+\\]", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
+                    text = Pattern.compile("<[^<]+>", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
 
-                return text;
+                    return text;
+                }
             }
 
         }
