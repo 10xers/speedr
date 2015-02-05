@@ -110,27 +110,29 @@ public class SpeedReadEventPump {
                 try {
                     do {
                         canRun.acquire();
-
-                        if (isStopped())
-                            break;
-
-                        next = stream.getNextWord();
-                        logger.debug("processing next word " + next.asText() + " / " + next.getDuration());
-
-
                         logger.debug("acquired pause semaphore");
 
                         if (isStopped())
                             break;
 
-                        logger.debug("firing event for word.");
-                        final WordPumpEvent event = new WordPumpEvent(WordPumpEvent.State.IS_MORE, next);
+                        next = stream.getNextWord();
 
-                        Platform.runLater(() -> fireWordPumpEvent(event));
+                        if (next!=null) {
 
-                        canRun.release();
+                            logger.debug("processing next word " + next + " / " + next.getDuration());
 
-                        Thread.sleep(next.getDuration());
+                            if (isStopped())
+                                break;
+
+                            logger.debug("firing event for word.");
+                            final WordPumpEvent event = new WordPumpEvent(WordPumpEvent.State.IS_MORE, next);
+
+                            Platform.runLater(() -> fireWordPumpEvent(event));
+
+                            canRun.release();
+
+                            Thread.sleep(next.getDuration());
+                        }
 
                     } while (next != null);
                 } catch (InterruptedException e) {
