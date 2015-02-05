@@ -45,16 +45,10 @@ public class MultipartParser {
 
             BodyPart bp = multi.getBodyPart(i);
 
-            System.out.printf("  Processing body part: ");
-
             if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
-                System.out.printf("attachment\n");
+                // don't worry about attachments.
             } else {
-                System.out.printf("not attachment. ");
-                System.out.printf("(%s)", bp.getContentType());
-
                 body += IOUtils.toString(bp.getInputStream());
-                System.out.printf("\n");
             }
 
         }
@@ -76,7 +70,7 @@ public class MultipartParser {
             BodyPart bp = multi.getBodyPart(i);
 
             if( bp.getDisposition() != null && bp.getDisposition().equalsIgnoreCase("ATTACHMENT")){
-                System.out.printf("attachment\n");
+                // don't worry about attachments.
             } else if(bp.getContentType().contains("TEXT/PLAIN")){
 
                 String text = IOUtils.toString(bp.getInputStream());
