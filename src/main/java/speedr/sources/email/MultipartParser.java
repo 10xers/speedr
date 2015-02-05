@@ -90,7 +90,7 @@ public class MultipartParser {
         }
 
         // if we got this far, then we didn't find a good body part in the list of alternatives to
-        // return. It's time to take durastic measures. We'll return the input of the last one.
+        // return. It's time to take drastic measures. We'll return the input of the last one.
 
         return IOUtils.toString(multi.getBodyPart(multi.getCount() - 1).getInputStream());
 
