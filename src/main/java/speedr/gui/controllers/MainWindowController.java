@@ -1,5 +1,6 @@
 package speedr.gui.controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.entities.Context;
@@ -33,6 +35,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import static speedr.gui.helpers.Helpers.fadeIn;
 
 /**
  *
@@ -40,12 +45,17 @@ import java.util.ResourceBundle;
  *
  */
 
-public class MainWindowController implements WordPumpEventListener {
+public class MainWindowController implements WordPumpEventListener, Initializable {
 
     private SpeedReadEventPump pump;
     private List<Email> emails;
 
     private boolean startedReading = false;
+
+    @FXML
+    public Label contextIn;
+    @FXML
+    public Label contextOut;
 
     @FXML
     public Button btnBack;
@@ -59,6 +69,11 @@ public class MainWindowController implements WordPumpEventListener {
     private Label currentWordLabel;
     @FXML
     private ListView<Email> itemList;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     @Override
     public void wordPump(WordPumpEvent wordPumpEvent) {
@@ -183,12 +198,21 @@ public class MainWindowController implements WordPumpEventListener {
     private void hitBreakout()
     {
         Context current;
+
         try {
             current = pump.pauseAndGetContext();
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }
 
+        String joinedBefore = current.getBefore().stream().map((w)-> w.asText()).collect(Collectors.joining(" "));
+        String joinedAfter =  current.getAfter().stream().map((w)-> w.asText()).collect(Collectors.joining(" "));
+
+        contextIn.setText(joinedBefore);
+        contextOut.setText(joinedAfter);
+
+        fadeIn(contextIn, 1000);
+        fadeIn(contextOut, 1000);
     }
 
     private void hitSkip()
@@ -243,4 +267,5 @@ public class MainWindowController implements WordPumpEventListener {
         }
 
     }
+
 }
