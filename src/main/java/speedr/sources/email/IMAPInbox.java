@@ -78,6 +78,7 @@ public class IMAPInbox {
 
                     // multi-part email
 
+                    System.out.println("The type of this email was " + ((MimeMultipart)m.getContent()).getContentType());
                     String body = MultipartParser.parse(m);
                     out.add(new Email(m.getFrom()[0].toString(), m.getSubject(), body, read));
 
