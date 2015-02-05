@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class POP3Inbox {
+public class POP3Inbox implements EmailInbox {
 
     private Store store;
 

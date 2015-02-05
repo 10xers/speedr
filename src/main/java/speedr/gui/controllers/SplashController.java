@@ -14,6 +14,7 @@ import speedr.core.config.ConfigurationRepository;
 import speedr.core.config.CorruptedConfigException;
 import speedr.core.entities.config.Configuration;
 import speedr.sources.email.Email;
+import speedr.sources.email.EmailInbox;
 import speedr.sources.email.IMAPInbox;
 
 import javax.mail.AuthenticationFailedException;
@@ -70,7 +71,7 @@ public class SplashController implements Initializable {
 
         try {
 
-            IMAPInbox inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
+            EmailInbox inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
             List<Email> emails = inbox.getRecentMessages(30);
 
             Platform.runLater(() -> loadMain(emails, currentStage));

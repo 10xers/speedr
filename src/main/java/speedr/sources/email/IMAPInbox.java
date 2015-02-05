@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-public class IMAPInbox {
+public class IMAPInbox implements EmailInbox {
 
     private Store store;
 
@@ -47,10 +47,12 @@ public class IMAPInbox {
         return this.store;
     }
 
+    @Override
     public Email getLastMessage(){
         return this.getRecentMessages(0).get(0);
     }
 
+    @Override
     public List<Email> getRecentMessages(int number) {
 
         List<Email> out = new ArrayList<>();

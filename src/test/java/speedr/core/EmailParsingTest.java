@@ -2,6 +2,7 @@ package speedr.core;
 
 import org.junit.Test;
 import speedr.sources.email.Email;
+import speedr.sources.email.EmailInbox;
 import speedr.sources.email.IMAPInbox;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class EmailParsingTest {
     @Test
     public void testing() throws Exception{
 
-        IMAPInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
+        EmailInbox inbox = new IMAPInbox("imap.gmail.com", "speedrorg@gmail.com", "speedrspeedr");
 
         List<Email> emails = inbox.getRecentMessages(30);
 
