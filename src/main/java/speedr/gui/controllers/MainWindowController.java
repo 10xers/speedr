@@ -105,6 +105,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         pump = new SpeedReadEventPump(s);
         pump.addWordPumpEventListener(this);
 
+        itemList.setDisable(true);
+        itemList.setFocusTraversable(false);
+
         // wait for the transition, then go
 
         new Thread(() -> {
