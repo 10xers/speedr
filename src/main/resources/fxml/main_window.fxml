@@ -14,8 +14,8 @@
     <top>
       <GridPane id="tool-bar">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="770.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="234.0" minWidth="-Infinity" prefWidth="234.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -26,15 +26,25 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-                <Button onAction="#onConfigureButtonClick" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                    <graphic>
-                        <ImageView>
-                            <image>
-                                <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
+            <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="210.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="loginName" alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="183.0" text="\@Speedr" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Separator prefWidth="200.0" visible="false" />
+                      <Button onAction="#onConfigureButtonClick">
+                     <graphic>
+                              <ImageView>
+                                  <image>
+                                      <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
+                                  </image>
+                              </ImageView>
+                     </graphic>
+                      </Button>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
