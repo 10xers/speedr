@@ -26,13 +26,15 @@ public class DumbFrequencyStrategy implements Strategy {
 
         for(String p : punctuation){
             if(s.endsWith(p)){
-                duration *= 1.65;
+                duration *= 1.4;
                 break;
             }
         }
 
         if(!frequencyMap.contains(s.toLowerCase())){
-            duration *= 1.65;
+            duration *= 1.4;
+        } else if(s.length() > 9){
+            duration *= 1.4;
         }
 
         return new Word(s, duration);

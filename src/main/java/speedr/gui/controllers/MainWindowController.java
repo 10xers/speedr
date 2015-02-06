@@ -186,7 +186,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         // set up a speed reading stream from the email.
         SpeedReaderStream s = new SpeedReaderStream(
                 itemList.getSelectionModel().getSelectedItem(),
-                500
+                750
         );
 
         // the pump lets us plug the stream into our gui
