@@ -50,6 +50,14 @@
                                 <TextField fx:id="inboxName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                             </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
 
                        </GridPane>
                     </children>
@@ -66,8 +74,16 @@
             <right>
                 <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="applyBtn" defaultButton="true" mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply" />
-                        <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                        <Button fx:id="applyBtn" defaultButton="true" mnemonicParsing="false" onAction="#applyButtonClicked" text="Apply">
+                     <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-green" />
+                     </styleClass></Button>
+                        <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel">
+                     <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-blue" />
+                     </styleClass></Button>
                     </children>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
