@@ -48,6 +48,11 @@
     -fx-text-fill: white;
 }
 
+.leadText {
+    -fx-font-size: 13pt;
+    -fx-font-style: italic;
+}
+
 #tool-bar {
     -fx-background-color: #de6262
 }

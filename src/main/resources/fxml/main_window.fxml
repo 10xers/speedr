@@ -97,7 +97,7 @@
       
                                       <AnchorPane GridPane.rowIndex="0">
                                           <children>
-                                              <Label fx:id="contextIn" alignment="CENTER_LEFT" focusTraversable="false" visible="false" AnchorPane.leftAnchor="30">...</Label>
+                                              <Label fx:id="contextIn" alignment="CENTER_LEFT" focusTraversable="false" styleClass="leadText" visible="false" AnchorPane.leftAnchor="30">...</Label>
                                           </children>
                                       </AnchorPane>
       
@@ -119,7 +119,7 @@
       
                                       <AnchorPane GridPane.rowIndex="2">
                                           <children>
-                                              <Label fx:id="contextOut" alignment="CENTER_RIGHT" focusTraversable="false" textAlignment="RIGHT" visible="false" AnchorPane.rightAnchor="30">...
+                                              <Label fx:id="contextOut" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="leadText" textAlignment="RIGHT" visible="false" AnchorPane.rightAnchor="30">...
                                         </Label>
                                           </children>
                                       </AnchorPane>
