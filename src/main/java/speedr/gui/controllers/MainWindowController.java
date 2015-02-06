@@ -18,9 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import speedr.core.SpeedReadEventPump;
 import speedr.core.SpeedReaderStream;
 import speedr.core.entities.Context;
+import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
 import speedr.sources.email.Email;
@@ -29,6 +32,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 import static speedr.gui.helpers.Effects.fadeIn;
@@ -42,6 +47,8 @@ import static speedr.gui.helpers.Effects.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
+
+    private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
     private List<Email> emails;
@@ -136,9 +143,26 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 Thread.sleep(500);
             } catch (InterruptedException e) {}
 
-            Platform.runLater(() -> { queuePane.setVisible(false); pump.start(); });
+            Platform.runLater(() -> { queuePane.setVisible(false); new Thread(this::beginReading).start(); });
         }).start();
 
+    }
+
+    private void beginReading()
+    {
+        int countdown = 3;
+
+        do {
+            final int nextCount = countdown;
+            Platform.runLater(() -> wordPump(new WordPumpEvent(WordPumpEvent.State.IS_MORE, new Word(""+nextCount, 1000))) );
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                l.error("sleep interrupted in countdown", e);
+            }
+        } while (--countdown>0);
+
+        pump.start();
     }
 
 
