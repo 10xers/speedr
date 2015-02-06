@@ -31,7 +31,7 @@ public class DumbFrequencyStrategy implements Strategy {
             }
         }
 
-        if(!frequencyMap.contains(s)){
+        if(!frequencyMap.contains(s.toLowerCase())){
             duration *= 1.65;
         }
 
