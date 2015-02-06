@@ -2,7 +2,6 @@ package speedr.core.config;
 
 import org.junit.AfterClass;
 import org.junit.Test;
-import speedr.core.entities.config.Configuration;
 
 import java.io.File;
 

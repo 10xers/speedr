@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import speedr.core.config.ConfigurationRepository;
 import speedr.core.config.CorruptedConfigException;
-import speedr.core.entities.config.Configuration;
+import speedr.core.config.Configuration;
 import speedr.sources.email.Email;
 import speedr.sources.email.EmailInbox;
 import speedr.sources.email.IMAPInbox;

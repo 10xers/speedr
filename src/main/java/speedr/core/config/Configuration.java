@@ -1,4 +1,4 @@
-package speedr.core.entities.config;
+package speedr.core.config;
 
 /**
  * Holder object for Configuration data.
