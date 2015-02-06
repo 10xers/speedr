@@ -31,10 +31,13 @@ import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
 import speedr.sources.email.Email;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 import static speedr.gui.helpers.Effects.fadeIn;
@@ -55,7 +58,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private boolean startedReading = false;
 
-
+    @FXML
+    public Button btnPlayNextYes;
+    @FXML
+    public Button btnPlayNextNo;
+    @FXML
+    public HBox playNextBox;
     @FXML
     public HBox streamControlBar;
     @FXML
@@ -87,6 +95,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     @FXML
     public ImageView configButton;
 
+    private boolean stopOrdered = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -99,18 +109,42 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         if (wordPumpEvent.isDone()) {
             startedReading = false;
-            deactivateReadingMode();
+            if (stopOrdered)
+            {
+                deactivateReadingMode();
+            } else {
+                activatePlayNextScreen();
+            }
+            stopOrdered=false;
         } else {
             currentWordLabel.setText(wordPumpEvent.getWord().asText());
         }
 
     }
 
+    private void activatePlayNextScreen()
+    {
+        fadeOut(readerPane, 500);
+        fadeIn(playNextBox, 500);
+
+        new Timer().schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                Platform.runLater(()->{
+                    readerPane.setVisible(false);
+                    playNextBox.setVisible(true);});
+            }
+        }, 500);
+    }
+
     private void deactivateReadingMode()
     {
         sourcesBox.setDisable(false);
+
         fadeIn(queuePane, 500);
         fadeOut(readerPane, 500);
+        fadeOut(playNextBox, 500);
 
         currentWordLabel.setText("");
         contextIn.setText("");
@@ -121,7 +155,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 Thread.sleep(500);
             } catch (InterruptedException e) {}
 
-            Platform.runLater(() -> { readerPane.setVisible(false); });
+            Platform.runLater(() -> { queuePane.setVisible(true); playNextBox.setVisible(false); readerPane.setVisible(false);  });
         }).start();
 
     }
@@ -338,10 +372,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         if (actionEvent.getSource() == stopBtn)
         {
+            stopOrdered=true;
             pump.stop();
-            deactivateReadingMode();
         }
-
     }
 
     @FXML
@@ -351,5 +384,37 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     public void filterTextChanged(ActionEvent actionEvent) {
         //.. todo filter
+    }
+
+    @FXML
+    public void handlePlayNextScreenButtons(ActionEvent evt) {
+        if (evt.getSource()==btnPlayNextYes) {
+
+            fadeOut(playNextBox, 500);
+            new Timer().schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+                    Platform.runLater(()->playNextBox.setVisible(false));
+                }
+            }, 500);
+
+            currentWordLabel.setText("");
+            contextIn.setText("");
+            contextOut.setText("");
+
+            fadeIn(readerPane, 500);
+
+            this.pump.stop();
+            this.sourcesBox.setDisable(false);
+            this.itemList.getSelectionModel().selectNext();
+            this.sourcesBox.setDisable(true);
+
+            fadeOut(contextIn, 300);
+            fadeOut(contextOut, 300);
+
+            beginReading();
+
+        }
     }
 }

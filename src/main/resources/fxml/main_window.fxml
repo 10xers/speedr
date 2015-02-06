@@ -196,6 +196,21 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <HBox fx:id="playNextBox" alignment="CENTER" visible="false">
+                     <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Play next?" />
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <Button fx:id="btnPlayNextYes" defaultButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="Yes" />
+                                    <Button fx:id="btnPlayNextNo" cancelButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="No" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </StackPane>
             </items>
