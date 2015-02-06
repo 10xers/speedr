@@ -59,6 +59,9 @@ public class SplashController implements Initializable {
 
         progressBar.setVisible(true);
         loginButton.setDisable(true);
+        userInput.setDisable(true);
+        passInput.setDisable(true);
+        hostInput.setDisable(true);
 
         clearError();
         new Thread(() -> loadEmails((Stage) ((Node) evt.getSource()).getScene().getWindow())).start();
@@ -135,7 +138,9 @@ public class SplashController implements Initializable {
         this.progressBar.setProgress(0.0d);
         this.progressBar.setVisible(false);
         this.loginButton.setDisable(false);
-
+        this.userInput.setDisable(false);
+        this.passInput.setDisable(false);
+        this.hostInput.setDisable(false);
         this.errorLabel.setVisible(true);
         this.errorLabel.setText(String.format("Error! %s", s));
 
