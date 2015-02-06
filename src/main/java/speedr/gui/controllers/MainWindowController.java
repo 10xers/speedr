@@ -57,15 +57,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     @FXML
     public BorderPane readerPane;
-
     @FXML
     public HBox queuePane;
-
     @FXML
     public Label contextIn;
     @FXML
     public Label contextOut;
-
     @FXML
     public Button btnSkipBack;
     @FXML
@@ -78,8 +75,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private ListView<Email> itemList;
     @FXML
     public BorderPane sourcesBox;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
