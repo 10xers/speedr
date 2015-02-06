@@ -41,9 +41,9 @@
                         </Label>
                     </top>
                 </BorderPane>
-            <StackPane>
+            <StackPane focusTraversable="true">
                <children>
-                      <BorderPane fx:id="readerPane" visible="false">
+                      <BorderPane fx:id="readerPane" focusTraversable="true" visible="false">
                           <center>
                               <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
       
@@ -131,7 +131,7 @@
                       </BorderPane>
                   <HBox fx:id="queuePane" alignment="CENTER" StackPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER" spacing="10.0">
+                        <VBox alignment="CENTER" focusTraversable="true" spacing="10.0">
                            <children>
                               <Label text="Select some mail to play. Then press &quot;PLAY&quot; below." />
                               <Button mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">

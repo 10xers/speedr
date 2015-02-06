@@ -81,12 +81,33 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         if (wordPumpEvent.isDone()) {
             startedReading = false;
+            deactivateReadingMode();
         } else {
             currentWordLabel.setText(wordPumpEvent.getWord().asText());
         }
 
     }
 
+
+    private void deactivateReadingMode()
+    {
+        itemList.setDisable(false);
+        fadeIn(queuePane, 500);
+        fadeOut(readerPane, 500);
+
+        currentWordLabel.setText("");
+        contextIn.setText("");
+        contextOut.setText("");
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
+
+            Platform.runLater(() -> { readerPane.setVisible(false); });
+        }).start();
+
+    }
 
     private void activateReadingMode()
     {
@@ -115,7 +136,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 Thread.sleep(500);
             } catch (InterruptedException e) {}
 
-            Platform.runLater(pump::start);
+            Platform.runLater(() -> { queuePane.setVisible(false); pump.start(); });
         }).start();
 
     }
