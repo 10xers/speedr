@@ -35,8 +35,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 import static speedr.gui.helpers.Effects.fadeIn;
@@ -129,10 +127,26 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private void activateReadingMode()
     {
-        startedReading = true;
-
         fadeOut(queuePane, 500);
         fadeIn(readerPane, 500);
+
+        beginReading();
+    }
+
+    private void beginReading()
+    {
+        startedReading = true;
+
+        if (pump!=null)
+        {
+            pump.stop();
+            pump.removeWordPumpEventListener(this);
+            pump=null;
+
+            contextIn.setVisible(false);
+            contextOut.setVisible(false);
+            currentWordLabel.setText("");
+        }
 
         // set up a speed reading stream from the email.
         SpeedReaderStream s = new SpeedReaderStream(
@@ -153,12 +167,11 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 Thread.sleep(500);
             } catch (InterruptedException e) {}
 
-            Platform.runLater(() -> { queuePane.setVisible(false); new Thread(this::beginReading).start(); });
+            Platform.runLater(() -> { queuePane.setVisible(false); new Thread(this::startCountdownAndStream).start(); });
         }).start();
-
     }
 
-    private void beginReading()
+    private void startCountdownAndStream()
     {
         int countdown = 3;
 
@@ -279,10 +292,11 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private void hitSkip()
     {
-        if (this.pump.isPaused())
-        {
-
-        }
+        this.pump.stop();
+        this.sourcesBox.setDisable(false);
+        this.itemList.getSelectionModel().selectNext();
+        this.sourcesBox.setDisable(true);
+        beginReading();
     }
 
     private void hitBack()
