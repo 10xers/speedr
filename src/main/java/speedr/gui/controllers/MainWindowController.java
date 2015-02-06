@@ -414,7 +414,9 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             fadeOut(contextOut, 300);
 
             beginReading();
-
+        } else
+        {
+            deactivateReadingMode();
         }
     }
 }
