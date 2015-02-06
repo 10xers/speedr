@@ -1,12 +1,11 @@
 package speedr.core;
 
 import speedr.core.entities.Context;
-import speedr.core.strategies.ConstantStrategy;
+import speedr.core.strategies.DumbFrequencyStrategy;
 import speedr.core.strategies.FrequencyMap;
 import speedr.sources.HasContent;
 import speedr.core.entities.Sentence;
 import speedr.core.entities.Word;
-import speedr.core.strategies.BasicStrategy;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -37,7 +36,12 @@ public class SpeedReaderStream {
         SpeedReadTokenizer srt;
 
         try {
-            srt = new SpeedReadTokenizer(new ConstantStrategy(wpm));
+            srt = new SpeedReadTokenizer(
+                new DumbFrequencyStrategy(
+                    wpm,
+                    FrequencyMap.fromResource("/frequency/frequency_list.json")
+                )
+            );
         } catch(Exception e){
             throw new RuntimeException(e);
         }

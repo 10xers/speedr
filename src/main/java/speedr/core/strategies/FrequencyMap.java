@@ -37,6 +37,10 @@ public class FrequencyMap {
         return this.frequencyMap;
     }
 
+    public boolean contains(String s){
+        return frequencyMap.containsKey(s);
+    }
+
     public float getCoefficientOf(String word) {
 
         float rank = this.frequencyMap.getOrDefault(word, 0);
