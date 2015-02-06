@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Speedr / Ed
@@ -42,9 +44,35 @@ public class Filters {
     }
 
 
-    public static void FilterList(String filterText, List<HasContent> list)
+    public static List<HasContent> FilterList(String filterText, List<HasContent> list)
     {
+        List<HasContent> ret = new ArrayList<>();
+        List<Filter> activeFilters = parseFilterText(filterText);
 
+        for(HasContent c : list)
+        {
+            boolean passes = true;
+
+            for (Filter f : activeFilters)
+
+            switch(f.getFilterType())
+            {
+                case CONTAINS:
+                    passes = passes && c.getContent().contains(f.getFilterArg());
+                    break;
+                case FROM:
+                    break;
+                case TYPE:
+                    break;
+                default:
+                    throw new UnsupportedOperationException("failed to evaluate filter type");
+            }
+
+            if (passes)
+                ret.add(c);
+        }
+
+        return ret;
     }
 
 
