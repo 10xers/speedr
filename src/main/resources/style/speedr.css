@@ -60,3 +60,7 @@
 .image-button:hover {
     -fx-opacity: 1.0;
 }
+
+.text{
+    -fx-font-smoothing-type: gray;
+}
