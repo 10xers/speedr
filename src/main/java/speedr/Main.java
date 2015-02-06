@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.lang.Override;
@@ -31,6 +32,7 @@ public class Main extends Application {
 
         scene.getStylesheets().add("/style/speedr.css");
 
+        primaryStage.getIcons().add(new Image("/icons/glyphicons/glyphicons-23-fire.png"));
         primaryStage.setScene(scene);
 
         primaryStage.setOnCloseRequest((t)->{Platform.exit(); System.exit(0); }); // this is just a shim for something that isn't working properly
