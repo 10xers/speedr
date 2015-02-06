@@ -194,7 +194,7 @@
                       </BorderPane>
                   <HBox fx:id="queuePane" alignment="CENTER" StackPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER" focusTraversable="true" spacing="10.0">
+                        <VBox alignment="CENTER" focusTraversable="true" maxWidth="1.7976931348623157E308" prefHeight="716.0" prefWidth="941.0" spacing="10.0">
                            <children>
                               <Label text="Select some mail to play. Then press &quot;PLAY&quot; below." />
                               <Button fx:id="playReadingBtn" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">
@@ -206,6 +206,9 @@
                                     <String fx:value="btn-red" />
                                  </styleClass>
                               </Button>
+                              <Separator prefHeight="10.0" prefWidth="722.0" visible="false" />
+                              <Label text="Normal" />
+                              <Slider blockIncrement="1.0" majorTickUnit="5.0" max="5.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" showTickMarks="true" snapToTicks="true" />
                            </children>
                         </VBox>
                      </children>
