@@ -259,7 +259,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         Stage s = new Stage();
         s.getIcons().add(new Image("/icons/glyphicons/glyphicons-281-settings.png"));
         s.setTitle("Configuration");
-        s.setScene(new Scene(root));
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/style/speedr.css");
+        s.setScene(scene);
 
         s.initModality(Modality.APPLICATION_MODAL);
         s.initOwner(((Node)evt.getSource()).getScene().getWindow() );
