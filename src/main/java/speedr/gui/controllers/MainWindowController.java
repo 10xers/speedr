@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -84,9 +85,13 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public BorderPane sourcesBox;
     @FXML
     public Label loginName;
+    @FXML
+    public ImageView configButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        configButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> onConfigureButtonClick(e));
 
     }
 
@@ -194,7 +199,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     @FXML
-    public void onConfigureButtonClick(ActionEvent evt) {
+    public void onConfigureButtonClick(MouseEvent evt) {
         Parent root;
 
         try {

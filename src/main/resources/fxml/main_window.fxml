@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -26,23 +27,25 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="210.0" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="210.0" GridPane.columnIndex="1">
                <children>
-                  <Label fx:id="loginName" alignment="BOTTOM_RIGHT" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="183.0" text="\@Speedr" textFill="WHITE">
+                  <Label fx:id="loginName" alignment="TOP_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="175.0" text="\@Speedr" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" visible="false" />
-                      <Button onAction="#onConfigureButtonClick">
-                     <graphic>
-                              <ImageView>
-                                  <image>
-                                      <Image url="@../icons/glyphicons/glyphicons-281-settings.png" />
-                                  </image>
-                              </ImageView>
-                     </graphic>
-                      </Button>
+                        <ImageView id="image-button" fx:id="configButton" depthTest="ENABLE" opacity="0.6" preserveRatio="true" styleClass="image-button">
+                            <image>
+                                <Image url="@../icons/glyphicons/glyphicons-137-cogwheel.png" />
+                            </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </ImageView>
                </children>
             </HBox>
          </children>

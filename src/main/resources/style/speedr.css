@@ -56,3 +56,7 @@
 #tool-bar {
     -fx-background-color: #de6262
 }
+
+.image-button:hover {
+    -fx-opacity: 1.0;
+}
