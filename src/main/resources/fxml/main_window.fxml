@@ -64,6 +64,7 @@
                <top>
                   <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
+                        <Label text="Filter" />
                         <TextField fx:id="filterText" onAction="#filterTextChanged" HBox.hgrow="ALWAYS" />
                         <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
                             <graphic>
@@ -133,7 +134,7 @@
                           <bottom>
                               <AnchorPane BorderPane.alignment="CENTER">
                                   <children>
-                                      <HBox alignment="CENTER" prefHeight="90.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                      <HBox fx:id="streamControlBar" alignment="CENTER" prefHeight="90.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                           <children>
                                     <Button fx:id="btnSkipBack" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleStreamChangeRequest" prefHeight="30.0" prefWidth="30.0">
                                        <graphic>

@@ -107,14 +107,16 @@ public class SpeedReadEventPump {
             public void run() {
 
                 Word next = null;
-
+                boolean stopped = false;
                 try {
                     do {
                         canRun.acquire();
                         logger.debug("acquired pause semaphore");
 
-                        if (isStopped())
+                        if (isStopped()) {
+                            stopped = true;
                             break;
+                        }
 
                         next = stream.getNextWord();
 
@@ -135,7 +137,7 @@ public class SpeedReadEventPump {
                             Thread.sleep(next.getDuration());
                         }
 
-                    } while (next != null);
+                    } while (!stopped && next != null);
                 } catch (InterruptedException e) {
 
                     logger.debug("word ticker interrupted in thread", e);
