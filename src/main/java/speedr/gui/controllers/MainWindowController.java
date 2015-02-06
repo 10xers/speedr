@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -49,6 +50,7 @@ import static speedr.gui.helpers.Effects.fadeOut;
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
 
+
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
@@ -72,6 +74,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Button btnPause;
     @FXML
     public Button btnSkip;
+    @FXML
+    public Button stopBtn;
     @FXML
     private Label currentWordLabel;
     @FXML
@@ -237,26 +241,25 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     {
         Context current;
 
-        try {
-            current = pump.pauseAndGetContext();
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        }
+        if (!pump.isPaused()) {
+            try {
+                current = pump.pauseAndGetContext();
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            }
 
-        String joinedBefore = current.getBefore().stream().map((w)-> w.asText()).collect(Collectors.joining(" "));
-        String joinedAfter =  current.getAfter().stream().map((w)-> w.asText()).collect(Collectors.joining(" "));
+            String joinedBefore = current.getBefore().stream().map((w) -> w.asText()).collect(Collectors.joining(" "));
+            String joinedAfter = current.getAfter().stream().map((w) -> w.asText()).collect(Collectors.joining(" "));
 
-        contextIn.setText(joinedBefore);
-        contextOut.setText(joinedAfter);
+            contextIn.setText(joinedBefore);
+            contextOut.setText(joinedAfter);
 
-        fadeIn(contextIn, 1500);
-        fadeIn(contextOut, 1500);
-    }
+            fadeIn(contextIn, 1500);
+            fadeIn(contextOut, 1500);
 
-    private void hitSkip()
-    {
-        if (this.pump.isPaused())
-        {
+            this.btnPause.setGraphic(new ImageView("/icons/glyphicons/glyphicons-174-play.png"));
+        } else {
+
             try {
                 this.pump.setPaused(false);
             } catch (InterruptedException e) {
@@ -265,6 +268,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             fadeOut(contextIn, 300);
             fadeOut(contextOut, 300);
+            this.btnPause.setGraphic(new ImageView("/icons/glyphicons/glyphicons-175-pause.png"));
+        }
+    }
+
+    private void hitSkip()
+    {
+        if (this.pump.isPaused())
+        {
+
         }
     }
 
@@ -295,7 +307,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     @FXML
     public void handleStreamChangeRequest(ActionEvent actionEvent) {
 
-        if (actionEvent.getSource()== btnPause)
+        if (actionEvent.getSource()==btnPause)
         {
             hitPause();
         }
@@ -308,6 +320,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         if (actionEvent.getSource()== btnSkipBack)
         {
             hitBack();
+        }
+
+        if (actionEvent.getSource() == stopBtn)
+        {
+            pump.stop();
+            deactivateReadingMode();
         }
 
     }
