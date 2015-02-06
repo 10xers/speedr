@@ -36,6 +36,12 @@
     -fx-font-weight: bold;
 }
 
+.list-view:focused {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+}
+
 .speedrText {
     -fx-font-size: 20pt;
     -fx-font-style: italic, bold;
