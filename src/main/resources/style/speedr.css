@@ -45,4 +45,9 @@
 .speedrText {
     -fx-font-size: 20pt;
     -fx-font-style: italic, bold;
+    -fx-text-fill: white;
+}
+
+#tool-bar {
+    -fx-background-color: #de6262
 }
