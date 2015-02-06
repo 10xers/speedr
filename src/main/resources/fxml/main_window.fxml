@@ -161,7 +161,7 @@
                         <VBox alignment="CENTER" focusTraversable="true" spacing="10.0">
                            <children>
                               <Label text="Select some mail to play. Then press &quot;PLAY&quot; below." />
-                              <Button mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">
+                              <Button fx:id="playReadingBtn" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>

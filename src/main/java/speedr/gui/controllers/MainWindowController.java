@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +48,7 @@ import static speedr.gui.helpers.Effects.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
+
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
@@ -54,7 +56,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private boolean startedReading = false;
 
-
+    @FXML
+    public Button playReadingBtn;
     @FXML
     public BorderPane readerPane;
     @FXML
@@ -197,6 +200,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         }
 
         Stage s = new Stage();
+        s.getIcons().add(new Image("/icons/glyphicons/glyphicons-281-settings.png"));
         s.setTitle("Configuration");
         s.setScene(new Scene(root));
 
@@ -215,7 +219,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    // do we need to do anything here?
+                   if (newValue!=null)
+                   {
+                       playReadingBtn.setDisable(false);
+                   } else {
+                       playReadingBtn.setDisable(true);
+                   }
                 }
         );
 
