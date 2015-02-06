@@ -18,7 +18,11 @@
             <TextField fx:id="userInput" promptText="user" />
             <PasswordField fx:id="passInput" promptText="pass" />
             <Separator prefHeight="12.0" prefWidth="220.0" visible="false" />
-            <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="92.0" text="Log in" />
+            <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="92.0" text="Log in">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-maroon" />
+               </styleClass></Button>
             <Separator prefHeight="10.0" prefWidth="200.0" visible="false" />
             <ProgressBar fx:id="progressBar" minHeight="3.0" prefHeight="12.0" prefWidth="200.0" progress="0.0" visible="false" />
          </children>

@@ -62,7 +62,7 @@
 }
 
 #tool-bar {
-    -fx-background-color: #de6262
+    -fx-background-color: #de6262;
 }
 
 .image-button:hover {
@@ -72,3 +72,34 @@
 .text{
     -fx-font-smoothing-type: gray;
 }
+
+
+.btn {
+    -fx-text-fill: white;
+    -fx-background-radius: 3px;
+    -fx-opacity: 0.8;
+}
+
+.btn:hover {
+    -fx-opacity: 1.0;
+}
+
+.btn-red {
+    -fx-background-color: #de6262;
+}
+
+.btn-maroon {
+    -fx-background-color: #bf4040;
+}
+
+.btn-green {
+    -fx-background-color: #70c859;
+}
+
+.btn-blue {
+    -fx-background-color: #59a8c8;
+}
+
+
+
+
