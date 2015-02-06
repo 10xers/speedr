@@ -296,31 +296,25 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         this.sourcesBox.setDisable(false);
         this.itemList.getSelectionModel().selectNext();
         this.sourcesBox.setDisable(true);
+
+
+        fadeOut(contextIn, 300);
+        fadeOut(contextOut, 300);
+
         beginReading();
     }
 
     private void hitBack()
     {
-        if (!pump.isAtStart()) {
-
-            if (pump.isPaused())
-            {
-                try {
-                    pump.goBackSentenceAndRefire();
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
-                }
-            } else {
-                try {
-                    pump.goBackWordAndReFire();
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
-                }
-            }
-        }
+        this.pump.stop();
+        this.sourcesBox.setDisable(false);
+        this.itemList.getSelectionModel().selectPrevious();
+        this.sourcesBox.setDisable(true);
 
         fadeOut(contextIn, 300);
         fadeOut(contextOut, 300);
+
+        beginReading();
     }
 
     @FXML
