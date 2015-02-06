@@ -44,7 +44,7 @@ public class Filters {
     }
 
 
-    public static List<HasContent> FilterList(String filterText, List<HasContent> list)
+    public static List<HasContent> filterList(String filterText, List<HasContent> list)
     {
         List<HasContent> ret = new ArrayList<>();
         List<Filter> activeFilters = parseFilterText(filterText);
