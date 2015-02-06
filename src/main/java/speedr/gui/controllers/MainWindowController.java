@@ -166,7 +166,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             final int nextCount = countdown;
             Platform.runLater(() -> wordPump(new WordPumpEvent(WordPumpEvent.State.IS_MORE, new Word(""+nextCount, 1000))) );
             try {
-                Thread.sleep(500);
+                Thread.sleep(750);
             } catch (InterruptedException e) {
                 l.error("sleep interrupted in countdown", e);
             }
