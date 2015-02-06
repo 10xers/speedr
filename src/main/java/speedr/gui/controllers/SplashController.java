@@ -105,7 +105,7 @@ public class SplashController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_window.fxml"));
             main = loader.load();
             MainWindowController controller = loader.getController();
-            controller.loadWith(emails);
+            controller.loadWith(emails, userInput.getText());
 
             Scene s = new Scene(main);
             s.getStylesheets().add("/style/speedr.css");

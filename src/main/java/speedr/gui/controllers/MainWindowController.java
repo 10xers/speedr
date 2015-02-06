@@ -78,6 +78,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private ListView<Email> itemList;
     @FXML
     public BorderPane sourcesBox;
+    @FXML
+    public Label loginName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +97,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         }
 
     }
-
 
     private void deactivateReadingMode()
     {
@@ -165,7 +166,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         pump.start();
     }
 
-
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
 
@@ -210,7 +210,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     }
 
-    public void loadWith(List<Email> emails)
+    public void loadWith(List<Email> emails, String name)
     {
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
@@ -219,15 +219,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                   if (newValue!=null)
-                   {
-                       playReadingBtn.setDisable(false);
-                   } else {
-                       playReadingBtn.setDisable(true);
-                   }
+                    if (newValue != null) {
+                        playReadingBtn.setDisable(false);
+                    } else {
+                        playReadingBtn.setDisable(true);
+                    }
                 }
         );
 
+        loginName.setText("@"+name.split("@")[0]);
 
         sourcesBox.setDisable(false);
 
