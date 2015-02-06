@@ -82,7 +82,7 @@
                   </HBox>
                </top>
                 </BorderPane>
-            <StackPane focusTraversable="true">
+            <StackPane focusTraversable="true" styleClass="theatre-box">
                <children>
                       <BorderPane fx:id="readerPane" focusTraversable="true" visible="false">
                           <center>

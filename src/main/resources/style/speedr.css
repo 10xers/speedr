@@ -1,3 +1,11 @@
+.theatre-box {
+     -fx-background-image: url("../images/bg.png");
+     -fx-background-size: cover, auto;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center center;
+     -fx-background-color: rgb(0,0,0);
+}
+
 #monocle {
     -fx-font-size: 30pt;
     -fx-border-color: #AAAAAA;
