@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
  */
 public class Filters {
 
-    private static final Pattern filterArg = Pattern.compile("(\\w+):\\s*([^\\s])");
+    private static final Pattern filterArg = Pattern.compile("(\\w+):\\s*([^\\s]+)");
 
-    private static class Filter {
+    public static class Filter {
         public enum FilterType {
             FROM,
             TYPE,
