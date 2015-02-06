@@ -47,7 +47,6 @@ import static speedr.gui.helpers.Effects.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
-
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
@@ -77,6 +76,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private Label currentWordLabel;
     @FXML
     private ListView<Email> itemList;
+    @FXML
+    public BorderPane sourcesBox;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,7 +101,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private void deactivateReadingMode()
     {
-        itemList.setDisable(false);
+        sourcesBox.setDisable(false);
         fadeIn(queuePane, 500);
         fadeOut(readerPane, 500);
 
@@ -133,8 +136,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         pump = new SpeedReadEventPump(s);
         pump.addWordPumpEventListener(this);
 
-        itemList.setDisable(true);
-        itemList.setFocusTraversable(false);
+        sourcesBox.setDisable(true);
 
         // wait for the transition, then go
 
@@ -223,7 +225,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         );
 
 
-        itemList.setDisable(false);
+        sourcesBox.setDisable(false);
 
         }
 
