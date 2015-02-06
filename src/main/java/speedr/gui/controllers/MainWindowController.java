@@ -286,4 +286,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public void startReadingBtnClicked(ActionEvent evt) {
         activateReadingMode();
     }
+
+    public void filterTextChanged(ActionEvent actionEvent) {
+        //.. todo filter
+    }
 }

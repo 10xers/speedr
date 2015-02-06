@@ -35,3 +35,8 @@
 
     -fx-font-weight: bold;
 }
+
+.speedrText {
+    -fx-font-size: 20pt;
+    -fx-font-style: italic, bold;
+}
