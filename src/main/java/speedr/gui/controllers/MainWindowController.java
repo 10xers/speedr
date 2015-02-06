@@ -1,6 +1,8 @@
 package speedr.gui.controllers;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -94,6 +97,10 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Label loginName;
     @FXML
     public ImageView configButton;
+    @FXML
+    public Slider wpmSlider;
+    @FXML
+    public Label wpmLabel;
 
     private boolean stopOrdered = false;
 
@@ -101,6 +108,17 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public void initialize(URL location, ResourceBundle resources) {
 
         configButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> onConfigureButtonClick(e));
+
+        wpmSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            private String[] types = {"Slow", "Easy", "Normal", "Fast", "Insane", "Fwooosh"};
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                wpmLabel.setText(types[observable.getValue().intValue()]);
+            }
+
+        });
 
     }
 
