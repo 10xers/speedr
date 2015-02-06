@@ -4,7 +4,7 @@ import org.junit.Test;
 import speedr.core.entities.Word;
 import speedr.core.strategies.FrequencyMap;
 import speedr.core.entities.Sentence;
-import speedr.core.strategies.BasicStrategy;
+import speedr.core.strategies.FrequencyCoefficientStrategy;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class SpeedReadTokenizerTest {
 
         try {
             srt = new SpeedReadTokenizer(
-                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
+                    new FrequencyCoefficientStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
             );
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -66,7 +66,7 @@ public class SpeedReadTokenizerTest {
 
         try {
             srt = new SpeedReadTokenizer(
-                    new BasicStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
+                    new FrequencyCoefficientStrategy(FrequencyMap.fromResource("/frequency/frequency_list.json"), 50)
             );
         } catch(Exception e){
             throw new RuntimeException(e);

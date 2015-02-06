@@ -14,12 +14,12 @@ import speedr.core.entities.Word;
  *
  */
 
-public class BasicStrategy implements Strategy {
+public class FrequencyCoefficientStrategy implements Strategy {
 
     private FrequencyMap frequencies;
     private int baseDurationMilliseconds;
 
-    public BasicStrategy(FrequencyMap fm, int baseDurationMilliseconds) {
+    public FrequencyCoefficientStrategy(FrequencyMap fm, int baseDurationMilliseconds) {
         this.frequencies = fm;
         this.baseDurationMilliseconds = baseDurationMilliseconds;
     }

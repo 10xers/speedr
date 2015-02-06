@@ -4,7 +4,7 @@ import speedr.core.entities.Word;
 
 /**
  * This strategy uses a constant value, a punctuation modifier, and a complexity
- * modifier. It combines the BasicStrategy and ConstantStrategy.
+ * modifier. It combines the FrequencyCoefficientStrategy and ConstantStrategy.
  */
 
 public class DumbFrequencyStrategy implements Strategy {
