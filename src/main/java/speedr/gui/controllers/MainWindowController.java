@@ -59,7 +59,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
-    private List<Email> emails;
 
     private boolean startedReading = false;
 
