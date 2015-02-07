@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.lang.Override;
@@ -24,6 +25,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        Font.loadFont(this.getClass().getResource("/font/UbuntuMono-Regular.ttf").toExternalForm(), 12);
 
         Parent main = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
         Parent splash = FXMLLoader.load(getClass().getResource("/fxml/splash.fxml"));

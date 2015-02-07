@@ -117,14 +117,7 @@
       
                                       <AnchorPane GridPane.rowIndex="1">
                                           <children>
-                                              <Label id="monocle" fx:id="currentWordLabel" alignment="CENTER" layoutY="50.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="63.0" GridPane.fillWidth="true" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
-                                                  <font>
-                                                      <Font size="51.0" />
-                                                  </font>
-                                                  <padding>
-                                                      <Insets left="20.0" right="20.0" />
-                                                  </padding>
-                                              </Label>
+                                    <TextFlow id="monocle" fx:id="currentWordLabel" layoutX="154.0" layoutY="30.0" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="415.0" styleClass="monospace" />
                                           </children>
                                           <padding>
                                               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

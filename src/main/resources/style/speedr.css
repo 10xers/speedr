@@ -1,9 +1,19 @@
+
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('/font/UbuntuMono-Regular.ttf');
+}
+
 .theatre-box {
      -fx-background-image: url("../images/bg.png");
      -fx-background-size: cover, auto;
      -fx-background-repeat: no-repeat;
      -fx-background-position: center center;
      -fx-background-color: rgb(0,0,0);
+}
+
+.monospace {
+    -fx-font-family: "Ubuntu Mono";
 }
 
 #monocle {

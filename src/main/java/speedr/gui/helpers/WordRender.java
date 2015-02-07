@@ -5,6 +5,8 @@ import javafx.scene.control.LabelBuilder;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import javax.swing.*;
 
@@ -51,42 +53,31 @@ public class WordRender {
                 bestLetter = MAX_FOCUS_LETTER; // fifth
         };
 
-
         return bestLetter;
     }
 
-    public static HBox renderWord(String word)
-    {
+    public static void clear(TextFlow currentWordLabel){
+        if(currentWordLabel.getChildren().size() > 0) {
+            currentWordLabel.getChildren().remove(0, currentWordLabel.getChildren().size());
+        }
+    }
+
+    public static void renderWordInto(String word, TextFlow currentWordLabel) {
+
+        clear(currentWordLabel);
+
         int focusLetter = findFocusLetter(word);
         int offsetSpaces = 6;
 
-        String before = word.substring(0, focusLetter-1);
-        before = String.format("%" +  (offsetSpaces+(MAX_FOCUS_LETTER - focusLetter)) + "s%s", " ", before);
-        String focus = word.substring(focusLetter-1, focusLetter);
-        String after = word.substring(focusLetter);
+        String beforeText = word.substring(0, focusLetter-1);
 
-        HBox box = HBoxBuilder.create()
-                .spacing(0)
-                .alignment(Pos.CENTER_LEFT)
-                .style("-fx-font-family: monospace;")
-                .children(
-                        LabelBuilder.create()
-                                .text(before)
-                                .textFill(Color.BLACK)
-                                .build(),
-                        LabelBuilder.create()
-                                .text(focus)
-                                .textFill(Color.rgb(222,98,98))
-                                .build(),
-                        LabelBuilder.create()
-                                .text(after)
-                                .textFill(Color.BLACK)
-                                .build())
-                .build();
+        Text before = new Text(String.format("%" +  (offsetSpaces+(MAX_FOCUS_LETTER - focusLetter)) + "s%s", " ", beforeText));
+        Text focus  = new Text(word.substring(focusLetter-1, focusLetter));
+        Text after  = new Text(word.substring(focusLetter));
 
+        focus.setFill(Color.RED);
 
-        return box;
+        currentWordLabel.getChildren().addAll(before, focus, after);
+
     }
-
-
 }

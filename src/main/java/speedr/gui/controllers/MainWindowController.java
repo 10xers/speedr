@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -90,7 +92,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     @FXML
     public Button stopBtn;
     @FXML
-    private Label currentWordLabel;
+    private TextFlow currentWordLabel;
     @FXML
     private ListView<Email> itemList;
     @FXML
@@ -142,7 +144,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             }
             stopOrdered=false;
         } else {
-            currentWordLabel.setGraphic(WordRender.renderWord(wordPumpEvent.getWord().asText()));
+            WordRender.renderWordInto(wordPumpEvent.getWord().asText(), currentWordLabel);
         }
 
     }
@@ -171,7 +173,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         fadeOut(readerPane, 500);
         fadeOut(playNextBox, 500);
 
-        currentWordLabel.setText("");
+        WordRender.clear(currentWordLabel);
         contextIn.setText("");
         contextOut.setText("");
 
@@ -205,7 +207,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             contextIn.setVisible(false);
             contextOut.setVisible(false);
-            currentWordLabel.setText("");
+            WordRender.clear(currentWordLabel);
         }
 
         // set up a speed reading stream from the email.
@@ -431,7 +433,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 }
             }, 500);
 
-            currentWordLabel.setText("");
+            WordRender.clear(currentWordLabel);
             contextIn.setText("");
             contextOut.setText("");
 
