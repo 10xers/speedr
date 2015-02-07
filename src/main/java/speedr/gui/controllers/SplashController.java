@@ -16,6 +16,7 @@ import speedr.core.entities.config.Configuration;
 import speedr.sources.email.Email;
 import speedr.sources.email.EmailInbox;
 import speedr.sources.email.IMAPInbox;
+import speedr.sources.email.MockInbox;
 
 import javax.mail.AuthenticationFailedException;
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class SplashController implements Initializable {
 
         try {
 
-            EmailInbox inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
+            EmailInbox inbox = new MockInbox(hostInput.getText(), userInput.getText(), passInput.getText());
             List<Email> emails = inbox.getRecentMessages(30);
 
             configuration.setHost(hostInput.getText());
