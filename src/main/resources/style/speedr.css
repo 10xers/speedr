@@ -1,4 +1,6 @@
 
+/* text styling */
+
 Label {
     -fx-font-family: "Open Sans";
 }
@@ -8,26 +10,20 @@ Label {
     -fx-font-weight: bold;
 }
 
-.theatre-box {
-     -fx-background-image: url("../images/bg.png");
-     -fx-background-size: cover, auto;
-     -fx-background-repeat: no-repeat;
-     -fx-background-position: center center;
-     -fx-background-color: rgb(0,0,0);
-}
-
 .monospace {
     -fx-font-family: "Ubuntu Mono";
 }
 
-#monocle {
-    -fx-font-size: 30pt;
-    -fx-border-color: #AAAAAA;
-    -fx-border-width: 2px;
-    -fx-border-style: solid;
-    -fx-border-radius: 4px;
-    -fx-background-color: #FFFFFF;
+.leadText {
+    -fx-font-size: 13pt;
+    -fx-font-style: italic;
 }
+
+.text{
+    -fx-font-smoothing-type: gray;
+}
+
+/* list view styling */
 
 .list-cell:filled {
     -fx-padding: 10 10 10 10;
@@ -64,10 +60,30 @@ Label {
     -fx-background-radius: 5, 4, 3;
 }
 
-.leadText {
-    -fx-font-size: 13pt;
-    -fx-font-style: italic;
+/* theatre styling */
+
+.slider .thumb {
+    -fx-background-color: #de6262;
 }
+
+.theatre-box {
+     -fx-background-image: url("../images/bg.png");
+     -fx-background-size: cover, auto;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center center;
+     -fx-background-color: rgb(0,0,0);
+}
+
+#monocle {
+    -fx-font-size: 30pt;
+    -fx-border-color: #AAAAAA;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 4px;
+    -fx-background-color: #FFFFFF;
+}
+
+/* tool bar styling */
 
 #tool-bar {
     -fx-background-color: #de6262;
@@ -83,9 +99,7 @@ Label {
     -fx-opacity: 1.0;
 }
 
-.text{
-    -fx-font-smoothing-type: gray;
-}
+/* buttons */
 
 .btn {
     -fx-text-fill: white;
@@ -112,9 +126,4 @@ Label {
 .btn-blue {
     -fx-background-color: #59a8c8;
 }
-
-.slider .thumb {
-    -fx-background-color: #de6262;
-}
-
 

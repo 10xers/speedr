@@ -114,7 +114,7 @@ public class Filters {
     {
         String proposedLower = proposed.toLowerCase();
 
-        switch(proposed)
+        switch(proposedLower)
         {
             case "from":
                 return Filter.FilterType.FROM;
