@@ -1,4 +1,4 @@
-package speedr.gui;
+package speedr.gui.controls;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.text.Text;

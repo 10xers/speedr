@@ -32,7 +32,7 @@ import speedr.core.entities.Context;
 import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
-import speedr.gui.EmailListCell;
+import speedr.gui.controls.EmailListCell;
 import speedr.gui.helpers.Filters;
 import speedr.gui.helpers.WordRender;
 import speedr.sources.email.Email;
