@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +29,7 @@ import speedr.core.entities.Context;
 import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
+import speedr.gui.helpers.Filters;
 import speedr.sources.email.Email;
 
 import java.awt.event.ActionListener;
@@ -54,6 +52,7 @@ import static speedr.gui.helpers.Effects.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
+
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
@@ -61,6 +60,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private boolean startedReading = false;
 
+    @FXML
+    public TextField filterText;
     @FXML
     public Button btnPlayNextYes;
     @FXML
@@ -104,6 +105,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     private boolean stopOrdered = false;
     private int wpm = 200;
+
+    private List<Email> origEmails;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -293,6 +296,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
     public void loadWith(List<Email> emails, String name)
     {
+
+        origEmails = emails;
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
 
@@ -407,7 +412,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     public void filterTextChanged(ActionEvent actionEvent) {
-
+        List<Email> newFilteredEmails = Filters.filterList(filterText.getText(), origEmails);
+        itemList.setItems(FXCollections.observableArrayList(newFilteredEmails));
     }
 
     @FXML
