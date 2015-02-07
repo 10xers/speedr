@@ -6,3 +6,7 @@ Speedr uses advanced word analytics to decide exactly how long to display each w
 words per minute without skipping a beat. We are currently in Pre-Alpha, and major improvements are being made all the time.
 
 ![Gotta go fast](http://static.tumblr.com/1b275f0cfc2901f9e3efa41337f54132/lsp0abr/rWhmqd4yz/tumblr_static_fat-sonic_o_184398.gif)
+
+## 200 Commits 
+
+Speedr has reached 200 commits and [2,936 additions](https://github.com/MatthewJWalls/Speedr/compare/aaa592...master). But it's not finished yet. 
