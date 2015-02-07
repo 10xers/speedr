@@ -36,8 +36,8 @@ Label {
 }
 
 .list-cell:filled.unread {
-    -fx-border-color: #DDDDDD #DDDDDD #AAAAAA #59a8c8 !important;
-    -fx-border-width: 1px 1px 2px 3px !important;
+    -fx-border-color: #DDDDDD #DDDDDD #AAAAAA #59a8c8;
+    -fx-border-width: 1px 1px 2px 3px;
 }
 
 .list-cell:selected, .list-cell:focused {
