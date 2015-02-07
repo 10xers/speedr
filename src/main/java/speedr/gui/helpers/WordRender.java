@@ -75,7 +75,7 @@ public class WordRender {
         Text focus  = new Text(word.substring(focusLetter-1, focusLetter));
         Text after  = new Text(word.substring(focusLetter));
 
-        focus.setFill(Color.RED);
+        focus.setFill(Color.web("#de6262"));
 
         currentWordLabel.getChildren().addAll(before, focus, after);
 
