@@ -118,8 +118,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         wpmSlider.valueProperty().addListener(new ChangeListener<Number>() {
 
-            private String[] types = {"Slow", "Easy", "Normal", "Fast", "Insane", "Fwooosh"};
-            private int[] wpms = {200, 300, 400, 500, 700, 1000};
+            private String[] types = {"Slow", "Easy", "Normal", "Fast", "Fwooosh"};
+            private int[] wpms = {200, 300, 400, 700, 1000};
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
