@@ -30,6 +30,7 @@ import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
 import speedr.gui.helpers.Filters;
+import speedr.gui.helpers.WordRender;
 import speedr.sources.email.Email;
 
 import java.awt.event.ActionListener;
@@ -141,7 +142,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             }
             stopOrdered=false;
         } else {
-            currentWordLabel.setText(wordPumpEvent.getWord().asText());
+            currentWordLabel.setGraphic(WordRender.renderWord(wordPumpEvent.getWord().asText()));
         }
 
     }
