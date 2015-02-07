@@ -55,7 +55,6 @@ import static speedr.gui.helpers.Effects.fadeOut;
 
 public class MainWindowController implements WordPumpEventListener, Initializable {
 
-
     private Logger l = LoggerFactory.getLogger(MainWindowController.class);
 
     private SpeedReadEventPump pump;
@@ -128,6 +127,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             }
 
         });
+
+        Platform.runLater(itemList::requestFocus);
 
     }
 
