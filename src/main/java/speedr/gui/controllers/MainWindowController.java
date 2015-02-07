@@ -407,7 +407,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     public void filterTextChanged(ActionEvent actionEvent) {
-        //.. todo filter
+
     }
 
     @FXML

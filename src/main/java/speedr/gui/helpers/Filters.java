@@ -2,6 +2,7 @@ package speedr.gui.helpers;
 
 import javafx.collections.ObservableList;
 import speedr.sources.HasContent;
+import speedr.sources.email.Email;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public class Filters {
         public enum FilterType {
             FROM,
             TYPE,
-            CONTAINS
+            CONTAINS,
+            SUBJECT
         }
 
         private FilterType filterType;
@@ -44,12 +46,12 @@ public class Filters {
     }
 
 
-    public static List<HasContent> filterList(String filterText, List<HasContent> list)
+    public static List<Email> filterList(String filterText, List<Email> list)
     {
-        List<HasContent> ret = new ArrayList<>();
+        List<Email> ret = new ArrayList<>();
         List<Filter> activeFilters = parseFilterText(filterText);
 
-        for(HasContent c : list)
+        for(Email c : list)
         {
             boolean passes = true;
 
@@ -61,8 +63,14 @@ public class Filters {
                     passes = passes && c.getContent().toLowerCase().contains(f.getFilterArg().toLowerCase());
                     break;
                 case FROM:
+                    passes = passes && c.getFrom().toLowerCase().equals(f.getFilterArg().toLowerCase());
                     break;
                 case TYPE:
+                    boolean isFilterUnread = f.getFilterArg().toLowerCase().equals("unread");
+                    passes = passes && ( !c.isRead() == isFilterUnread );
+                    break;
+                case SUBJECT:
+                    passes = passes && c.getSubject().toLowerCase().equals(f.getFilterArg().toLowerCase());
                     break;
                 default:
                     throw new UnsupportedOperationException("failed to evaluate filter type");
@@ -112,8 +120,10 @@ public class Filters {
                 return Filter.FilterType.FROM;
             case "type":
                 return Filter.FilterType.TYPE;
-            case "contains:":
+            case "contains":
                 return Filter.FilterType.CONTAINS;
+            case "subject":
+                return Filter.FilterType.SUBJECT;
             default:
                 return null;
         }

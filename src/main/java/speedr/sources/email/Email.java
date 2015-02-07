@@ -40,4 +40,8 @@ public class Email implements HasContent {
     public String toString(){
         return this.from + "\n  " + this.subject;
     }
+
+    public boolean isRead() {
+        return read;
+    }
 }
