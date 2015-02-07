@@ -31,6 +31,8 @@ import java.util.ResourceBundle;
 
 public class SplashController implements Initializable {
 
+    private Configuration configuration;
+
     @FXML public TextField hostInput;
     @FXML public TextField userInput;
     @FXML public PasswordField passInput;
@@ -44,10 +46,10 @@ public class SplashController implements Initializable {
         // fill in the values from the configuration
 
         try {
-            Configuration config = ConfigurationRepository.load();
-            hostInput.setText(config.getHost());
-            userInput.setText(config.getUser());
-            passInput.setText(config.getPassword());
+            configuration = ConfigurationRepository.load();
+            hostInput.setText(configuration.getHost());
+            userInput.setText(configuration.getUser());
+            passInput.setText(configuration.getPassword());
         } catch (IOException | CorruptedConfigException e) {
             Platform.runLater(() -> error(e));
         }
@@ -76,6 +78,12 @@ public class SplashController implements Initializable {
 
             EmailInbox inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
             List<Email> emails = inbox.getRecentMessages(30);
+
+            configuration.setHost(hostInput.getText());
+            configuration.setUser(userInput.getText());
+            configuration.setPassword(passInput.getText());
+
+            ConfigurationRepository.save(configuration);
 
             Platform.runLater(() -> loadMain(emails, currentStage));
 
