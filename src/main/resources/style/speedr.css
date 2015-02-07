@@ -35,7 +35,7 @@ Label {
     -fx-opacity: 0.7;
 }
 
-.unread {
+.list-cell:filled.unread {
     -fx-border-color: #DDDDDD #DDDDDD #AAAAAA #59a8c8 !important;
     -fx-border-width: 1px 1px 2px 3px !important;
 }

@@ -12,26 +12,16 @@ public class EmailListCell extends ListCell<Email> {
 
         super.updateItem(e, empty);
 
-        if(empty){
-            setGraphic(new Text(""));
-            return;
+        getStyleClass().removeAll();
+        setText(empty ? null : getString());
+
+        if(e != null && !empty && e.isRead()){
+            getStyleClass().add("unread");
         }
+    }
 
-        if(e != null){
-
-            if(e.isRead()){
-                System.out.println("style: " + this.getStyle());
-                getStyleClass().removeAll();
-                getStyleClass().add("unread");
-            }
-
-            setText(e.toString());
-
-        } else {
-
-            setText("");
-
-        }
+    private String getString() {
+        return getItem() == null ? "" : getItem().toString();
     }
 
 }
