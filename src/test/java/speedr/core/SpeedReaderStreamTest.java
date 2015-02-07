@@ -2,8 +2,9 @@ package speedr.core;
 
 import org.junit.Before;
 import org.junit.Test;
-import speedr.core.entities.Context;
-import speedr.core.entities.Word;
+import speedr.core.notthings.Context;
+import speedr.core.notthings.SpeedReaderStream;
+import speedr.core.things.Word;
 
 import java.util.Arrays;
 import java.util.List;

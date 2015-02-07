@@ -1,7 +1,8 @@
 package speedr.core;
 
 import org.junit.* ;
-import speedr.core.entities.Word;
+import speedr.core.notthings.SpeedReaderStream;
+import speedr.core.things.Word;
 
 import java.util.ArrayList;
 import java.util.List;

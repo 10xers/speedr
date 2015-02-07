@@ -1,7 +1,8 @@
 package speedr.gui.helpers;
 
 import org.junit.Test;
-import speedr.sources.HasContent;
+import speedr.core.notthings.Filters;
+import speedr.core.notthings.HasContent;
 
 import java.util.ArrayList;
 import java.util.List;

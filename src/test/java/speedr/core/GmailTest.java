@@ -7,9 +7,8 @@ package speedr.core;
  */
 
 import org.junit.Test;
-import speedr.sources.email.Email;
-import speedr.sources.email.IMAPInbox;
-import speedr.sources.email.POP3Inbox;
+import speedr.core.notthings.IMAPInbox;
+import speedr.core.things.Email;
 
 import static org.junit.Assert.assertTrue;
 

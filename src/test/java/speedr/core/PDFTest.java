@@ -1,7 +1,7 @@
 package speedr.core;
 
 import org.junit.Test;
-import speedr.sources.pdf.PDFReader;
+import speedr.core.notthings.PDFReader;
 
 import static org.junit.Assert.assertTrue;
 

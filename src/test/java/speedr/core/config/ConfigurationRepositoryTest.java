@@ -2,7 +2,9 @@ package speedr.core.config;
 
 import org.junit.AfterClass;
 import org.junit.Test;
-import speedr.core.entities.config.Configuration;
+import speedr.core.notthings.ConfigurationRepository;
+import speedr.core.notthings.CorruptedConfigException;
+import speedr.core.things.Configuration;
 
 import java.io.File;
 

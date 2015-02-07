@@ -1,9 +1,9 @@
 package speedr.core;
 
 import org.junit.Test;
-import speedr.sources.email.Email;
-import speedr.sources.email.EmailInbox;
-import speedr.sources.email.IMAPInbox;
+import speedr.core.notthings.EmailInbox;
+import speedr.core.notthings.IMAPInbox;
+import speedr.core.things.Email;
 
 import java.util.List;
 

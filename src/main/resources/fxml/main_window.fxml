@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane onKeyPressed="#onKeyPressed" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.gui.controllers.MainWindowController">
+<BorderPane onKeyPressed="#onKeyPressed" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="speedr.core.notthings.MainWindowController">
     <top>
       <GridPane id="tool-bar">
         <columnConstraints>

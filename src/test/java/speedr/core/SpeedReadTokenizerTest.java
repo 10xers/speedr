@@ -1,10 +1,11 @@
 package speedr.core;
 
 import org.junit.Test;
-import speedr.core.entities.Word;
-import speedr.core.strategies.FrequencyMap;
-import speedr.core.entities.Sentence;
-import speedr.core.strategies.FrequencyCoefficientStrategy;
+import speedr.core.notthings.FrequencyCoefficientStrategy;
+import speedr.core.notthings.FrequencyMap;
+import speedr.core.notthings.SpeedReadTokenizer;
+import speedr.core.things.Sentence;
+import speedr.core.things.Word;
 
 import java.util.List;
 
