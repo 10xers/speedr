@@ -208,7 +208,7 @@
                               </Button>
                               <Separator prefHeight="10.0" prefWidth="722.0" visible="false" />
                               <Label fx:id="wpmLabel" text="Slow" />
-                              <Slider fx:id="wpmSlider" blockIncrement="1.0" majorTickUnit="5.0" max="5.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" showTickMarks="true" snapToTicks="true" />
+                              <Slider fx:id="wpmSlider" blockIncrement="5.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minorTickCount="0" prefHeight="24.0" prefWidth="150.0" showTickMarks="true" snapToTicks="true" />
                            </children>
                         </VBox>
                      </children>
