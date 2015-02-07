@@ -70,6 +70,12 @@ Label {
      -fx-background-color: rgb(0,0,0);
 }
 
+#errorBox {
+    -fx-background-color: #de6262;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+}
+
 #monocle {
     -fx-font-size: 30pt;
     -fx-border-color: #AAAAAA;
