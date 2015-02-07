@@ -123,6 +123,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                wpmSlider.setValue(Math.round(observable.getValue().floatValue()));
                 wpmLabel.setText(types[observable.getValue().intValue()]);
                 wpm = wpms[observable.getValue().intValue()];
             }
