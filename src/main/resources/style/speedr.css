@@ -28,12 +28,16 @@ Label {
 .list-cell:filled {
     -fx-padding: 10 10 10 10;
     -fx-background-color: linear-gradient(#FFFFFF, #F6F6F6);
-
     -fx-border-color: #DDDDDD #DDDDDD #AAAAAA #DDDDDD;
     -fx-border-width: 1px 1px 2px 1px;
     -fx-border-style: solid;
     -fx-border-insets: 2px, 5px, 2px, 5px;
     -fx-opacity: 0.7;
+}
+
+.unread {
+    -fx-border-color: #DDDDDD #DDDDDD #AAAAAA #59a8c8 !important;
+    -fx-border-width: 1px 1px 2px 3px !important;
 }
 
 .list-cell:selected, .list-cell:focused {

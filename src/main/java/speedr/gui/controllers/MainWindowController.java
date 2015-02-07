@@ -307,8 +307,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
 
-
-
         Callback<ListView<Email>, ListCell<Email>> cellFactory = listView -> new EmailListCell();
 
         itemList.setCellFactory(cellFactory);
