@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import speedr.core.config.ConfigurationRepository;
 import speedr.core.config.CorruptedConfigException;
-import speedr.core.config.Configuration;
+import speedr.core.entities.config.Configuration;
 
 import java.io.IOException;
 import java.net.URL;
