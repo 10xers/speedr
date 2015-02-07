@@ -103,6 +103,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Label wpmLabel;
 
     private boolean stopOrdered = false;
+    private int wpm = 200;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -112,10 +113,12 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         wpmSlider.valueProperty().addListener(new ChangeListener<Number>() {
 
             private String[] types = {"Slow", "Easy", "Normal", "Fast", "Insane", "Fwooosh"};
+            private int[] wpms = {200, 300, 400, 500, 700, 1000};
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 wpmLabel.setText(types[observable.getValue().intValue()]);
+                wpm = wpms[observable.getValue().intValue()];
             }
 
         });
@@ -204,7 +207,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         // set up a speed reading stream from the email.
         SpeedReaderStream s = new SpeedReaderStream(
                 itemList.getSelectionModel().getSelectedItem(),
-                750
+                wpm
         );
 
         // the pump lets us plug the stream into our gui
