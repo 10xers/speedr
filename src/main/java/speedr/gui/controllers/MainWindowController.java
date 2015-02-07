@@ -105,7 +105,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Label wpmLabel;
 
     private boolean stopOrdered = false;
-    private int wpm = 200;
+    private int wpm = 700;
 
     private List<Email> origEmails;
 
