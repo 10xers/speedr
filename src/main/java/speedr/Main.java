@@ -27,6 +27,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Font.loadFont(this.getClass().getResource("/font/UbuntuMono-Regular.ttf").toExternalForm(), 12);
+        Font.loadFont(this.getClass().getResource("/font/OpenSans-Regular.ttf").toExternalForm(), 12);
+        Font.loadFont(this.getClass().getResource("/font/OpenSans-BoldItalic.ttf").toExternalForm(), 12);
 
         Parent main = FXMLLoader.load(getClass().getResource("/fxml/main_window.fxml"));
         Parent splash = FXMLLoader.load(getClass().getResource("/fxml/splash.fxml"));

@@ -9,9 +9,9 @@
    <center>
       <VBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="98.0" prefWidth="624.0" text="Speedr" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="98.0" prefWidth="624.0" styleClass="logo" text="Speedr" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold Italic" size="44.0" />
+                  <Font size="37.0" />
                </font>
             </Label>
             <TextField fx:id="hostInput" prefHeight="25.0" prefWidth="512.0" promptText="hostname" />

@@ -22,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" styleClass="speedrText" text="Speedr">
+            <Label alignment="CENTER" styleClass="logo" text="Speedr">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

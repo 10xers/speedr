@@ -1,7 +1,11 @@
 
-@font-face {
-    font-family: 'Ubuntu Mono';
-    src: url('/font/UbuntuMono-Regular.ttf');
+Label {
+    -fx-font-family: "Open Sans";
+}
+
+.logo {
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
 }
 
 .theatre-box {
@@ -60,12 +64,6 @@
     -fx-background-radius: 5, 4, 3;
 }
 
-.speedrText {
-    -fx-font-size: 20pt;
-    -fx-font-style: italic, bold;
-    -fx-text-fill: white;
-}
-
 .leadText {
     -fx-font-size: 13pt;
     -fx-font-style: italic;
@@ -73,6 +71,12 @@
 
 #tool-bar {
     -fx-background-color: #de6262;
+}
+
+#tool-bar .logo {
+    -fx-font-size: 20pt;
+    -fx-font-style: italic, bold;
+    -fx-text-fill: white;
 }
 
 .image-button:hover {
