@@ -1,12 +1,12 @@
 # Speedr - The Speedy Email Reading App.
 
-Speedr is an email speed-reading client. It allows you to quickly read all of your emails in a few short seconds.
+Speedr is an email speed-reading client.
+
+Standard reading allows you to read only around 250-300 words per minute. With Speedr, you can increase that to 700 or
+higher, allowing you to process even a weeks worth of emails in a few minutes, without skim reading or skipping any
+possibly important content.
 
 Speedr uses advanced word analytics to decide exactly how long to display each word, which allows you to go upwards of 700
-words per minute without skipping a beat. We are currently in Pre-Alpha, and major improvements are being made all the time.
+words per minute without skipping a beat.
 
-![Gotta go fast](http://static.tumblr.com/1b275f0cfc2901f9e3efa41337f54132/lsp0abr/rWhmqd4yz/tumblr_static_fat-sonic_o_184398.gif)
-
-## 200 Commits 
-
-Speedr has reached 200 commits and [2,936 additions](https://github.com/MatthewJWalls/Speedr/compare/aaa592...master). But it's not finished yet. 
+Speedr is currently in Pre-Alpha, and major improvements are being made all the time.
