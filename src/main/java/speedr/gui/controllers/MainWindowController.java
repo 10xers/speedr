@@ -130,6 +130,20 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
         });
 
+        Callback<ListView<Email>, ListCell<Email>> cellFactory = listView -> new EmailListCell();
+
+        itemList.setCellFactory(cellFactory);
+
+        itemList.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        playReadingBtn.setDisable(false);
+                    } else {
+                        playReadingBtn.setDisable(true);
+                    }
+                }
+        );
+
         Platform.runLater(itemList::requestFocus);
 
     }
@@ -307,20 +321,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
 
-        Callback<ListView<Email>, ListCell<Email>> cellFactory = listView -> new EmailListCell();
-
-        itemList.setCellFactory(cellFactory);
         itemList.setItems(items);
-
-        itemList.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        playReadingBtn.setDisable(false);
-                    } else {
-                        playReadingBtn.setDisable(true);
-                    }
-                }
-        );
 
         loginName.setText("@"+name.split("@")[0]);
 
