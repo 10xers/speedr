@@ -414,6 +414,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public void filterTextChanged(ActionEvent actionEvent) {
         List<Email> newFilteredEmails = Filters.filterList(filterText.getText(), origEmails);
         itemList.setItems(FXCollections.observableArrayList(newFilteredEmails));
+        itemList.getSelectionModel().selectFirst();
     }
 
     @FXML
