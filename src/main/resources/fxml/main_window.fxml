@@ -220,8 +220,16 @@
                               <Label text="Play next?" />
                               <HBox spacing="5.0">
                                  <children>
-                                    <Button fx:id="btnPlayNextYes" defaultButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="Yes" />
-                                    <Button fx:id="btnPlayNextNo" cancelButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="No" />
+                                    <Button fx:id="btnPlayNextYes" defaultButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="Yes">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="btn-green" />
+                                       </styleClass></Button>
+                                    <Button fx:id="btnPlayNextNo" cancelButton="true" mnemonicParsing="false" onAction="#handlePlayNextScreenButtons" text="No">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="btn-blue" />
+                                       </styleClass></Button>
                                  </children>
                               </HBox>
                            </children>
