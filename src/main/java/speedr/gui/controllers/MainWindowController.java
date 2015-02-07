@@ -105,6 +105,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     public Slider wpmSlider;
     @FXML
     public Label wpmLabel;
+    @FXML
+    public Label errorBox;
 
     private boolean stopOrdered = false;
     private int wpm = 700;
@@ -261,6 +263,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 Thread.sleep(750);
             } catch (InterruptedException e) {
                 l.error("sleep interrupted in countdown", e);
+                error("Sleep interrupted in countdown.");
             }
         } while (--countdown>0);
 
@@ -297,6 +300,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/config_window.fxml"));
         } catch (IOException e) {
+            error("failed loading fxml for config window.");
             throw new IllegalStateException("failed loading fxml for config window", e);
         }
 
@@ -337,6 +341,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             try {
                 current = pump.pauseAndGetContext();
             } catch (InterruptedException e) {
+                error("failed to get pause and get pump context.");
                 throw new IllegalStateException(e);
             }
 
@@ -355,6 +360,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
             try {
                 this.pump.setPaused(false);
             } catch (InterruptedException e) {
+                error("failed to unpause pump.");
                 throw new IllegalStateException("failed to unpause pump", e);
             }
 
@@ -459,5 +465,15 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         {
             deactivateReadingMode();
         }
+    }
+
+    private void error(String error){
+        errorBox.setVisible(true);
+        errorBox.setText(String.format("Error: %s", error));
+    }
+
+    private void clearError(){
+        errorBox.setVisible(false);
+        errorBox.setText("");
     }
 }
