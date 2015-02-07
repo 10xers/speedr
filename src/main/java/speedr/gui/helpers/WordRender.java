@@ -76,7 +76,7 @@ public class WordRender {
                                 .build(),
                         LabelBuilder.create()
                                 .text(focus)
-                                .textFill(Color.rgb(4,118,189))
+                                .textFill(Color.rgb(222,98,98))
                                 .build(),
                         LabelBuilder.create()
                                 .text(after)
