@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import speedr.core.SpeedReadEventPump;
@@ -31,6 +32,7 @@ import speedr.core.entities.Context;
 import speedr.core.entities.Word;
 import speedr.core.listeners.WordPumpEvent;
 import speedr.core.listeners.WordPumpEventListener;
+import speedr.gui.EmailListCell;
 import speedr.gui.helpers.Filters;
 import speedr.gui.helpers.WordRender;
 import speedr.sources.email.Email;
@@ -305,6 +307,11 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         ObservableList<Email> items = FXCollections.observableArrayList();
         items.addAll(emails);
 
+
+
+        Callback<ListView<Email>, ListCell<Email>> cellFactory = listView -> new EmailListCell();
+
+        itemList.setCellFactory(cellFactory);
         itemList.setItems(items);
 
         itemList.getSelectionModel().selectedItemProperty().addListener(
