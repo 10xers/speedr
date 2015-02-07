@@ -19,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
+
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,7 +35,7 @@ import speedr.gui.helpers.Filters;
 import speedr.gui.helpers.WordRender;
 import speedr.sources.email.Email;
 
-import java.awt.event.ActionListener;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -112,7 +112,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        configButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> onConfigureButtonClick(e));
+        configButton.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfigureButtonClick);
 
         wpmSlider.valueProperty().addListener(new ChangeListener<Number>() {
 
@@ -181,7 +181,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         new Thread(() -> {
             try {
                 Thread.sleep(500);
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException ignored) {}
 
             Platform.runLater(() -> { queuePane.setVisible(true); playNextBox.setVisible(false); readerPane.setVisible(false);  });
         }).start();
@@ -228,7 +228,7 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
         new Thread(() -> {
             try {
                 Thread.sleep(500);
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException ignored) {}
 
             Platform.runLater(() -> { queuePane.setVisible(false); new Thread(this::startCountdownAndStream).start(); });
         }).start();
@@ -334,8 +334,8 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
                 throw new IllegalStateException(e);
             }
 
-            String joinedBefore = current.getBefore().stream().map((w) -> w.asText()).collect(Collectors.joining(" "));
-            String joinedAfter = current.getAfter().stream().map((w) -> w.asText()).collect(Collectors.joining(" "));
+            String joinedBefore = current.getBefore().stream().map(Word::asText).collect(Collectors.joining(" "));
+            String joinedAfter = current.getAfter().stream().map(Word::asText).collect(Collectors.joining(" "));
 
             contextIn.setText(joinedBefore);
             contextOut.setText(joinedAfter);
