@@ -1,9 +1,5 @@
 package speedr.gui.helpers;
 
-import javafx.geometry.Pos;
-import javafx.scene.control.LabelBuilder;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
