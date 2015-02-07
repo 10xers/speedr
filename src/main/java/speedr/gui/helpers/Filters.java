@@ -58,7 +58,7 @@ public class Filters {
             switch(f.getFilterType())
             {
                 case CONTAINS:
-                    passes = passes && c.getContent().contains(f.getFilterArg());
+                    passes = passes && c.getContent().toLowerCase().contains(f.getFilterArg().toLowerCase());
                     break;
                 case FROM:
                     break;

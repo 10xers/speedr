@@ -22,7 +22,7 @@ public class FiltersTest {
         List<Filters.Filter> filtersList = Filters.parseFilterText("type:unread from:ed abcabc");
 
         boolean fromEdOK = filtersList.stream().filter((f) -> filtersMatch(f, Filters.Filter.FilterType.FROM, "ed")).count() == 1;
-        boolean remainContainsOK = filtersList.stream().filter((f) -> filtersMatch(f, Filters.Filter.FilterType.CONTAINS, "abcabc")).count() == 1;
+        boolean remainContainsOK = filtersList.stream().filter((f) -> filtersMatch(f, Filters.Filter.FilterType.CONTAINS, "abcabc")).count() == 1; // case insensitive
         boolean typeOK = filtersList.stream().filter((f) -> filtersMatch(f, Filters.Filter.FilterType.TYPE, "unread")).count() == 1;
 
         assertTrue("from filter OK", fromEdOK);
@@ -35,7 +35,7 @@ public class FiltersTest {
     public void testFilteredCorrectly() throws Exception {
 
         List<HasContent> orig = new ArrayList<>();
-        orig.add(() -> "HELLO WORLD! HOW ARE YOU");
+        orig.add(() -> "HELLO WORLD! Halp HOW ARE YOU");
         orig.add(() -> "Halp. I need somebody");
         orig.add(() -> "Not just anybody");
 
@@ -43,5 +43,11 @@ public class FiltersTest {
 
         assertEquals(1, foundSomebody.size());
         assertTrue(foundSomebody.get(0).getContent().equals(orig.get(1).getContent()));
+
+        List<HasContent> foundHalp = Filters.filterList("halp", orig);
+
+        assertEquals(2, foundHalp.size());
+        assertTrue(foundHalp.get(0).getContent().equals(orig.get(0).getContent()));
+        assertTrue(foundHalp.get(1).getContent().equals(orig.get(1).getContent()));
     }
 }
