@@ -423,11 +423,11 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     @FXML
-    public void startReadingBtnClicked(ActionEvent evt) {
+    public void startReadingBtnClicked() {
         activateReadingMode();
     }
 
-    public void filterTextChanged(ActionEvent actionEvent) {
+    public void filterTextChanged() {
         List<Email> newFilteredEmails = Filters.filterList(filterText.getText(), origEmails);
         itemList.setItems(FXCollections.observableArrayList(newFilteredEmails));
         itemList.getSelectionModel().selectFirst();
@@ -439,7 +439,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
 
             fadeOut(playNextBox, 500);
             new Timer().schedule(new TimerTask() {
-
                 @Override
                 public void run() {
                     Platform.runLater(()->playNextBox.setVisible(false));

@@ -15,7 +15,7 @@ public class MockInbox implements EmailInbox {
 
     public MockInbox(String host, String user, String pass) throws AuthenticationFailedException {
 
-        if(!user.equals(username) || !host.equals(hostname) || !pass.equals(password)){
+        if(!user.equals(username) || !pass.equals(password)){
             throw new AuthenticationFailedException("Authentication failed!");
         }
 

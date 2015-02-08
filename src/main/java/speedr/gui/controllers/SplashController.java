@@ -77,7 +77,17 @@ public class SplashController implements Initializable {
 
         try {
 
-            EmailInbox inbox = new MockInbox(hostInput.getText(), userInput.getText(), passInput.getText());
+            EmailInbox inbox;
+
+            // For quick testing, having a host of "debug" will use a mock inbox with the user/pass of
+            // speedrorg@gmail.com/speedrspeedr
+
+            if(hostInput.getText().equals("debug")){
+                inbox = new MockInbox(hostInput.getText(), userInput.getText(), passInput.getText());
+            } else {
+                inbox = new IMAPInbox(hostInput.getText(), userInput.getText(), passInput.getText());
+            }
+
             List<Email> emails = inbox.getRecentMessages(30);
 
             configuration.setHost(hostInput.getText());
