@@ -65,7 +65,11 @@ public class IMAPInbox implements EmailInbox {
             int max = f.getMessageCount();
             int min = max-number < 1 ? 1 : max-(number-1);
 
-            for(Message m : f.getMessages(min, max)){
+            Message[] messages = f.getMessages(min, max);
+
+            System.out.println("Got all messages");
+
+            for(Message m : messages){
 
                 boolean read = m.getFlags().contains(Flags.Flag.SEEN);
 

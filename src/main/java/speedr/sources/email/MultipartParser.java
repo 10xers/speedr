@@ -46,7 +46,13 @@ public class MultipartParser {
             BodyPart bp = multi.getBodyPart(i);
 
             if (bp.getDisposition() == null || !bp.getDisposition().equalsIgnoreCase("ATTACHMENT")) {
-                body += IOUtils.toString(bp.getInputStream());
+
+                String text = IOUtils.toString(bp.getInputStream());
+
+                text = Pattern.compile("\\[image:[^\\]]+\\]", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
+                text = Pattern.compile("<[^<]+>", Pattern.DOTALL | Pattern.MULTILINE).matcher(text).replaceAll("");
+
+                body += text;
             }
 
         }
