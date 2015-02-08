@@ -34,12 +34,12 @@ public class SplashController implements Initializable {
 
     private Configuration configuration;
 
-    @FXML public TextField hostInput;
-    @FXML public TextField userInput;
-    @FXML public PasswordField passInput;
-    @FXML public ProgressBar progressBar;
-    @FXML public Label errorLabel;
-    @FXML public Button loginButton;
+    @FXML private TextField hostInput;
+    @FXML private TextField userInput;
+    @FXML private PasswordField passInput;
+    @FXML private ProgressBar progressBar;
+    @FXML private Label errorLabel;
+    @FXML private Button loginButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

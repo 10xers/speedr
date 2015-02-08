@@ -64,49 +64,49 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     private boolean startedReading = false;
 
     @FXML
-    public TextField filterText;
+    private TextField filterText;
     @FXML
-    public Button btnPlayNextYes;
+    private Button btnPlayNextYes;
     @FXML
-    public Button btnPlayNextNo;
+    private Button btnPlayNextNo;
     @FXML
-    public HBox playNextBox;
+    private HBox playNextBox;
     @FXML
-    public HBox streamControlBar;
+    private HBox streamControlBar;
     @FXML
-    public Button playReadingBtn;
+    private Button playReadingBtn;
     @FXML
-    public BorderPane readerPane;
+    private BorderPane readerPane;
     @FXML
-    public HBox queuePane;
+    private HBox queuePane;
     @FXML
-    public Label contextIn;
+    private Label contextIn;
     @FXML
-    public Label contextOut;
+    private Label contextOut;
     @FXML
-    public Button btnSkipBack;
+    private Button btnSkipBack;
     @FXML
-    public Button btnPause;
+    private Button btnPause;
     @FXML
-    public Button btnSkip;
+    private Button btnSkip;
     @FXML
-    public Button stopBtn;
+    private Button stopBtn;
     @FXML
     private TextFlow currentWordLabel;
     @FXML
     private ListView<Email> itemList;
     @FXML
-    public BorderPane sourcesBox;
+    private BorderPane sourcesBox;
     @FXML
-    public Label loginName;
+    private Label loginName;
     @FXML
-    public ImageView configButton;
+    private ImageView configButton;
     @FXML
-    public Slider wpmSlider;
+    private Slider wpmSlider;
     @FXML
-    public Label wpmLabel;
+    private Label wpmLabel;
     @FXML
-    public Label errorBox;
+    private Label errorBox;
 
     private boolean stopOrdered = false;
     private int wpm = 700;
