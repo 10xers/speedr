@@ -478,7 +478,6 @@ public class MainWindowController implements WordPumpEventListener, Initializabl
     }
 
     public void onErrorBoxClick(){
-        System.out.println("hurrr");
         clearError();
     }
 }
