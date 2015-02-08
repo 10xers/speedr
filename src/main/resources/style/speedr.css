@@ -76,6 +76,10 @@ Label {
     -fx-background-radius: 4px;
 }
 
+#errorBox:hover {
+    -fx-background-color: #bf4040;
+}
+
 #monocle {
     -fx-font-size: 30pt;
     -fx-border-color: #AAAAAA;

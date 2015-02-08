@@ -91,20 +91,8 @@
                   </HBox>
                </top>
                 </BorderPane>
-            <StackPane focusTraversable="true" styleClass="theatre-box">
+            <StackPane alignment="BOTTOM_CENTER" focusTraversable="true" styleClass="theatre-box">
                <children>
-                  <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label id="errorBox" fx:id="errorBox" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="722.0" text="Error" visible="false">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
                       <BorderPane fx:id="readerPane" focusTraversable="true" visible="false">
                           <center>
                               <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
@@ -198,7 +186,7 @@
                       </BorderPane>
                   <HBox fx:id="queuePane" alignment="CENTER" StackPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER" focusTraversable="true" maxWidth="1.7976931348623157E308" prefHeight="716.0" prefWidth="941.0" spacing="10.0">
+                        <VBox alignment="CENTER" focusTraversable="true" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="722.0" spacing="10.0">
                            <children>
                               <Label text="Select some mail to play. Then press &quot;PLAY&quot; below." />
                               <Button fx:id="playReadingBtn" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#startReadingBtnClicked" text="PLAY">
@@ -240,6 +228,14 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <Label id="errorBox" fx:id="errorBox" maxWidth="1.7976931348623157E308" onMouseClicked="#onErrorBoxClick" prefHeight="38.0" prefWidth="722.0" text="Error" visible="false">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </StackPane.margin>
+                  </Label>
                </children>
             </StackPane>
             </items>
