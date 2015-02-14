@@ -1,14 +1,12 @@
 package speedr.gui.controllers;
 
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import speedr.core.config.ConfigurationRepository;
 import speedr.core.config.CorruptedConfigException;
@@ -35,6 +33,8 @@ public class ConfigWindowController implements Initializable {
     public PasswordField password;
     @FXML
     public TextField inboxName;
+    @FXML
+    public CheckBox debugModeCheckbox;
 
     @FXML
     private Button cancelButton;
@@ -52,20 +52,22 @@ public class ConfigWindowController implements Initializable {
 
         setFields(defaultConfig);
 
-        port.textProperty().addListener( (o, oldValue, newValue) -> {
-            if (newValue.isEmpty())
-                return;
-            else {
-                try {
-                    int port = Integer.parseInt(newValue);
-                } catch (NumberFormatException e)
-                {
-                    ((StringProperty)o).setValue(oldValue);
-                }
+        port.textProperty().addListener(this::numbersOnlyInput);
+    }
+
+
+    private void numbersOnlyInput(ObservableValue o, String oldValue, String newValue)
+    {
+        if (newValue.isEmpty())
+            return;
+        else {
+            try {
+                int parseAttempt = Integer.parseInt(newValue);
+            } catch (NumberFormatException e)
+            {
+                ((StringProperty)o).setValue(oldValue);
             }
-
-        });
-
+        }
     }
 
     private void setFields(final Configuration c)
@@ -77,6 +79,7 @@ public class ConfigWindowController implements Initializable {
         emailaddr.setText(c.getUser());
         password.setText(c.getPassword());
         inboxName.setText(c.getRootFolder());
+        debugModeCheckbox.setSelected(c.isDebugMode());
     }
 
     private Configuration getFields(Configuration c)
@@ -87,6 +90,7 @@ public class ConfigWindowController implements Initializable {
         c.setUser(emailaddr.getText());
         c.setPassword(password.getText());
         c.setRootFolder(inboxName.getText());
+        c.setDebugMode(debugModeCheckbox.isSelected());
 
         return c;
     }
@@ -107,9 +111,7 @@ public class ConfigWindowController implements Initializable {
         } catch (IOException e) {
             throw new IllegalStateException("failed to save config", e);
         }
-
-
-
+        
         cancelButton.setText("Close");
     }
 

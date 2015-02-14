@@ -12,6 +12,8 @@ public class Configuration {
     private String password = "speedrspeedr";
     private String host = "imap.gmail.com";
     private int port = 993;
+    private boolean debugMode = false;
+    private int wpm = 700;
 
     private String rootFolder = "INBOX";
 
@@ -71,6 +73,21 @@ public class Configuration {
         this.rootFolder = rootFolder;
     }
 
+    public boolean isDebugMode() {
+        return debugMode;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
+    }
+
+    public int getWpm() {
+        return wpm;
+    }
+
+    public void setWpm(int wpm) {
+        this.wpm = wpm;
+    }
 
     @Override
     public boolean equals(Object o) {

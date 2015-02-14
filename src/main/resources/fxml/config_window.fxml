@@ -48,6 +48,8 @@
 
                                 <Label text="Inbox folder name" GridPane.rowIndex="5" />
                                 <TextField fx:id="inboxName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Debug mode" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="debugModeCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                             </children>
                      <rowConstraints>
@@ -57,6 +59,8 @@
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
                      </rowConstraints>
 
                        </GridPane>
